@@ -1,0 +1,7 @@
+---
+- name: Build Development Environment
+  hosts: all
+  become: yes
+  vars:
+  roles:
+    - common
