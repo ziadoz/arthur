@@ -3,5 +3,6 @@
   hosts: all
   become: yes
   vars:
+    - is_vm: inventory_hostname == 'vagrant'
   roles:
-    - common
+    - server

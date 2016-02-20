@@ -1,0 +1,90 @@
+---
+- name: Upgrade System
+  apt: upgrade=yes update_cache=yes
+
+- name: Install Unattended Upgrade Package
+  apt: name=unattended-upgrades state=latest
+
+- name: Copy Unattended Upgrade Configuration
+  copy: src=unattended-upgrades/02periodic
+        dest=/etc/apt/apt.conf.d/02periodic
+        owner=root
+        group=root
+        mode=0644
+
+- name: Install System Packages
+  apt: name={{ item }} state=latest
+  with_items:
+    - build-essential
+    - python-software-properties
+    - software-properties-common
+    - bash-completion
+    - curl
+    - wget
+    - ncdu
+    - tree
+    - whois
+    - siege
+    - nmap
+    - cloc
+    - lftp
+    - htop
+    - fail2ban
+
+- name: Install Archive Packages
+  apt: name={{ item }} state=latest
+  with_items:
+    - zip
+    - unzip
+    - p7zip
+    - p7zip-full
+
+- name: Install NFS Packages
+  apt: name={{ item }} state=latest
+  with_items:
+    - nfs-common
+    - portmap
+
+- name: Install VCS Packages
+  apt: name={{ item }} state=latest
+  with_items:
+    - git
+    - git-core
+    - subversion
+    - mercurial
+
+- name: Create User Account
+  user: name=ziadoz shell=/bin/bash groups=sudo append=yes state=present
+
+- name: Add User Account Authorized Key
+  authorized_key: user=ziadoz key={{ lookup('file', '~/.ssh/id_rsa.pub') }} state=present
+
+- name: Copy User Account Environment
+  copy: src=bash/ dest=/home/ziadoz owner=ziadoz group=ziadoz mode=700
+
+- name: Copy Vagrant User Account Environment
+  copy: src=bash/ dest=/home/vagrant owner=vagrant group=vagrant mode=700
+  when: is_vm
+
+- name: Enable UFW
+  ufw: state=enabled logging=on
+
+- name: Configure UFW
+  ufw: rule={{ item.rule }} port={{ item.port }}
+  with_items:
+    - { rule: allow, port: ssh }
+    - { rule: allow, port: ftp }
+    - { rule: allow, port: http }
+    - { rule: allow, port: https }
+
+- name: Disable SSH Root Login
+  lineinfile: regexp='^PermitRootLogin' line='PermitRootLogin no' dest=/etc/ssh/sshd_config
+  notify: Restart SSH Daemon
+
+- name: Fix VM Networking Issues
+  cron: cron_file=vbox_networking
+        user=root name='Fix VM Networking Issues'
+        job='rm /etc/udev/rules.d/70-persistent-net-rules && /etc/init.d/networking restart'
+        special_time=reboot
+        state=present
+  when: is_vm
