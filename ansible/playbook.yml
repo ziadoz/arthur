@@ -5,4 +5,5 @@
   vars:
     - is_vm: inventory_hostname == 'vagrant'
   roles:
-    - server
+    - { role: swap, when: is_vm }
+    - { role: server }

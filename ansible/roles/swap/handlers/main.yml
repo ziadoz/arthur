@@ -1,0 +1,3 @@
+---
+- name: Reload System Calls
+  command: sysctl -p
