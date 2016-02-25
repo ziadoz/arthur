@@ -35,6 +35,6 @@
   lineinfile: dest=/etc/sysctl.conf line='vm.{{ item.opt }} = {{ item.value }}' regexp='^vm.{{ item.opt }}[\s]?=' state=present
   with_items:
     - { opt: swappiness,          value: '{{ swapfile_swappiness }}' }
-    - { opt: vfs_cache_pressure, value: '{{ swapfile_vfs_cache_pressure }}' }
+    - { opt: vfs_cache_pressure,  value: '{{ swapfile_vfs_cache_pressure }}' }
   notify: Reload System Calls
   when: swapfile.stat.exists == false
