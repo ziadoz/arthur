@@ -27,7 +27,6 @@
     - siege
     - nmap
     - cloc
-    - lftp
     - htop
     - fail2ban
 
