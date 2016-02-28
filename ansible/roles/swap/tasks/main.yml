@@ -16,7 +16,7 @@
   when: swapfile.stat.exists == false
 
 - name: Set Swapfile Permissions
-  file: path={{ swapfile_path }} owner=root group=root mode=600
+  file: path={{ swapfile_path }} owner=root group=root mode=0600
   when: swapfile.stat.exists == false
 
 - name: Create Swapfile

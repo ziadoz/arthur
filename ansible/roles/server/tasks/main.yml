@@ -56,13 +56,13 @@
   user: name=ziadoz shell=/bin/bash groups=sudo append=yes state=present
 
 - name: Add User Account Authorized Key
-  authorized_key: user=ziadoz key={{ lookup('file', '~/.ssh/id_rsa.pub') }} state=present
+  authorized_key: user={{ user_account }} key={{ lookup('file', '~/.ssh/id_rsa.pub') }} state=present
 
 - name: Copy User Account Environment
-  copy: src=bash/ dest=/home/ziadoz owner=ziadoz group=ziadoz mode=700
+  copy: src=bash/ dest=/home/{{ user_account }} owner={{ user_account }} group=ziadoz mode=0700
 
 - name: Copy Vagrant User Account Environment
-  copy: src=bash/ dest=/home/vagrant owner=vagrant group=vagrant mode=700
+  copy: src=bash/ dest=/home/vagrant owner=vagrant group=vagrant mode=0700
   when: is_vm
 
 - name: Enable UFW

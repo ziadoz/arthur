@@ -4,6 +4,7 @@
   become: yes
   vars:
     - is_vm: inventory_hostname == 'vagrant'
+    - user_account: ziadoz
   roles:
     - { role: swap, when: is_vm }
     - { role: server }
