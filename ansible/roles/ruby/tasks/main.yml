@@ -1,0 +1,89 @@
+---
+- name: Install Ruby Dependencies
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - git-core
+    - curl
+    - zlib1g-dev
+    - build-essential
+    - libssl-dev
+    - libreadline-dev
+    - libyaml-dev
+    - libsqlite3-dev
+    - sqlite3
+    - libxml2-dev
+    - libxslt1-dev
+    - libcurl4-openssl-dev
+    - python-software-properties
+    - libffi-dev
+
+- name: Clone RBEnv Git Repository
+  git: repo=https://github.com/rbenv/rbenv.git
+       dest={{ rbenv_path }}
+       version={{ rbenv_version }}
+       accept_hostkey=yes
+       force=yes
+
+- name: Clone Ruby Build Git Repository
+  git: repo=https://github.com/rbenv/ruby-build.git
+       dest={{ ruby_build_path }}
+       version={{ ruby_build_version }}
+       accept_hostkey=yes
+       force=yes
+
+- name: Add RBEnv Group
+  group: name=rbenv
+
+- name: Change RBEnv Versions Directory Permissions
+  file: path={{ rbenv_path }} group=rbenv mode=2775 recurse=yes
+
+- name: Set RBEnv ACL
+  acl: path={{ rbenv_path }} entity=rbenv etype=group permissions=rwx default=yes state=present
+
+- name: Symlink RBEnv Binary
+  file: path=/usr/local/bin/rbenv src={{ rbenv_path }}/bin/rbenv state=link
+
+- name: Copy RBEnv Profile
+  template: src=rbenv.sh.j2 dest=/etc/profile.d/rbenv.sh owner=root group=root mode=u+x
+
+- name: Update User Group
+  user: user={{ user_account }} groups=rbenv append=yes
+
+- name: Update Vagrant User Group
+  user: user=vagrant groups=rbenv append=yes
+  when: is_vm
+
+- name: Check Ruby Installed
+  shell: rbenv versions | grep {{ ruby_version }}
+  environment:
+    RBENV_ROOT: '{{ rbenv_path }}'
+  register: ruby_installed
+  ignore_errors: yes
+
+- name: Install Ruby {{ ruby_version }}
+  shell: rbenv install {{ ruby_version }}
+  environment:
+    RBENV_ROOT: '{{ rbenv_path }}'
+  when: ruby_installed|failed
+
+- name: Set Ruby Global version
+  shell: rbenv global {{ ruby_version }}
+  environment:
+    RBENV_ROOT: '{{ rbenv_path }}'
+  when: ruby_installed|failed
+
+- name: Update Ruby Shims
+  shell: rbenv rehash
+  environment:
+    RBENV_ROOT: '{{ rbenv_path }}'
+  when: ruby_installed|failed
+
+- name: Copy Ruby Gems Configuration
+  copy: src=.gemrc dest=/home/{{ user_account }}/.gemrc owner={{ user_account }} group={{ user_account }} mode=0644
+
+- name: Copy Vagrant Ruby Gems Configuration
+  copy: src=.gemrc dest=/home/vagrant/.gemrc owner=vagrant group=vagrant mode=0644
+  when: is_vm
+
+- name: Install Bundler
+  shell: gem install bundler

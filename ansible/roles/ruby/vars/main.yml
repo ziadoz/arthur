@@ -1,0 +1,6 @@
+---
+rbenv_path: /usr/local/rbenv
+rbenv_version: master
+ruby_build_path: /usr/local/rbenv/plugins/ruby-build
+ruby_build_version: master
+ruby_version: 2.3.0
