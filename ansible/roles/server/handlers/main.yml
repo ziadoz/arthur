@@ -3,4 +3,4 @@
   service: name=sshd state=restarted
 
 - name: Restart Networking
-  service: name=network-manager state=restarted
+  service: name=networking state=restarted
