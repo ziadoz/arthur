@@ -4,7 +4,7 @@
 Vagrant.configure(2) do |config|
   # Box
   config.vm.box = "ubuntu/wily64"
-  config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", ip: "192.168.33.42"
 
   # Shared Folder
   config.vm.synced_folder "~/Projects", "/var/www/vhosts", type: "nfs"
