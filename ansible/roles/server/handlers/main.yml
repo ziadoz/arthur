@@ -1,3 +1,6 @@
 ---
-  - name: Restart SSH Daemon
-    service: name=sshd state=restarted
+- name: Restart SSH Daemon
+  service: name=sshd state=restarted
+
+- name: Restart Networking
+  service: name=network-manager state=restarted

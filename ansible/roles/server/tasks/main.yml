@@ -61,10 +61,6 @@
 - name: Copy User Account Environment
   copy: src=bash/ dest=/home/{{ user_account }} owner={{ user_account }} group=ziadoz mode=0700
 
-- name: Copy Vagrant User Account Environment
-  copy: src=bash/ dest=/home/vagrant owner=vagrant group=vagrant mode=0700
-  when: is_vm
-
 - name: Enable UFW
   ufw: state=enabled logging=on
 
@@ -77,8 +73,18 @@
     - { rule: allow, port: https }
 
 - name: Disable SSH Root Login
-  lineinfile: regexp='^PermitRootLogin' line='PermitRootLogin no' dest=/etc/ssh/sshd_config
+  lineinfile: dest=/etc/ssh/sshd_config regexp='^PermitRootLogin' line='PermitRootLogin no'
   notify: Restart SSH Daemon
+
+- name: Add Base DNS Name Servers
+  lineinfile: dest=/etc/resolvconf/resolv.conf.d/base line='nameserver {{ item }}'
+  with_items:
+    - 8.8.8.8
+    - 8.8.4.4
+
+- name: Update ResolvConf
+  shell: resolvconf -u
+  notify: Restart Networking
 
 - name: Fix VM Networking Issues
   cron: cron_file=vbox_networking

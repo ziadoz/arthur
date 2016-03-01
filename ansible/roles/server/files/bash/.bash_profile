@@ -1,3 +1,4 @@
+export PATH="$PATH"
 export EDITOR='nano'
 
 BOLD="$(tput bold)"
