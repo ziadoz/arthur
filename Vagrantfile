@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
 
   # Configuration
   config.vm.provider "virtualbox" do |vb|
-    vb.name   = "optimus"
+    vb.name   = "arthur"
     vb.memory = "2048"
   end
 
