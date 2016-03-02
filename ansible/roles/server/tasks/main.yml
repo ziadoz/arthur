@@ -53,13 +53,13 @@
     - mercurial
 
 - name: Create User Account
-  user: name=ziadoz shell=/bin/bash groups=sudo append=yes state=present
+  user: name={{ user_account }} shell=/bin/bash groups=sudo append=yes state=present
 
 - name: Add User Account Authorized Key
   authorized_key: user={{ user_account }} key={{ lookup('file', '~/.ssh/id_rsa.pub') }} state=present
 
 - name: Copy User Account Environment
-  copy: src=bash/ dest=/home/{{ user_account }} owner={{ user_account }} group=ziadoz mode=0700
+  copy: src=bash/ dest=/home/{{ user_account }} owner={{ user_account }} group={{ user_account }} mode=0700
 
 - name: Enable UFW
   ufw: state=enabled logging=on
