@@ -42,7 +42,7 @@
 - name: Add RBenv Init
   lineinfile: dest=/home/{{ user_account }}/.bash_profile
               insertafter=EOF
-              line='\neval "$(rbenv init -)"'
+              line='\nif which rbenv > /dev/null; then eval "$(rbenv init -)"; fi'
 
 - name: Check Ruby Installed
   shell: sudo -iu {{ user_account }} rbenv versions | grep {{ ruby_version }}
