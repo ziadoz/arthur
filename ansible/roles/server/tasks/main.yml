@@ -67,6 +67,9 @@
 - name: Copy User Account Environment
   copy: src=bash/ dest=/home/{{ user_account }} owner={{ user_account }} group={{ user_account }} mode=0700
 
+- name: Sudo Admin Successfully
+  file: path=/home/{{ user_account }}/.sudo_as_admin_successful state=touch
+
 - name: Enable UFW
   ufw: state=enabled logging=on
 
