@@ -18,7 +18,7 @@ BG_MAGENTA="$(tput setab 5)"
 BG_CYAN="$(tput setab 6)"
 BG_WHITE="$(tput setab 7)"
 
-alias sudo='sudo '
+# alias sudo='sudo '
 alias editbash="nano $HOME/.bash_profile"
 alias reloadbash="exec $SHELL -l"
 
