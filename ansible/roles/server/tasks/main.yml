@@ -1,4 +1,10 @@
 ---
+- name: Install Aptitude Packages
+  apt: name={{ item }} state=latest
+  with_items:
+    - python-minimal
+    - aptitude
+
 - name: Upgrade System
   apt: upgrade=yes update_cache=yes
 
