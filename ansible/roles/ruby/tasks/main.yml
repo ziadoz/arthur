@@ -2,20 +2,31 @@
 - name: Install Ruby Dependencies
   apt: name={{ item }} state=latest update_cache=yes
   with_items:
-    - git-core
-    - curl
-    - zlib1g-dev
+    - autoconf
+    - bison
     - build-essential
     - libssl-dev
-    - libreadline-dev
     - libyaml-dev
-    - libsqlite3-dev
-    - sqlite3
-    - libxml2-dev
-    - libxslt1-dev
-    - libcurl4-openssl-dev
-    - python-software-properties
+    - libreadline6-dev
+    - zlib1g-dev
+    - libncurses5-dev
     - libffi-dev
+    - libgdbm3
+    - libgdbm-dev
+    # - git-core
+    # - curl
+    # - zlib1g-dev
+    # - build-essential
+    # - libssl-dev
+    # - libreadline-dev
+    # - libyaml-dev
+    # - libsqlite3-dev
+    # - sqlite3
+    # - libxml2-dev
+    # - libxslt1-dev
+    # - libcurl4-openssl-dev
+    # - python-software-properties
+    # - libffi-dev
 
 - name: Clone RBEnv Git Repository
   git: repo=https://github.com/rbenv/rbenv.git
@@ -31,18 +42,17 @@
        accept_hostkey=yes
        force=yes
 
-- name: Change RBEnv Permissions
-  file: path={{ rbenv_path }} owner={{ user_account }} group={{ user_account }} mode=0700 recurse=yes
+- name: Set RbEnv Directory Permissions
+  file: path={{ rbenv_path }} owner={{ user_account }} group={{ user_account }} mode=0774
 
-- name: Add RBEnv Path
-  lineinfile: dest=/home/{{ user_account }}/.bash_profile
-              insertafter='^export PATH'
-              line='export PATH="$HOME/.rbenv/bin:$PATH"'
+- name: Copy RBEnv Configuration
+  template: src=.rbenvrc.j2 dest=/home/{{ user_account }}/.rbenvrc owner={{ user_account }} group={{ user_account }} mode=0744
 
-- name: Add RBenv Init
+- name: Update Bash Profile
   lineinfile: dest=/home/{{ user_account }}/.bash_profile
-              insertafter=EOF
-              line='\nif which rbenv > /dev/null; then eval "$(rbenv init -)"; fi'
+              regexp='^source .rbenvrc'
+              line='source .rbenvrc'
+              insertafter='EOF'
 
 - name: Check Ruby Installed
   shell: sudo -iu {{ user_account }} rbenv versions | grep {{ ruby_version }}
@@ -62,7 +72,7 @@
   when: ruby_installed|failed
 
 - name: Copy Ruby Gems Configuration
-  copy: src=.gemrc dest=/home/{{ user_account }}/.gemrc owner={{ user_account }} group={{ user_account }} mode=0644
+  copy: src=.gemrc dest=/home/{{ user_account }}/.gemrc owner={{ user_account }} group={{ user_account }} mode=0744
 
 - name: Install Bundler
   shell: gem install bundler
