@@ -1,0 +1,8 @@
+---
+pyenv_path: /home/{{ user_account }}/.pyenv
+pyenv_version: master
+pyenv_virtualenv_path: /home/{{ user_account }}/.pyenv/plugins/pyenv-virtualenv
+pyenv_virtualenv_version: master
+python_versions:
+  - 3.5.4
+python_global_version: 3.5.4
