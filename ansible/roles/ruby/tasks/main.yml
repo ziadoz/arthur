@@ -13,20 +13,6 @@
     - libffi-dev
     - libgdbm3
     - libgdbm-dev
-    # - git-core
-    # - curl
-    # - zlib1g-dev
-    # - build-essential
-    # - libssl-dev
-    # - libreadline-dev
-    # - libyaml-dev
-    # - libsqlite3-dev
-    # - sqlite3
-    # - libxml2-dev
-    # - libxslt1-dev
-    # - libcurl4-openssl-dev
-    # - python-software-properties
-    # - libffi-dev
 
 - name: Clone RBEnv Git Repository
   git: repo=https://github.com/rbenv/rbenv.git
@@ -75,4 +61,4 @@
   copy: src=.gemrc dest=/home/{{ user_account }}/.gemrc owner={{ user_account }} group={{ user_account }} mode=0744
 
 - name: Install Bundler
-  shell: gem install bundler
+  shell: sudo -iu {{ user_account }} gem install bundler
