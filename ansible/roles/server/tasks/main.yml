@@ -49,6 +49,7 @@
   with_items:
     - nfs-common
     - portmap
+  when: is_vm
 
 - name: Install VCS Packages
   apt: name={{ item }} state=latest
