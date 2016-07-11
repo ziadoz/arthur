@@ -1,6 +1,4 @@
 ---
-rbenv_path: /home/{{ user_account }}/.rbenv
-rbenv_version: master
-ruby_build_path: /home/{{ user_account }}/.rbenv/plugins/ruby-build
-ruby_build_version: master
-ruby_version: 2.3.0
+# ruby_ppa: ppa:brightbox/ruby-ng
+ruby_ppa: ppa:brightbox/ruby-ng-experimental
+ruby_version: 2.3
