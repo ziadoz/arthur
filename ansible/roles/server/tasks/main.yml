@@ -5,6 +5,7 @@
     - python-apt
     - aptitude
 
+# https://github.com/ansible/ansible-modules-core/issues/3523
 - name: Upgrade System
   apt: upgrade=yes update_cache=yes
 
