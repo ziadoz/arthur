@@ -2,7 +2,7 @@
 - name: Install Aptitude Packages
   apt: name={{ item }} state=latest
   with_items:
-    - python-minimal
+    - python-apt
     - aptitude
 
 - name: Upgrade System
@@ -22,7 +22,6 @@
   apt: name={{ item }} state=latest
   with_items:
     - build-essential
-    - python-software-properties
     - software-properties-common
     - bash-completion
     - curl
