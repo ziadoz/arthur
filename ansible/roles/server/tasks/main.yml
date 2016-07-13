@@ -35,6 +35,7 @@
     - cloc
     - htop
     - fail2ban
+    - mosh
 
 - name: Install Archive Packages
   apt: name={{ item }} state=latest
