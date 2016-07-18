@@ -8,3 +8,10 @@ A virtual environment for web development.
 - Setup logrotate.
 - Disable UFW logging on VM.
 - Add tags to playbook tasks.
+- Find Galaxy roles for various bits and pieces.
+
+# Notes
+```
+ansible all -m ping
+ansible all -m setup
+```
