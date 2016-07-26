@@ -1,4 +1,5 @@
 .DS_Store
 .vagrant
 *.log
-ansible/playbook.retry
+*.retry
+roles/galaxy/*
