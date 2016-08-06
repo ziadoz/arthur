@@ -13,7 +13,7 @@
   apt: name=unattended-upgrades state=latest
 
 - name: Copy Unattended Upgrade Configuration
-  copy: src=unattended-upgrades/02periodic
+  copy: src=unattended-upgrades
         dest=/etc/apt/apt.conf.d/02periodic
         owner=root
         group=root
