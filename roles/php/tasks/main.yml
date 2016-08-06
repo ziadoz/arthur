@@ -16,6 +16,7 @@
    - php{{ php_version }}-curl
    - php{{ php_version }}-intl
    - php{{ php_version }}-readline
+   - php{{ php_version }}-fpm
 
 - name: Install XDebug
   apt: name=php{{ php_version }}-xdebug state=latest update_cache=yes
