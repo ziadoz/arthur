@@ -1,0 +1,30 @@
+---
+- name: Add PHP PPA
+  apt_repository: repo={{ php_ppa }} update_cache=yes
+
+- name: Install PHP
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+   - php{{ php_version }}
+   - php{{ php_version }}-dev
+   - php{{ php_version }}-common
+   - php{{ php_version }}-cli
+   - php{{ php_version }}-mysql
+   - php{{ php_version }}-imagick
+   - php{{ php_version }}-gd
+   - php{{ php_version }}-intl
+   - php{{ php_version }}-curl
+   - php{{ php_version }}-intl
+   - php{{ php_version }}-readline
+
+- name: Install XDebug
+  apt: name=php{{ php_version }}-xdebug state=latest update_cache=yes
+  when: is_vm
+
+- name: Copy XDebug Configuration
+  template: src=xdebug.ini.j2
+            dest=/etc/php/{{ php_version }}/mods-available/xdebug.ini
+            owner=root
+            group=root
+            mode=0644
+  when: is_vm

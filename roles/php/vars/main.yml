@@ -1,0 +1,4 @@
+---
+php_ppa: ppa:ondrej/php
+php_version: 7.0
+xdebug_ide_key: XDEBUG
