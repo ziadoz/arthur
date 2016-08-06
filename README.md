@@ -9,13 +9,14 @@ A virtual environment for web development.
 - Revise virtual host Ruby script: https://gist.github.com/ziadoz/63efdb096123ec88271f
 
 ## Commands
+Ping the inventory: `ansible all -m ping`
 
-```
-ansible all -m ping
-ansible all -m setup
-```
+Get facts about the inventory: `ansible all -m setup`
+
+Install the required roles: `ansible-galaxy install -r requirements.yml`
 
 ## Links
+- http://leucos.github.io/ansible-files-layout/
 - http://www.jeffgeerling.com/blog/using-ansible-galaxy
 - http://stackoverflow.com/questions/25230376/how-to-automatically-install-ansible-galaxy-roles
 - https://galaxy.ansible.com/ferrarimarco/install-roles/
