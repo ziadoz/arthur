@@ -15,5 +15,12 @@
     - bundler
     - rake
 
+- name: Install Backup Dependencies
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - libxslt-dev
+    - libxml2-dev
+    - zlib1g-dev
+
 - name: Install Backup
   shell: gem{{ ruby_version }} install backup
