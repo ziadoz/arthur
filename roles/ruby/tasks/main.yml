@@ -14,4 +14,6 @@
   with_items:
     - bundler
     - rake
-    - backup
+
+- name: Install Backup
+  shell: gem{{ ruby_version }} install backup
