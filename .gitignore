@@ -2,4 +2,4 @@
 .vagrant
 *.log
 *.retry
-roles/galaxy/*
+.galaxy/*
