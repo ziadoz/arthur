@@ -14,3 +14,4 @@
   with_items:
     - bundler
     - rake
+    - backup
