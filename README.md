@@ -2,7 +2,7 @@
 A virtual environment for web development.
 
 ## Todos
-- Install Nginx (PPA), PHP7-FPM (PPA), MySQL 5.7 (PPA) or PostgreSQL, Elixir, Node JS and Phantom JS.
+- Install Nginx (PPA), PHP7-FPM (PPA), MySQL 5.7 (PPA) or PostgreSQL, Redis, Elixir, Node JS and Phantom JS.
 - Configure PHP-FPM with custom INI file.
 - Setup logrotate.
 - Add tags to playbook tasks.
