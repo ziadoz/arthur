@@ -23,4 +23,4 @@
     - zlib1g-dev
 
 - name: Install Backup
-  shell: gem{{ ruby_version }} install backup
+  shell: gem{{ ruby_version }} install backup --no-ri --no-rdoc
