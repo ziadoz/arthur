@@ -9,6 +9,8 @@ A virtual environment for web development.
 - Revise virtual host Ruby script: https://gist.github.com/ziadoz/63efdb096123ec88271f
 
 ## Commands
+Provision or re-provision the machine: `vagrant provision`
+
 Ping the inventory: `ansible all -m ping`
 
 Get facts about the inventory: `ansible all -m setup`
