@@ -2,7 +2,7 @@
 - name: Add PHP PPA
   apt_repository: repo={{ php_ppa }} update_cache=yes
 
-- name: Install PHP
+- name: Install PHP FPM
   apt: name={{ item }} state=latest update_cache=yes
   with_items:
    - php{{ php_version }}
@@ -17,6 +17,24 @@
    - php{{ php_version }}-intl
    - php{{ php_version }}-readline
    - php{{ php_version }}-fpm
+
+- name: Update PHP FPM Configuration
+  lineinfile: dest=/etc/php/7.0/fpm/php.ini
+              regexp="^;?{{ item.key }}\s+=\s+"
+              line="{{ item.key }} = {{ item.value }}"
+              state=present
+              backup=yes
+  with_dict: "{{ php_fpm_config }}"
+  notify: Restart PHP FPM
+
+- name: Update PHP CLI Configuration
+  lineinfile: dest=/etc/php/7.0/cli/php.ini 
+              regexp="^;?{{ item.key }}\s+=\s+"
+              line="{{ item.key }} = {{ item.value }}"
+              state=present
+              backup=yes
+  with_dict: "{{ php_cli_config }}"
+  notify: Restart PHP FPM
 
 - name: Install XDebug
   apt: name=php{{ php_version }}-xdebug state=latest update_cache=yes
