@@ -19,7 +19,7 @@
    - php{{ php_version }}-fpm
 
 - name: Update PHP FPM Configuration
-  lineinfile: dest=/etc/php/7.0/fpm/php.ini
+  lineinfile: dest=/etc/php/{{ php_version }}/fpm/php.ini
               regexp="^;?{{ item.key }}\s+=\s+"
               line="{{ item.key }} = {{ item.value }}"
               state=present
@@ -28,7 +28,7 @@
   notify: Restart PHP FPM
 
 - name: Update PHP CLI Configuration
-  lineinfile: dest=/etc/php/7.0/cli/php.ini 
+  lineinfile: dest=/etc/php/{{ php_version }}/cli/php.ini 
               regexp="^;?{{ item.key }}\s+=\s+"
               line="{{ item.key }} = {{ item.value }}"
               state=present
