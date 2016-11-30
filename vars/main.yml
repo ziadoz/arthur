@@ -1,0 +1,3 @@
+---
+is_vm: inventory_hostname == 'vagrant'
+user_account: ziadoz

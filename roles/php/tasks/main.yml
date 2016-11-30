@@ -36,6 +36,22 @@
   with_dict: "{{ php_cli_config }}"
   notify: Restart PHP FPM
 
+- name: Copy Composer Installer
+  copy: src=install-composer.sh
+        dest=/home/{{ user_account }}
+        owner={{ user_account }}
+        group={{ user_account }}
+        mode=0700
+
+- name: Install Composer
+  shell: /home/{{ user_account }}/install-composer.sh && mv /home/{{ user_account }}/composer.phar /usr/local/bin/composer
+
+- name: Make Composer Executable
+  file: path=/usr/local/bin/composer 
+        owner=root
+        group=root
+        mode=777
+
 - name: Install XDebug
   apt: name=php{{ php_version }}-xdebug state=latest update_cache=yes
   when: is_vm
