@@ -10,5 +10,4 @@
     - { role: server }
     - { role: ruby }
     - { role: php }
-    # - { role: geerlingguy.composer }
     - { role: mysql }
