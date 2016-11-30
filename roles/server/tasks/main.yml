@@ -79,7 +79,6 @@
   ufw: rule={{ item.rule }} port={{ item.port }}
   with_items:
     - { rule: allow, port: ssh }
-    - { rule: allow, port: ftp }
     - { rule: allow, port: http }
     - { rule: allow, port: https }
 
