@@ -36,21 +36,32 @@
   with_dict: "{{ php_cli_config }}"
   notify: Restart PHP FPM
 
+- name: Check Composer Installed
+  shell: which composer
+  register: composer_installed
+
 - name: Copy Composer Installer
   copy: src=install-composer.sh
         dest=/home/{{ user_account }}
         owner={{ user_account }}
         group={{ user_account }}
         mode=0700
+  when: composer_installed.rc == 1
 
 - name: Install Composer
   shell: /home/{{ user_account }}/install-composer.sh && mv /home/{{ user_account }}/composer.phar /usr/local/bin/composer
+  when: composer_installed.rc == 1
 
 - name: Make Composer Executable
   file: path=/usr/local/bin/composer 
         owner=root
         group=root
         mode=777
+  when: composer_installed.rc == 1
+
+- name: Update Composer
+  shell: composer self-update
+  when: composer_installed.rc == 0
 
 - name: Install XDebug
   apt: name=php{{ php_version }}-xdebug state=latest update_cache=yes
