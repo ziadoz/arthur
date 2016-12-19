@@ -6,8 +6,8 @@
     - vars/main.yml
     #- vars/vault.yml
   roles:
-    #- { role: swap, when: is_vm }
-    #- { role: server }
-    #- { role: ruby }
-    #- { role: php }
+    - { role: swap, when: is_vm }
+    - { role: server }
+    - { role: ruby }
+    - { role: php }
     - { role: mysql }
