@@ -1,0 +1,68 @@
+---
+- name: Add MySQL PPA
+  apt_repository: repo={{ mysql_ppa }} update_cache=yes
+
+- name: Install MySQL
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - mysql-server
+    - mysql-client
+    - python-mysqldb
+
+- name: Update MySQL Configuration
+  ini_file: dest=/etc/mysql/mysql.conf.d/mysqld.cnf
+            section=mysqld
+            option={{ item.key }}
+            value={{ item.value }}
+            create=yes
+            backup=yes
+  with_dict: "{{ mysql_config.mysqld }}"
+  notify: Restart MySQL
+
+- name: Restart MySQL
+  service: name=mysql state=restarted
+  when: mysql_change_root_password
+
+# http://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html
+- name: Kill MySQL Process
+  shell: sudo kill `cat /var/run/mysqld/mysqld.pid`
+  when: mysql_change_root_password
+
+- name: Create MySQL Root Password File
+  copy: content="ALTER USER '{{ mysql_root_username }}'@'localhost' IDENTIFIED BY '{{ mysql_root_password }}';"
+        dest=/home/{{ user_account }}/mysql-init
+        owner=mysql
+        group=mysql
+        mode=600
+  when: mysql_change_root_password
+
+- name: Change MySQL Root Password
+  shell: mysqld_safe --init-file=/home/me/mysql-init &
+  when: mysql_change_root_password
+
+- name: Delete MySQL Root Password File
+  file: dest=/home/{{ user_account }}/mysql-init
+        state=absent
+  when: mysql_change_root_password
+
+- name: Copy MySQL Root User Configuration
+  template: src=my.cnf.j2
+            dest=/home/{{ user_account }}/.my.cnf
+            owner={{ user_account }}
+            group={{ user_account }}
+            mode=0600
+  when: mysql_change_root_password
+
+- name: Restart MySQL
+  service: name=mysql state=restarted
+
+- name: Update MySQL Users
+  mysql_user: host=localhost
+              login_user={{ mysql_root_username }}
+              login_password={{ mysql_root_password }}
+              name={{ item.username }}
+              password={{ item.password }}
+              priv={{ item.privileges }}
+              update_password=always
+              state=present
+  with_items: "{{ mysql_users }}"
