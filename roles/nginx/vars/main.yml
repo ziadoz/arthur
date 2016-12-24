@@ -1,0 +1,3 @@
+---
+nginx_ppa: ppa:nginx/stable
+nginx_h5bp_config: yes

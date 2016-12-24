@@ -9,5 +9,6 @@
     - { role: swap, when: is_vm }
     - { role: server }
     - { role: php }
+    - { role: nginx }
     - { role: mysql }
     - { role: ruby }
