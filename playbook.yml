@@ -8,6 +8,6 @@
   roles:
     - { role: swap, when: is_vm }
     - { role: server }
-    - { role: ruby }
     - { role: php }
     - { role: mysql }
+    - { role: ruby }
