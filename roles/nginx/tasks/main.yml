@@ -1,44 +1,65 @@
 ---
 - name: Add Nginx PPA
-  apt_repository: repo={{ nginx_ppa }} update_cache=yes
+  apt_repository:
+    repo: "{{ nginx_ppa }}"
+    update_cache: yes
 
 - name: Install Nginx
-  apt: name=nginx state=latest
+  apt:
+    name: nginx
+    state: latest
 
 - name: Disable Default Site
-  file: dest=/etc/nginx/sites-enabled/default state=absent
+  file:
+    dest: /etc/nginx/sites-enabled/default
+    state: absent
   notify: Restart Nginx
 
 # - name: Copy Nginx Configuation
-#   template: src=templates/nginx.conf.j2
-#             dest=/etc/nginx/nginx.conf backup=yes
+#   template:
+#     src: templates/nginx.conf.j2
+#     dest: /etc/nginx/nginx.conf backup=yes
 #
 # - name: Copy FastCGI Parameter Configuration
-#   template: src=templates/fastcgi_params.j2
-#             dest=/etc/nginx/fastcgi_params backup=yes
+#   template:
+#     src: templates/fastcgi_params.j2
+#     dest: /etc/nginx/fastcgi_params backup=yes
 #   notify: Restart Nginx
-
-- name: Create Document Root
-  file: dest=/var/www/vhosts
-        mode=775
-        state=directory
-        owner=www-data
-        group=www-data
+#
+# - name: Create Document Root
+#   file:
+#     path: /var/www/vhosts/
+#     owner: www-data
+#     group: www-data
+#     state: directory
+#     mode: 0775
+#     recurse: yes
 
 - name: Clone H5BP Nginx Configuration
-  git: repo=https://github.com/h5bp/server-configs-nginx.git
-       dest=/tmp/server-configs-nginx
-       force=yes
-  when: nginx_h5bp_config == yes
+  git:
+    repo: https://github.com/h5bp/server-configs-nginx.git
+    dest: /tmp/server-configs-nginx
+    force: yes
+  when: nginx_h5bp_config
 
 - name: Copy H5BP Nginx Configuration
   shell: cp -R /tmp/server-configs-nginx/{{ item }} /etc/nginx/{{ item }}
   with_items:
     - mime.types
     - h5bp/
-  when: nginx_h5bp_config == yes
+  when: nginx_h5bp_config
 
 - name: Remove H5BP Nginx Configuration
-  shell: rm -rf /tmp/server-configs-nginx/
-  when: nginx_h5bp_config == yes
+  file:
+    path: /tmp/server-configs-nginx/
+    state: absent
+  when: nginx_h5bp_config
   notify: Restart Nginx
+
+- name: Configure UFW
+  ufw:
+    rule: "{{ item.rule }}"
+    port: "{{ item.port }}"
+  with_items:
+    - { rule: allow, port: http }
+    - { rule: allow, port: https }

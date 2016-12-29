@@ -4,11 +4,14 @@
   when: swapfile_delete_existing == true
 
 - name: Remove Swapfile
-  file: path={{ swapfile_path }} state=absent
+  file:
+    path: "{{ swapfile_path }}"
+    state: absent
   when: swapfile_delete_existing == true
 
 - name: Check Swapfile Exists
-  stat: path={{ swapfile_path }}
+  stat:
+    path: "{{ swapfile_path }}"
   register: swapfile
 
 - name: Write Swapfile
@@ -16,7 +19,11 @@
   when: swapfile.stat.exists == false
 
 - name: Set Swapfile Permissions
-  file: path={{ swapfile_path }} owner=root group=root mode=0600
+  file:
+    path: "{{ swapfile_path }}"
+    owner: root
+    group: root
+    mode: 0600
   when: swapfile.stat.exists == false
 
 - name: Create Swapfile
@@ -28,11 +35,18 @@
   when: swapfile.stat.exists == false
 
 - name: Add Swapfile To File System
-  lineinfile: dest=/etc/fstab line='{{ swapfile_path }}   none    swap    sw    0   0' state=present
+  lineinfile:
+    dest: /etc/fstab
+    line: '{{ swapfile_path }}   none    swap    sw    0   0'
+    state: present
   when: swapfile.stat.exists == false
 
 - name: Configure Swapfile
-  lineinfile: dest=/etc/sysctl.conf line='vm.{{ item.opt }} = {{ item.value }}' regexp='^vm.{{ item.opt }}[\s]?=' state=present
+  lineinfile:
+    dest: /etc/sysctl.conf
+    line: 'vm.{{ item.opt }} = {{ item.value }}'
+    regexp: '^vm.{{ item.opt }}[\s]?='
+    state: present
   with_items:
     - { opt: swappiness,          value: '{{ swapfile_swappiness }}' }
     - { opt: vfs_cache_pressure,  value: '{{ swapfile_vfs_cache_pressure }}' }

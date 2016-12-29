@@ -1,6 +1,10 @@
 ---
 - name: Restart SSH Daemon
-  service: name=sshd state=restarted
+  service:
+    name: sshd
+    state: restarted
 
 - name: Restart Networking
-  service: name=networking state=restarted
+  service:
+    name: networking
+    state: restarted

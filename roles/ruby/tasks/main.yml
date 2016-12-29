@@ -1,9 +1,14 @@
 ---
 - name: Add Ruby PPA
-  apt_repository: repo={{ ruby_ppa }} update_cache=yes
+  apt_repository:
+    repo: "{{ ruby_ppa }}"
+    update_cache: yes
 
 - name: Install Ruby
-  apt: name={{ item }} state=latest update_cache=yes
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
   with_items:
     - ruby{{ ruby_version }}
     - ruby{{ ruby_version }}-dev
@@ -16,7 +21,10 @@
     - rake
 
 - name: Install Backup Dependencies
-  apt: name={{ item }} state=latest update_cache=yes
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
   with_items:
     - libxslt-dev
     - libxml2-dev
@@ -24,3 +32,4 @@
 
 - name: Install Backup
   shell: gem{{ ruby_version }} install backup --no-ri --no-rdoc
+  when: ! is_vm

@@ -1,26 +1,35 @@
 ---
 - name: Install Aptitude Packages
-  apt: name={{ item }} state=latest
+  apt:
+    name: "{{ item }}"
+    state: latest
   with_items:
     - python-apt
     - aptitude
 
 # https://github.com/ansible/ansible-modules-core/issues/3523
 - name: Upgrade System
-  apt: upgrade=yes update_cache=yes
+  apt:
+    upgrade: yes
+    update_cache: yes
 
 - name: Install Unattended Upgrade Package
-  apt: name=unattended-upgrades state=latest
+  apt:
+    name: unattended-upgrades
+    state: latest
 
 - name: Copy Unattended Upgrade Configuration
-  copy: src=unattended-upgrades
-        dest=/etc/apt/apt.conf.d/02periodic
-        owner=root
-        group=root
-        mode=0644
+  copy:
+    src: unattended-upgrades
+    dest: /etc/apt/apt.conf.d/02periodic
+    owner: root
+    group: root
+    mode: 0644
 
 - name: Install System Packages
-  apt: name={{ item }} state=latest
+  apt:
+    name: "{{ item }}"
+    state: latest
   with_items:
     - build-essential
     - software-properties-common
@@ -38,7 +47,9 @@
     - mosh
 
 - name: Install Archive Packages
-  apt: name={{ item }} state=latest
+  apt:
+    name: "{{ item }}"
+    state: latest
   with_items:
     - zip
     - unzip
@@ -46,14 +57,18 @@
     - p7zip-full
 
 - name: Install NFS Packages
-  apt: name={{ item }} state=latest
+  apt:
+    name: "{{ item }}"
+    state: latest
   with_items:
     - nfs-common
     - portmap
   when: is_vm
 
 - name: Install VCS Packages
-  apt: name={{ item }} state=latest
+  apt:
+    name: "{{ item }}"
+    state: latest
   with_items:
     - git
     - git-core
@@ -61,33 +76,53 @@
     - mercurial
 
 - name: Create User Account
-  user: name={{ user_account }} shell=/bin/bash groups=sudo append=yes state=present
+  user:
+    name: "{{ user_account }}"
+    shell: /bin/bash
+    groups: sudo
+    append: yes
+    state: present
 
 - name: Add User Account Authorized Key
-  authorized_key: user={{ user_account }} key={{ lookup('file', '~/.ssh/id_rsa.pub') }} state=present
+  authorized_key:
+    user: "{{ user_account }}"
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    state: present
 
 - name: Copy User Account Environment
-  copy: src=bash/ dest=/home/{{ user_account }} owner={{ user_account }} group={{ user_account }} mode=0700
+  copy:
+    src: bash/
+    dest: /home/{{ user_account }}
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
+    mode: 0700
 
 - name: Sudo Admin Successfully
-  file: path=/home/{{ user_account }}/.sudo_as_admin_successful state=touch
+  file:
+    path: /home/{{ user_account }}/.sudo_as_admin_successful
+    state: touch
 
 - name: Enable UFW
-  ufw: state=enabled logging=on
+  ufw:
+    state: enabled
+    logging: on
 
 - name: Configure UFW
-  ufw: rule={{ item.rule }} port={{ item.port }}
-  with_items:
-    - { rule: allow, port: ssh }
-    - { rule: allow, port: http }
-    - { rule: allow, port: https }
+  ufw:
+    rule: allow
+    port: ssh
 
 - name: Disable SSH Root Login
-  lineinfile: dest=/etc/ssh/sshd_config regexp='^PermitRootLogin' line='PermitRootLogin no'
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin no'
   notify: Restart SSH Daemon
 
 - name: Add Base DNS Name Servers
-  lineinfile: dest=/etc/resolvconf/resolv.conf.d/base line='nameserver {{ item }}'
+  lineinfile:
+    dest: /etc/resolvconf/resolv.conf.d/base
+    line: 'nameserver {{ item }}'
   with_items:
     - 8.8.8.8
     - 8.8.4.4
@@ -97,9 +132,11 @@
   notify: Restart Networking
 
 - name: Fix VM Networking Issues
-  cron: cron_file=vbox_networking
-        user=root name='Fix VM Networking Issues'
-        job='rm /etc/udev/rules.d/70-persistent-net-rules && /etc/init.d/networking restart'
-        special_time=reboot
-        state=present
+  cron:
+    cron_file: vbox_networking
+    user: root
+    name: 'Fix VM Networking Issues'
+    job: 'rm /etc/udev/rules.d/70-persistent-net-rules && /etc/init.d/networking restart'
+    special_time: reboot
+    state: present
   when: is_vm

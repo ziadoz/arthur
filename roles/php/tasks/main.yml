@@ -1,9 +1,14 @@
 ---
 - name: Add PHP PPA
-  apt_repository: repo={{ php_ppa }} update_cache=yes
+  apt_repository:
+    repo: "{{ php_ppa }}"
+    update_cache: yes
 
 - name: Install PHP FPM
-  apt: name={{ item }} state=latest update_cache=yes
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
   with_items:
    - php{{ php_version }}
    - php{{ php_version }}-dev
@@ -19,44 +24,46 @@
    - php{{ php_version }}-fpm
 
 - name: Update PHP FPM Configuration
-  lineinfile: dest=/etc/php/{{ php_version }}/fpm/php.ini
-              regexp="^;?{{ item.key }}\s+=\s+"
-              line="{{ item.key }} = {{ item.value }}"
-              state=present
-              backup=yes
+  lineinfile:
+    dest: /etc/php/{{ php_version }}/fpm/php.ini
+    regexp: '^;?{{ item.key }}\s+=\s+'
+    line: '{{ item.key }} = {{ item.value }}'
+    state: present
+    backup: yes
   with_dict: "{{ php_fpm_config }}"
   notify: Restart PHP FPM
 
 - name: Update PHP CLI Configuration
-  lineinfile: dest=/etc/php/{{ php_version }}/cli/php.ini 
-              regexp="^;?{{ item.key }}\s+=\s+"
-              line="{{ item.key }} = {{ item.value }}"
-              state=present
-              backup=yes
+  lineinfile:
+    dest: /etc/php/{{ php_version }}/cli/php.ini
+    regexp: '^;?{{ item.key }}\s+=\s+'
+    line: '{{ item.key }} = {{ item.value }}'
+    state: present
+    backup: yes
   with_dict: "{{ php_cli_config }}"
   notify: Restart PHP FPM
 
 - name: Check Composer Installed
   shell: which composer
   register: composer_installed
+  ignore_errors: yes
 
-- name: Copy Composer Installer
-  copy: src=install-composer.sh
-        dest=/home/{{ user_account }}
-        owner={{ user_account }}
-        group={{ user_account }}
-        mode=0700
+- name: Download Composer Installer
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: /home/{{ user_account }}/composer-setup.php
   when: composer_installed.rc == 1
 
-- name: Install Composer
-  shell: /home/{{ user_account }}/install-composer.sh && mv /home/{{ user_account }}/composer.phar /usr/local/bin/composer
+- name: Run Composer Installer
+  shell: php /home/{{ user_account }}/composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer
   when: composer_installed.rc == 1
 
 - name: Make Composer Executable
-  file: path=/usr/local/bin/composer 
-        owner=root
-        group=root
-        mode=777
+  file:
+    path: /usr/local/bin/composer
+    owner: root
+    group: root
+    mode: 0777
   when: composer_installed.rc == 1
 
 - name: Update Composer
@@ -64,13 +71,23 @@
   when: composer_installed.rc == 0
 
 - name: Install XDebug
-  apt: name=php{{ php_version }}-xdebug state=latest update_cache=yes
+  apt:
+    name: php{{ php_version }}-xdebug
+    state: latest
+    update_cache: yes
   when: is_vm
 
 - name: Copy XDebug Configuration
-  template: src=xdebug.ini.j2
-            dest=/etc/php/{{ php_version }}/mods-available/xdebug.ini
-            owner=root
-            group=root
-            mode=0644
+  template:
+    src: xdebug.ini.j2
+    dest: /etc/php/{{ php_version }}/mods-available/xdebug.ini
+    owner: root
+    group: root
+    mode: 0644
+  when: is_vm
+
+- name: Configure UFW
+  ufw:
+    rule: allow
+    port: "{{ xdebug_port }}"
   when: is_vm
