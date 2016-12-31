@@ -25,15 +25,6 @@
 #     src: templates/fastcgi_params.j2
 #     dest: /etc/nginx/fastcgi_params backup=yes
 #   notify: Restart Nginx
-#
-# - name: Create Document Root
-#   file:
-#     path: /var/www/vhosts/
-#     owner: www-data
-#     group: www-data
-#     state: directory
-#     mode: 0775
-#     recurse: yes
 
 - name: Clone H5BP Nginx Configuration
   git:
