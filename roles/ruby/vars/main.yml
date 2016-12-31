@@ -1,3 +1,6 @@
 ---
-ruby_ppa: ppa:brightbox/ruby-ng
-ruby_version: 2.3
+#ruby_ppa: ppa:brightbox/ruby-ng
+#ruby_version: 2.3
+
+ruby_ppa: ppa:brightbox/ruby-ng-experimental
+ruby_version: 2.4

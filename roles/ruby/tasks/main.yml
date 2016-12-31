@@ -14,6 +14,9 @@
     - ruby{{ ruby_version }}-dev
     - ruby-switch
 
+- name: Set Global Ruby Version
+  shell: ruby-switch --set ruby{{ ruby_version }}
+
 - name: Install Bundler
   shell: gem{{ ruby_version }} install {{ item }} --no-ri --no-rdoc
   with_items:
@@ -32,4 +35,4 @@
 
 - name: Install Backup
   shell: gem{{ ruby_version }} install backup --no-ri --no-rdoc
-  when: ! is_vm
+  when: not is_vm
