@@ -1,5 +1,5 @@
 # Arthur
-A virtual environment for web development.
+A virtual machine environment for web development.
 
 ## Usage
 Install the latest versions of the following:
