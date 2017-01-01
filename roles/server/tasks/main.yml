@@ -97,6 +97,14 @@
     group: "{{ user_account }}"
     mode: 0700
 
+- name: Copy Profile Environment
+  copy:
+    src: profile.d/
+    dest: /etc/profile.d
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Sudo Admin Successfully
   file:
     path: /home/{{ user_account }}/.sudo_as_admin_successful
