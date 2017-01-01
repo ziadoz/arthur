@@ -1,6 +1,15 @@
 # Arthur
 A virtual environment for web development.
 
+## Usage
+Install the latest versions of the following:
+
+- [VirtualBox](https://www.virtualbox.org/) with extensions pack
+- [Vagrant](https://www.vagrantup.com/)
+- [Ansible](https://www.ansible.com/) using [Homebrew](http://brew.sh/)
+
+Now run the following command: `vagrant up`.
+
 ## Todos
 - Install Nginx (PPA), PHP7-FPM (PPA), MySQL 5.7 (PPA) or PostgreSQL, Redis, Elixir, Node JS and Phantom JS.
 - Setup logrotate.
