@@ -6,6 +6,7 @@ A virtual environment for web development.
 - Setup logrotate.
 - Add tags to playbook tasks.
 - Revise virtual host Ruby script: https://gist.github.com/ziadoz/63efdb096123ec88271f
+- Setup an Ansible vault with various passwords and settings in.
 
 ## Commands
 Provision or re-provision the machine: `vagrant provision`
