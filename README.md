@@ -5,7 +5,7 @@ A virtual environment for web development.
 - Install Nginx (PPA), PHP7-FPM (PPA), MySQL 5.7 (PPA) or PostgreSQL, Redis, Elixir, Node JS and Phantom JS.
 - Setup logrotate.
 - Add tags to playbook tasks.
-- Revise virtual host Ruby script: https://gist.github.com/ziadoz/63efdb096123ec88271f
+- Revise virtual host Ruby script using Bash and `find` instead: https://gist.github.com/ziadoz/63efdb096123ec88271f
 - Setup an Ansible vault with various passwords and settings in.
 - Sort out bash profile colours (look at Mathias Byens dotfiles).
 
