@@ -16,7 +16,8 @@ Now run the following command: `vagrant up`.
 - Add tags to playbook tasks.
 - Revise virtual host Ruby script using Bash and `find` instead: https://gist.github.com/ziadoz/63efdb096123ec88271f
 - Setup an Ansible vault with various passwords and settings in.
-- Sort out bash profile colours (look at Mathias Byens dotfiles).
+- Sort out bash profile colours (look at Mathias Byens dotfiles) for Vagrant user account.
+- Install [Passenger](https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/) to deploy Ruby and Node JS websites.
 
 ## Commands
 Provision or re-provision the machine: `vagrant provision`
