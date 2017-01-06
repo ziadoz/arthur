@@ -37,3 +37,5 @@ Run tasks by tag: `ansible-playbook playbook.yml --tags "foo,bar"` or `ansible-p
 - http://www.jeffgeerling.com/blog/using-ansible-galaxy
 - http://stackoverflow.com/questions/25230376/how-to-automatically-install-ansible-galaxy-roles
 - https://galaxy.ansible.com/ferrarimarco/install-roles/
+- https://serversforhackers.com/managing-logs-with-logrotate
+- http://docs.ansible.com/ansible/playbooks_vault.html
