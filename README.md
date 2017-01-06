@@ -39,3 +39,4 @@ Run tasks by tag: `ansible-playbook playbook.yml --tags "foo,bar"` or `ansible-p
 - https://galaxy.ansible.com/ferrarimarco/install-roles/
 - https://serversforhackers.com/managing-logs-with-logrotate
 - http://docs.ansible.com/ansible/playbooks_vault.html
+- http://stackoverflow.com/questions/4034896/find-all-files-with-a-filename-beginning-with-a-specified-string-which-may-match
