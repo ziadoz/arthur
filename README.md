@@ -21,17 +21,35 @@ Now run the following command: `vagrant up`.
 - Move PHP and MySQL config into `-custom.ini/cnf` files and copy them into the appropriate directories instead.
 
 ## Commands
-Provision or re-provision the machine: `vagrant provision`
+Provision or re-provision the machine:
+```
+vagrant provision
+```
 
-Ping the inventory: `ansible all -m ping`
+Ping the inventory:
+```
+ansible all -m ping
+```
 
-Get facts about the inventory: `ansible all -m setup`
+Get facts about the inventory:
+```
+ansible all -m setup
+```
 
-Install the required roles: `ansible-galaxy install -r requirements.yml`
+Install the required roles:
+```
+ansible-galaxy install -r requirements.yml
+```
 
-Validate the playbook: `ansible-playbook playbook.yml --check`
+Validate the playbook:
+```
+ansible-playbook playbook.yml --check
+```
 
-Run tasks by tag: `ansible-playbook playbook.yml --tags "foo,bar"` or `ansible-playbook playbook.yml --skip-tags "foo,bar"`
+Run tasks by tag:
+```
+ansible-playbook playbook.yml --tags "foo,bar"` or `ansible-playbook playbook.yml --skip-tags "foo,bar"
+```
 
 ## Links
 - http://leucos.github.io/ansible-files-layout/
