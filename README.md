@@ -34,21 +34,23 @@ ansible all -m ping
 Get facts about the inventory:
 ```
 ansible all -m setup
+ansible all -m setup > facts.json
 ```
 
 Install the required roles:
 ```
-ansible-galaxy install -r requirements.yml
+ansible-galaxy install -r ansible/requirements.yml
 ```
 
 Validate the playbook:
 ```
-ansible-playbook playbook.yml --check
+ansible-playbook ansible/playbook.yml --check
 ```
 
 Run tasks by tag:
 ```
-ansible-playbook playbook.yml --tags "foo,bar"` or `ansible-playbook playbook.yml --skip-tags "foo,bar"
+ansible-playbook ansible/playbook.yml --tags "foo,bar"
+ansible-playbook ansible/playbook.yml --skip-tags "foo,bar"
 ```
 
 ## Links
