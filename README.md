@@ -18,6 +18,7 @@ Now run the following command: `vagrant up`.
 - Sort out bash profile colours (look at Mathias Byens dotfiles) for Vagrant user account.
 - Install [Passenger](https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/) to deploy Ruby and Node JS websites.
 - Move PHP and MySQL config into `-custom.ini/cnf` files and copy them into the appropriate directories instead.
+- Install Docker on server for deployments.
 
 ## Commands
 Provision or re-provision the machine:
