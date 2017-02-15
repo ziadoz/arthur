@@ -15,6 +15,7 @@ Now run the following command: `vagrant up`.
 - Setup logrotate.
 - Add tags to playbook tasks.
 - Setup an Ansible vault with various passwords and settings in.
+- Configure server timezone and locale.
 - Sort out bash profile colours (look at Mathias Byens dotfiles) for Vagrant user account.
 - Install [Passenger](https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/) to deploy Ruby and Node JS websites.
 - Move PHP and MySQL config into `-custom.ini/cnf` files and copy them into the appropriate directories instead.
