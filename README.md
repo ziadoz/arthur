@@ -10,17 +10,6 @@ Install the latest versions of the following:
 
 Now run the following command: `vagrant up`.
 
-## Todos
-- Install Nginx (PPA), PHP7-FPM (PPA), MySQL 5.7 (PPA) or PostgreSQL, Redis, Elixir, Node JS and Phantom JS.
-- Setup logrotate.
-- Add tags to playbook tasks.
-- Setup an Ansible vault with various passwords and settings in.
-- Configure server timezone and locale.
-- Sort out bash profile colours (look at Mathias Byens dotfiles) for Vagrant user account.
-- Install [Passenger](https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/) to deploy Ruby and Node JS websites.
-- Move PHP and MySQL config into `-custom.ini/cnf` files and copy them into the appropriate directories instead.
-- Install Docker on server for deployments.
-
 ## Commands
 Provision or re-provision the machine:
 ```
@@ -54,11 +43,26 @@ ansible-playbook ansible/playbook.yml --tags "foo,bar"
 ansible-playbook ansible/playbook.yml --skip-tags "foo,bar"
 ```
 
+## Bash Aliases
+Useful Bash aliases for working with Arthur:
+```
+arthur-go="cd ~/Projects/arthur && vagrant up && vagrant ssh"
+arthur-up="cd ~/Projects/arthur && vagrant up"
+arthur-halt="cd ~/Projects/arthur && vagrant halt"
+arthur-destroy="cd ~/Projects/arthur && vagrant destroy"
+```
+
+## Todos
+- Install Nginx (PPA), PHP7-FPM (PPA), MySQL 5.7 (PPA) or PostgreSQL, Redis, Elixir, Node JS and Phantom JS.
+- Setup logrotate.
+- Add tags to playbook tasks.
+- Setup an Ansible vault with various passwords and settings in.
+- Configure server timezone and locale.
+- Sort out bash profile colours (look at Mathias Byens dotfiles) for Vagrant user account.
+- Install [Passenger](https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/) to deploy Ruby and Node JS websites.
+- Move PHP and MySQL config into `-custom.ini/cnf` files and copy them into the appropriate directories instead.
+- Install Docker on server for potential deployments.
+
 ## Links
-- http://leucos.github.io/ansible-files-layout/
-- http://www.jeffgeerling.com/blog/using-ansible-galaxy
-- http://stackoverflow.com/questions/25230376/how-to-automatically-install-ansible-galaxy-roles
-- https://galaxy.ansible.com/ferrarimarco/install-roles/
 - https://serversforhackers.com/managing-logs-with-logrotate
 - http://docs.ansible.com/ansible/playbooks_vault.html
-- http://stackoverflow.com/questions/4034896/find-all-files-with-a-filename-beginning-with-a-specified-string-which-may-match
