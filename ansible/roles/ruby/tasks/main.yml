@@ -23,6 +23,9 @@
     - bundler
     - rake
 
+- name: Install SASS
+  shell: gem{{ ruby_version }} install sass --no-ri --no-rdoc
+
 - name: Install Backup Dependencies
   apt:
     name: "{{ item }}"
