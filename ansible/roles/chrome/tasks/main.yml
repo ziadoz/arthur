@@ -1,0 +1,49 @@
+---
+# - name: debug
+#   debug:
+#     msg: "{{ selenium_version | regex_replace('^([0-9]+)\\.([0-9]+)\\.([0-9]+)$', '\\1.\\2') }}"
+
+- name: Install Google Chrome
+  apt:
+    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    state: present
+
+- name: Install Chrome Driver
+  unarchive:
+    src: http://chromedriver.storage.googleapis.com/{{ chrome_driver_version }}/chromedriver_linux64.zip
+    dest: /usr/local/bin
+    remote_src: yes
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Install OpenJDK
+  apt:
+    name: openjdk-8-jre-headless
+    state: present
+
+- name: Install XVFB
+  apt:
+    name: xvfb
+    state: present
+
+- name: Install Selenium Standalone
+  get_url:
+    url: "http://selenium-release.storage.googleapis.com/{{ selenium_version | regex_replace('^([0-9]+)\\.([0-9]+)\\.([0-9]+)$', '\\1.\\2') }}/selenium-server-standalone-{{ selenium_version }}.jar"
+    dest: /usr/local/bin
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Remove Old Google Chrome Headless Shell Alias
+  lineinfile:
+    dest: /home/{{ user_account }}/.bash_profile
+    regexp: '^alias chrome-headless=.*$'
+    state: absent
+
+- name: Add Google Chrome Headless Shell Alias
+  lineinfile:
+    dest: /home/{{ user_account }}/.bash_profile
+    insertafter: '^alias.*'
+    line: "alias chrome-headless='xvfb-run java -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver -jar /usr/local/bin/selenium-server-standalone-{{ selenium_version }}.jar -debug'"
+    state: present

@@ -13,3 +13,4 @@
     - { role: mysql }
     - { role: ruby }
     - { role: nodejs }
+    - { role: chrome }
