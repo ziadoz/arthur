@@ -1,8 +1,4 @@
 ---
-# - name: debug
-#   debug:
-#     msg: "{{ selenium_version | regex_replace('^([0-9]+)\\.([0-9]+)\\.([0-9]+)$', '\\1.\\2') }}"
-
 - name: Install Google Chrome
   apt:
     deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
