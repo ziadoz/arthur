@@ -43,6 +43,12 @@ ansible-playbook ansible/playbook.yml --tags "foo,bar"
 ansible-playbook ansible/playbook.yml --skip-tags "foo,bar"
 ```
 
+Start up headless Chrome and Selenium:
+```
+chrome-headless
+xvfb-run java -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver -jar /usr/local/bin/selenium-server-standalone-x.x.x.jar -debug
+```
+
 ## Bash Aliases
 Useful Bash aliases for working with Arthur:
 ```
