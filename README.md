@@ -48,12 +48,12 @@ Useful Bash aliases for working with Arthur:
 ```
 export ARTHUR_DIR="~/Projects/arthur"
 
-alias arthur-go="cd $ARTHUR_DIR && vagrant up && vagrant ssh"
-alias arthur-up="cd $ARTHUR_DIR && vagrant up && cd $OLDPWD"
-alias arthur-ssh="cd $ARTHUR_DIR && vagrant up && vagrant ssh"
-alias arthur-halt="cd $ARTHUR_DIR && vagrant halt && cd $OLDPDW"
-alias arthur-destroy="cd $ARTHUR_DIR && vagrant destroy && cd $OLDPDW"
-alias arthur-provision="cd $ARTHUR_DIR && vagrant provision && cd $OLDPDW"
+alias arthur-go="(cd $ARTHUR_DIR && vagrant up && vagrant ssh)"
+alias arthur-up="(cd $ARTHUR_DIR && vagrant up)"
+alias arthur-ssh="(cd $ARTHUR_DIR && vagrant up && vagrant ssh)"
+alias arthur-halt="(cd $ARTHUR_DIR && vagrant halt)"
+alias arthur-destroy="(cd $ARTHUR_DIR && vagrant destroy)"
+alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
 ```
 
 ## Todos
