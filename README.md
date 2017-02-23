@@ -57,15 +57,16 @@ alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
 ```
 
 ## Todos
-- Install Nginx (PPA), PHP7-FPM (PPA), MySQL 5.7 (PPA) or PostgreSQL, Redis, Elixir, Node JS (NPM, Yarn, Gulp) and Phantom JS or Chrome headless.
+- Namespace role variables (e.g. `server_locale` to `server.locale`).
+- Extract packages into variables (e.g. `ruby_dependencies` and `ruby_packages`).
+- Setup an Ansible vault with various passwords and settings in.
+- Install Redis, Elixir, and Phantom JS or Chrome headless.
+- Install [Passenger](https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/) to deploy Ruby and Node JS websites.
+- Install Docker on server for potential deployments.
 - Setup logrotate.
 - Add tags to playbook tasks.
-- Setup an Ansible vault with various passwords and settings in.
 - Sort out bash profile colours (look at Mathias Byens dotfiles) for Vagrant user account.
-- Install [Passenger](https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/) to deploy Ruby and Node JS websites.
 - Move PHP and MySQL config into `-custom.ini/cnf` files and copy them into the appropriate directories instead.
-- Install Docker on server for potential deployments.
-- Namespace role variables (e.g. `server_locale` to `server.locale` etc.)
 
 ## Links
 - https://serversforhackers.com/managing-logs-with-logrotate
