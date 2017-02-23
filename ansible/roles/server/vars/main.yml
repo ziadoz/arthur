@@ -1,0 +1,8 @@
+---
+server_rtc: 0
+server_timezone: UTC
+server_ntp: 1
+server_locale: en_US.UTF-8
+server_dns:
+  - 8.8.8.8
+  - 8.8.4.4

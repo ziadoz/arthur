@@ -46,22 +46,26 @@ ansible-playbook ansible/playbook.yml --skip-tags "foo,bar"
 ## Bash Aliases
 Useful Bash aliases for working with Arthur:
 ```
-arthur-go="cd ~/Projects/arthur && vagrant up && vagrant ssh"
-arthur-up="cd ~/Projects/arthur && vagrant up"
-arthur-halt="cd ~/Projects/arthur && vagrant halt"
-arthur-destroy="cd ~/Projects/arthur && vagrant destroy"
+$ARTHUR_DIR="~/Projects/arthur"
+
+arthur-go="cd $ARTHUR_DIR && vagrant up && vagrant ssh"
+arthur-up="cd $ARTHUR_DIR && vagrant up && cd $OLDPWD"
+arthur-ssh="cd $ARTHUR_DIR && vagrant up && vagrant ssh"
+arthur-halt="cd $ARTHUR_DIR && vagrant halt && cd $OLDPDW"
+arthur-destroy="cd $ARTHUR_DIR && vagrant destroy && cd $OLDPDW"
+arthur-provision="cd $ARTHUR_DIR && vagrant provision && cd $OLDPDW"
 ```
 
 ## Todos
-- Install Nginx (PPA), PHP7-FPM (PPA), MySQL 5.7 (PPA) or PostgreSQL, Redis, Elixir, Node JS and Phantom JS.
+- Install Nginx (PPA), PHP7-FPM (PPA), MySQL 5.7 (PPA) or PostgreSQL, Redis, Elixir, Node JS (NPM, Yarn, Gulp) and Phantom JS or Chrome headless.
 - Setup logrotate.
 - Add tags to playbook tasks.
 - Setup an Ansible vault with various passwords and settings in.
-- Configure server timezone and locale.
 - Sort out bash profile colours (look at Mathias Byens dotfiles) for Vagrant user account.
 - Install [Passenger](https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/) to deploy Ruby and Node JS websites.
 - Move PHP and MySQL config into `-custom.ini/cnf` files and copy them into the appropriate directories instead.
 - Install Docker on server for potential deployments.
+- Namespace role variables (e.g. `server_locale` to `server.locale` etc.)
 
 ## Links
 - https://serversforhackers.com/managing-logs-with-logrotate

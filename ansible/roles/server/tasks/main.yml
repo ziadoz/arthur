@@ -13,6 +13,16 @@
     upgrade: yes
     update_cache: yes
 
+- name: Setup System Clock and Timezone
+  shell: "{{ item }}"
+  with_items:
+    - timedatectl set-local-rtc "{{ server_rtc }}"
+    - timedatectl set-ntp "{{ server_ntp }}"
+    - timedatectl set-timezone "{{ server_timezone }}"
+
+- name: Generate Locale
+  shell: locale-gen "{{ server_locale }}"
+
 - name: Install Unattended Upgrade Package
   apt:
     name: unattended-upgrades
@@ -131,9 +141,7 @@
   lineinfile:
     dest: /etc/resolvconf/resolv.conf.d/base
     line: 'nameserver {{ item }}'
-  with_items:
-    - 8.8.8.8
-    - 8.8.4.4
+  with_items: "{{ server_dns }}"
 
 - name: Update ResolvConf
   shell: resolvconf -u
