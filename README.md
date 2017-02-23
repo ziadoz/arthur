@@ -4,9 +4,16 @@ A virtual machine environment for web development.
 ## Usage
 Install the latest versions of the following:
 
+- [Homebrew](http://brew.sh/)
 - [VirtualBox](https://www.virtualbox.org/) with extensions pack
 - [Vagrant](https://www.vagrantup.com/)
-- [Ansible](https://www.ansible.com/) using [Homebrew](http://brew.sh/)
+- [Ansible](https://www.ansible.com/)
+
+After installing Homebrew you can quickly install the other dependencies:
+```
+brew install vagrant ansible
+brew cask install virtualbox virtualbox-extension-pack
+```
 
 Now run the following command: `vagrant up`.
 
