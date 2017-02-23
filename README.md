@@ -46,14 +46,14 @@ ansible-playbook ansible/playbook.yml --skip-tags "foo,bar"
 ## Bash Aliases
 Useful Bash aliases for working with Arthur:
 ```
-$ARTHUR_DIR="~/Projects/arthur"
+export ARTHUR_DIR="~/Projects/arthur"
 
-arthur-go="cd $ARTHUR_DIR && vagrant up && vagrant ssh"
-arthur-up="cd $ARTHUR_DIR && vagrant up && cd $OLDPWD"
-arthur-ssh="cd $ARTHUR_DIR && vagrant up && vagrant ssh"
-arthur-halt="cd $ARTHUR_DIR && vagrant halt && cd $OLDPDW"
-arthur-destroy="cd $ARTHUR_DIR && vagrant destroy && cd $OLDPDW"
-arthur-provision="cd $ARTHUR_DIR && vagrant provision && cd $OLDPDW"
+alias arthur-go="cd $ARTHUR_DIR && vagrant up && vagrant ssh"
+alias arthur-up="cd $ARTHUR_DIR && vagrant up && cd $OLDPWD"
+alias arthur-ssh="cd $ARTHUR_DIR && vagrant up && vagrant ssh"
+alias arthur-halt="cd $ARTHUR_DIR && vagrant halt && cd $OLDPDW"
+alias arthur-destroy="cd $ARTHUR_DIR && vagrant destroy && cd $OLDPDW"
+alias arthur-provision="cd $ARTHUR_DIR && vagrant provision && cd $OLDPDW"
 ```
 
 ## Todos
