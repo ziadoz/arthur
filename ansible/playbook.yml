@@ -12,3 +12,4 @@
     - { role: nginx }
     - { role: mysql }
     - { role: ruby }
+    - { role: nodejs }
