@@ -15,17 +15,6 @@
     state: absent
   notify: Restart Nginx
 
-# - name: Copy Nginx Configuation
-#   template:
-#     src: templates/nginx.conf.j2
-#     dest: /etc/nginx/nginx.conf backup=yes
-#
-# - name: Copy FastCGI Parameter Configuration
-#   template:
-#     src: templates/fastcgi_params.j2
-#     dest: /etc/nginx/fastcgi_params backup=yes
-#   notify: Restart Nginx
-
 - name: Clone H5BP Nginx Configuration
   git:
     repo: https://github.com/h5bp/server-configs-nginx.git
