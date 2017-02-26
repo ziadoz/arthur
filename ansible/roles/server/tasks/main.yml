@@ -13,6 +13,11 @@
     upgrade: yes
     update_cache: yes
 
+- name: Install NTP
+  apt:
+    name: ntp
+    state: present
+
 - name: Setup System Clock and Timezone
   shell: "{{ item }}"
   with_items:
