@@ -2,8 +2,7 @@
 - name: Build Development Environment
   hosts: all
   become: yes
-  vars_files:
-    - vars/main.yml
+  #vars_files:
     #- vars/vault.yml
   roles:
     - { role: swap, when: is_vm }
