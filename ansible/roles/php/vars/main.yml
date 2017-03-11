@@ -6,6 +6,7 @@ xdebug_port: 9001
 # http://php.net/manual/en/ini.list.php
 php_fpm_config:
   error_reporting: 'E_ALL'
+  expose_php: 'Off'
   date.timezone: 'UTC'
   memory_limit: '1G'
   post_max_size: '750M'
@@ -15,6 +16,7 @@ php_fpm_config:
   cgi.fix_pathinfo: 0
 php_cli_config:
   error_reporting: 'E_ALL'
+  expose_php: 'Off'
   date.timezone: 'UTC'
   memory_limit: '1G'
   post_max_size: '750M'
