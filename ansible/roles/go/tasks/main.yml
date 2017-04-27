@@ -1,0 +1,24 @@
+---
+- name: Remove Existing Go Installation
+  file:
+    path: /usr/local/go
+    state: absent
+
+- name: Install Go
+  unarchive:
+    src: https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz
+    remote_src: yes
+    dest: /usr/local
+
+- name: Setup Go Environment
+  copy:
+    src: go.sh
+    dest: /etc/profile.d
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Make Go Project Directory
+  file:
+   path: /home/{{ user_account }}/go
+   state: directory

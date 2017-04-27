@@ -12,4 +12,5 @@
     - { role: mysql }
     - { role: ruby }
     - { role: nodejs }
+    - { role: go }
     - { role: chrome }
