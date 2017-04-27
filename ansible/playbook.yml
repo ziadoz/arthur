@@ -4,6 +4,8 @@
   become: yes
   #vars_files:
     #- vars/vault.yml
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
   roles:
     - { role: swap, when: is_vm }
     - { role: server }
