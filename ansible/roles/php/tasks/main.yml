@@ -74,6 +74,19 @@
   shell: composer self-update
   when: composer_installed.rc == 0
 
+- name: Setup Composer Environment
+  copy:
+    src: composer.sh
+    dest: /etc/profile.d
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Cleanup Composer Setup
+  file:
+    path: /home/{{ user_account }}/composer-setup.php
+    state: absent
+
 - name: Install XDebug
   apt:
     name: php{{ php_version }}-xdebug
