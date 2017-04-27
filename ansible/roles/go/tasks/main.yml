@@ -20,5 +20,5 @@
 
 - name: Make Go Project Directory
   file:
-   path: /home/{{ user_account }}/go
+   path: /var/www/go
    state: directory
