@@ -14,6 +14,23 @@
     - mysql-client
     - python-mysqldb
 
+- name: Install Python3 MySQL Packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - python3-dev
+    - python3-pip
+    - libmysqlclient-dev
+  when: ansible_python_interpreter is defined
+
+- name: Install Python3 MySQL Packages
+  pip:
+    name: mysqlclient
+    state: present
+  when: ansible_python_interpreter is defined
+
 - name: Update MySQL Configuration
   ini_file:
     dest: /etc/mysql/mysql.conf.d/mysqld.cnf
