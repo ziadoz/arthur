@@ -4,8 +4,14 @@
   become: yes
   #vars_files:
     #- vars/vault.yml
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
+  gather_facts: False
+  pre_tasks:
+    - name: Install python for Ansible
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      register: output
+      changed_when: output.stdout != ""
+      tags: always
+    - setup: # aka gather_facts
   roles:
     - { role: swap, when: is_vm }
     - { role: server }
