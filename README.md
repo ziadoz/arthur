@@ -71,10 +71,6 @@ alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
 
 ## Todos
 - Upgrade to latest version of Ubuntu.
-- Upgrade to Ansible 2.3.1 which fixes unarchiving issue, and hopefully ensure Python3 works:
-  - https://github.com/ansible/ansible/pull/22497
-  - https://github.com/geerlingguy/ansible-role-mysql/issues/42#issuecomment-278703603
-  - http://stackoverflow.com/questions/32429259/ansible-fails-with-bin-sh-1-usr-bin-python-not-found
 - Namespace role variables (e.g. `server_locale` to `server.locale`).
 - Extract packages into variables (e.g. `ruby.dependencies` and `ruby.packages`).
 - Setup an Ansible vault with various passwords and settings in.
@@ -88,3 +84,6 @@ alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
 ## Links
 - https://serversforhackers.com/managing-logs-with-logrotate
 - http://docs.ansible.com/ansible/playbooks_vault.html
+- https://github.com/ansible/ansible/pull/22497
+- https://github.com/geerlingguy/ansible-role-mysql/issues/42#issuecomment-278703603
+- http://stackoverflow.com/questions/32429259/ansible-fails-with-bin-sh-1-usr-bin-python-not-found
