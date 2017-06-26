@@ -81,7 +81,6 @@ alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
 - Install Redis, [Passenger](https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/), and Docker.
 - Setup logrotate.
 - Add tags to playbook tasks.
-- Sort out bash profile colours (look at Mathias Byens dotfiles) for Vagrant user account.
 - Move PHP and MySQL config into `-custom.ini/cnf` files and copy them into the appropriate directories instead.
 - Look at writing a script to [package up](https://www.vagrantup.com/docs/cli/package.html) a built box.
 - Investigate only exposing certain ports (e.g. MySQL) if is VM build.
