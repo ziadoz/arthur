@@ -9,6 +9,7 @@
     - { role: server }
     - { role: php }
     - { role: nginx }
+    - { role: certbot }
     - { role: mysql }
     - { role: ruby }
     - { role: nodejs }
