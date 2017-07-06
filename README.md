@@ -87,3 +87,4 @@ alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
 - https://github.com/ansible/ansible/pull/22497
 - https://github.com/geerlingguy/ansible-role-mysql/issues/42#issuecomment-278703603
 - http://stackoverflow.com/questions/32429259/ansible-fails-with-bin-sh-1-usr-bin-python-not-found
+- http://phptest.club/t/how-to-run-headless-chrome-in-codeception/1544
