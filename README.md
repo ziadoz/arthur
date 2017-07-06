@@ -11,8 +11,8 @@ Install the latest versions of the following:
 
 After installing Homebrew you can quickly install the other dependencies:
 ```
-brew install vagrant ansible
-brew cask install virtualbox virtualbox-extension-pack
+brew install ansible
+brew cask install vagrant virtualbox virtualbox-extension-pack
 ```
 
 Now run the following command: `vagrant up`.
