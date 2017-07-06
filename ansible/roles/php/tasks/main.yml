@@ -87,12 +87,19 @@
     path: /home/{{ user_account }}/composer-setup.php
     state: absent
 
-- name: Install XDebug
-  apt:
-    name: php{{ php_version }}-xdebug
-    state: latest
-    update_cache: yes
+- name: Check XDebug Installed
+  stat:
+    path: /etc/php/{{ php_version }}/mods-available/xdebug.ini
+  register: xdebug_installed
   when: is_vm
+
+- name: Update PECL Channels
+  shell: pecl channel-update pecl.php.net
+  when: is_vm and xdebug_installed.stat.exists == false
+
+- name: Install XDebug
+  shell: pecl install xdebug
+  when: is_vm and xdebug_installed.stat.exists == false
 
 - name: Copy XDebug Configuration
   template:
@@ -101,10 +108,10 @@
     owner: root
     group: root
     mode: 0644
-  when: is_vm
+  when: is_vm and xdebug_installed.stat.exists == false
 
 - name: Configure UFW
   ufw:
     rule: allow
     port: "{{ xdebug_port }}"
-  when: is_vm
+  when: is_vm and xdebug_installed.stat.exists == false
