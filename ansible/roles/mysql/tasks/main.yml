@@ -1,9 +1,4 @@
 ---
-- name: Add MySQL PPA
-  apt_repository:
-    repo: "{{ mysql_ppa }}"
-    update_cache: yes
-
 - name: Install MySQL
   apt:
     name: "{{ item }}"

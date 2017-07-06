@@ -1,5 +1,4 @@
 ---
-mysql_ppa: ppa:ondrej/mysql-5.7
 mysql_version: 5.7
 mysql_config:
   mysqld:

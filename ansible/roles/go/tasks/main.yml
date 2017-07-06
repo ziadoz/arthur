@@ -14,14 +14,14 @@
   file:
     path: "{{ go_install_path}}/go"
     state: absent
-  when: go_installed.stat.exists == true and go_already_installed.rc == 1
+  when: go_installed.stat.exists == false or go_already_installed.rc == 1
 
 - name: Install Go
   unarchive:
     src: "https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz"
     remote_src: yes
     dest: "{{ go_install_path }}"
-  when: go_installed.stat.exists == true and go_already_installed.rc == 1
+  when: go_installed.stat.exists == false or go_already_installed.rc == 1
 
 - name: Setup Go Environment
   template:

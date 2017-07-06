@@ -70,7 +70,6 @@ alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
 ```
 
 ## Todos
-- Upgrade to latest version of Ubuntu.
 - Namespace role variables (e.g. `server_locale` to `server.locale`).
 - Extract packages into variables (e.g. `ruby.dependencies` and `ruby.packages`).
 - Setup an Ansible vault with various passwords and settings in.
