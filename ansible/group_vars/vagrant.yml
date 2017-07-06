@@ -1,3 +1,0 @@
----
-is_vm: yes
-user_account: "{{ ansible_ssh_user }}"
