@@ -1,0 +1,27 @@
+---
+- name: Create User Account
+  user:
+    name: "{{ user_account }}"
+    shell: /bin/bash
+    groups: sudo
+    append: yes
+    state: present
+
+- name: Add User Account Authorized Key
+  authorized_key:
+    user: "{{ user_account }}"
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    state: present
+
+- name: Copy User Account Environment
+  copy:
+    src: .bash_profile
+    dest: /home/{{ user_account }}
+    owner: "{{ user_account }}"
+    group: "{{ user_account }}"
+    mode: 0700
+
+- name: Sudo Admin Successfully
+  file:
+    path: /home/{{ user_account }}/.sudo_as_admin_successful
+    state: touch

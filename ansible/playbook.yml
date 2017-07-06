@@ -7,6 +7,7 @@
   roles:
     - { role: swap, when: is_vm }
     - { role: server }
+    - { role: users }
     - { role: php }
     - { role: nginx }
     - { role: certbot }
