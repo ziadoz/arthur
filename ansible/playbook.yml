@@ -13,4 +13,4 @@
     - { role: ruby }
     - { role: nodejs }
     - { role: go }
-    - { role: chrome }
+    - { role: chrome, when: is_vm }
