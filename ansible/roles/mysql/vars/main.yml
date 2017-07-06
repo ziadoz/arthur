@@ -9,8 +9,8 @@ mysql_config:
     collation-server: 'utf8_general_ci'
     long_query_time: '1'
     slow-query-log-file: '/var/log/mysql/mysql-slow.log'
-mysql_root_username: root
-mysql_root_password: 'flipflop' # Load from vault
+# mysql_root_username:
+# mysql_root_password:
 mysql_change_root_password: yes
 mysql_users:
   - username: 'admin'
