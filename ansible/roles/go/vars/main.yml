@@ -1,2 +1,4 @@
 ---
 go_version: 1.8.3
+go_install_path: /usr/local
+go_path: /opt/go

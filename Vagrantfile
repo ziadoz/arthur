@@ -9,7 +9,7 @@ Vagrant.configure(2) do |config|
 
   # Shared Folder
   config.vm.synced_folder "~/Projects", "/var/www/vhosts", id: "sites"
-  config.vm.synced_folder "~/Go", "/var/www/go", id: "go"
+  config.vm.synced_folder "~/Go", "/opt/go", id: "go"
 
   # Configuration
   config.vm.provider "virtualbox" do |vb|

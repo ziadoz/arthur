@@ -1,18 +1,31 @@
 ---
+- name: Check Go Installed
+  stat:
+    path:  "{{ go_install_path }}/go"
+  register: go_installed
+
+- name: Check Installed Go Version
+  shell: "{{ go_install_path }}/go/bin/go version | grep go{{ go_version }}"
+  register: go_already_installed
+  ignore_errors: yes
+  when: go_installed.stat.exists == true
+
 - name: Remove Existing Go Installation
   file:
-    path: /usr/local/go
+    path: "{{ go_install_path}}/go"
     state: absent
+  when: go_installed.stat.exists == true and go_already_installed.rc == 1
 
 - name: Install Go
   unarchive:
-    src: https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz
+    src: "https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz"
     remote_src: yes
-    dest: /usr/local
+    dest: "{{ go_install_path }}"
+  when: go_installed.stat.exists == true and go_already_installed.rc == 1
 
 - name: Setup Go Environment
-  copy:
-    src: go.sh
+  template:
+    src: go.sh.j2
     dest: /etc/profile.d
     owner: root
     group: root
@@ -20,5 +33,8 @@
 
 - name: Make Go Project Directory
   file:
-   path: /var/www/go
+   path: "{{ go_path }}"
    state: directory
+   owner: "{{ user_account }}"
+   group: "{{ user_account }}"
+   mode: 0744
