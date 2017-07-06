@@ -2,8 +2,6 @@
 - name: Build Development Environment
   hosts: all
   become: yes
-  # vars_files:
-  #   - vars/vault.yml
   vars:
     ansible_python_interpreter: /usr/bin/python3
   roles:
