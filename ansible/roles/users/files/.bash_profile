@@ -33,5 +33,5 @@ reloadvhosts() {
 }
 
 export CLICOLOR=1
-export PS1="${YELLOW}\u@\h${RESET} : ${BLUE}\w${RESET} \n\$ "
+export PS1="${YELLOW}\u@\h${RESET} : ${BLUE}\w${RESET}\$(__git_ps1 ' : (%s)') \n\$ "
 export PS2="${YELLOW}→${RESET} "
