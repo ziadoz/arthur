@@ -79,6 +79,7 @@ alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
 - Move PHP and MySQL config into `-custom.ini/cnf` files and copy them into the appropriate directories instead.
 - Look at writing a script to [package up](https://www.vagrantup.com/docs/cli/package.html) a built box.
 - Setup cron for Certbot.
+- Don't [open MySQL port](https://github.com/ziadoz/arthur/blob/master/ansible/roles/mysql/tasks/main.yml#L96) (should SSH in).
 
 ## Links
 - https://serversforhackers.com/managing-logs-with-logrotate
