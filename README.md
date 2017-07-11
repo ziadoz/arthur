@@ -41,13 +41,19 @@ ansible-galaxy install -r ansible/requirements.yml
 
 Validate the playbook:
 ```
-ansible-playbook ansible/playbook.yml --check
+ansible-playbook ansible/playbook.yml --syntax-check
 ```
 
 Run tasks by tag:
 ```
 ansible-playbook ansible/playbook.yml --tags "foo,bar"
 ansible-playbook ansible/playbook.yml --skip-tags "foo,bar"
+```
+
+Run playbook on production:
+```
+ansible-playbook ansible/playbook.yml --ask-become-pass --limit production
+ansible-playbook ansible/playbook.yml --ask-become-pass --limit production --tags user-role
 ```
 
 Start up headless Chrome and Selenium:
@@ -79,6 +85,7 @@ alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
 - Move PHP and MySQL config into `-custom.ini/cnf` files and copy them into the appropriate directories instead.
 - Look at writing a script to [package up](https://www.vagrantup.com/docs/cli/package.html) a built box.
 - Setup cron for Certbot.
+- Use `become` in just the necessary tasks.
 
 ## Links
 - https://serversforhackers.com/managing-logs-with-logrotate

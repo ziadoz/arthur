@@ -1,6 +1,15 @@
-[vagrant]
-vagrant ansible_ssh_host=192.168.33.42
+[development]
+vm ansible_ssh_host=192.168.33.42
 
-[vagrant:vars]
-ansible_ssh_user             = ubuntu
+[development:vars]
+ansible_ssh_user = ubuntu
 ansible_ssh_private_key_file = .vagrant/machines/default/virtualbox/private_key
+
+[production]
+cyberspace ansible_ssh_host=178.62.14.153
+
+[production:vars]
+ansible_ssh_user = ziadoz
+
+[all:vars]
+ansible_python_interpreter = /usr/bin/python3

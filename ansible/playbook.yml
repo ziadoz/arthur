@@ -1,18 +1,42 @@
 ---
-- name: Build Development Environment
+- name: Build Environment
   hosts: all
   become: yes
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
   roles:
-    - { role: swap, when: is_vm }
-    - { role: server }
-    - { role: users }
-    - { role: php }
-    - { role: nginx }
-    - { role: certbot }
-    - { role: mysql }
-    - { role: ruby }
-    - { role: nodejs }
-    - { role: go }
-    - { role: chrome, when: is_vm }
+    - role: swap
+      tags: swap-role
+      when: is_vm
+
+    - role: server
+      tags: server-role
+
+    - role: users
+      tags: user-role
+
+    - role: php
+      tags: php-role
+
+    - role: nginx
+      tags: nginx-role
+
+    - role: certbot
+      tags: certbot-role
+
+    - role: mysql
+      tags: mysql-role
+      when: is_vm
+
+    - role: ruby
+      tags: ruby-role
+      when: is_vm
+
+    - role: nodejs
+      tags: nodejs-role
+
+    - role: go
+      tags: go-role
+      when: is_vm
+
+    - role: chrome
+      tags: chrome-role
+      when: is_vm

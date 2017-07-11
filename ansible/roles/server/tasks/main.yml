@@ -103,9 +103,20 @@
 - name: Disable SSH Root Login
   lineinfile:
     dest: /etc/ssh/sshd_config
-    regexp: '^PermitRootLogin'
+    regexp: '^#?PermitRootLogin'
     line: 'PermitRootLogin no'
   notify: Restart SSH Daemon
+
+- name: Disable SSH Password Login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '^#?PasswordAuthentication', line: 'PasswordAuthentication no' }
+    - { regexp: '^#?PermitEmptyPasswords', line: 'PermitEmptyPasswords no' }
+  notify: Restart SSH Daemon
+  when: is_vm === false
 
 - name: Add Base DNS Name Servers
   lineinfile:
