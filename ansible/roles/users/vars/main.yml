@@ -1,0 +1,8 @@
+---
+users:
+  - user: "{{ ansible_ssh_user }}"
+    groups: sudo
+    authorized_key: ~/.ssh/id_rsa.pub
+  - user: deploy
+    groups: www-data,sudo
+    authorized_key: ~/.ssh/id_rsa.pub

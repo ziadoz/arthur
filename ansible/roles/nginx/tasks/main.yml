@@ -43,3 +43,12 @@
   with_items:
     - { rule: allow, port: http }
     - { rule: allow, port: https }
+
+- name: Create Website Directory
+  file:
+    path: "{{ nginx_path }}"
+    state: directory
+    owner: deploy
+    group: deploy
+    mode: 0774
+  when: inventory_hostname in groups['production']

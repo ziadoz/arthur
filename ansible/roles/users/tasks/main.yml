@@ -1,27 +1,31 @@
 ---
 - name: Create User Account
   user:
-    name: "{{ user_account }}"
-    shell: /bin/bash
-    groups: sudo
-    append: yes
-    state: present
+    user: "{{ item.user }}"
+    shell: "{{ item.shell | default('/bin/bash') }}"
+    groups: "{{ item.groups | default('') }}"
+    append: "{{ item.append | default('yes') }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ users }}"
 
 - name: Add User Account Authorized Key
   authorized_key:
-    user: "{{ user_account }}"
-    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    user: "{{ item.user }}"
+    key: "{{ lookup('file', item.authorized_key) }}"
     state: present
+  with_items: "{{ users }}"
 
 - name: Copy User Account Environment
   copy:
     src: .bash_profile
-    dest: /home/{{ user_account }}
-    owner: "{{ user_account }}"
-    group: "{{ user_account }}"
+    dest: "/home/{{ item.user }}"
+    owner: "{{ item.user }}"
+    group: "{{ item.groups.split(',')[0] }}"
     mode: 0700
+  with_items: "{{ users }}"
 
 - name: Sudo Admin Successfully
   file:
-    path: /home/{{ user_account }}/.sudo_as_admin_successful
+    path: "/home/{{ item.user }}/.sudo_as_admin_successful"
     state: touch
+  with_items: "{{ users }}"

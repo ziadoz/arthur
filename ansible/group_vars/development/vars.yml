@@ -1,6 +1,4 @@
 ---
-is_vm: yes
-user_account: "{{ ansible_ssh_user }}"
 mysql_root_username: root
 mysql_root_password: 'flipflop'
 go_path: /opt/go
