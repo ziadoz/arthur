@@ -78,7 +78,7 @@
   with_items:
     - nfs-common
     - portmap
-  when: is_vm
+  when: inventory_hostname in groups['development']
 
 - name: Install VCS Packages
   apt:
@@ -116,7 +116,7 @@
     - { regexp: '^#?PasswordAuthentication', line: 'PasswordAuthentication no' }
     - { regexp: '^#?PermitEmptyPasswords', line: 'PermitEmptyPasswords no' }
   notify: Restart SSH Daemon
-  when: is_vm === false
+  when: inventory_hostname in groups['development'] === false
 
 - name: Add Base DNS Name Servers
   lineinfile:
@@ -136,4 +136,4 @@
     job: 'rm /etc/udev/rules.d/70-persistent-net-rules && /etc/init.d/networking restart'
     special_time: reboot
     state: present
-  when: is_vm
+  when: inventory_hostname in groups['development']

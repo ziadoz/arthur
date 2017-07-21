@@ -91,15 +91,15 @@
   stat:
     path: /etc/php/{{ php_version }}/mods-available/xdebug.ini
   register: xdebug_installed
-  when: is_vm
+  when: inventory_hostname in groups['development']
 
 - name: Update PECL Channels
   shell: pecl channel-update pecl.php.net
-  when: is_vm and xdebug_installed.stat.exists == false
+  when: inventory_hostname in groups['development'] and xdebug_installed.stat.exists == false
 
 - name: Install XDebug
   shell: pecl install xdebug
-  when: is_vm and xdebug_installed.stat.exists == false
+  when: inventory_hostname in groups['development'] and xdebug_installed.stat.exists == false
 
 - name: Copy XDebug Configuration
   template:
@@ -108,10 +108,10 @@
     owner: root
     group: root
     mode: 0644
-  when: is_vm and xdebug_installed.stat.exists == false
+  when: inventory_hostname in groups['development'] and xdebug_installed.stat.exists == false
 
 - name: Configure UFW
   ufw:
     rule: allow
     port: "{{ xdebug_port }}"
-  when: is_vm and xdebug_installed.stat.exists == false
+  when: inventory_hostname in groups['development'] and xdebug_installed.stat.exists == false
