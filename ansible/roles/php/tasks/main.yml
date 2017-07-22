@@ -110,6 +110,17 @@
     mode: 0644
   when: inventory_hostname in groups['development'] and xdebug_installed.stat.exists == false
 
+- name: Symlink XDebug Configuration
+  file:
+    src: /etc/php/{{ php_version }}/mods-available/xdebug.ini
+    dest: /etc/php/7.1/fpm/conf.d/20-xdebug.ini
+    state: link
+    owner: root
+    group: root
+    mode: 0777
+  notify: Restart PHP-FPM
+  when: inventory_hostname in groups['development']
+
 - name: Configure UFW
   ufw:
     rule: allow
