@@ -84,9 +84,9 @@ alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
 - Add tags to playbook tasks.
 - Move PHP and MySQL config into `-custom.ini/cnf` files and copy them into the appropriate directories instead.
 - Look at writing a script to [package up](https://www.vagrantup.com/docs/cli/package.html) a built box.
-- Setup cron for Certbot.
 - Don't [open MySQL port](https://github.com/ziadoz/arthur/blob/master/ansible/roles/mysql/tasks/main.yml#L96) (should SSH in).
 - Use `become` in just the necessary tasks.
+- Setup proper Chrome headless (remove Selenium, ChromeDriver 2.31, [install Chrome from repo](https://github.com/SeleniumHQ/docker-selenium/blob/master/NodeChrome/Dockerfile), update alias).
 
 ## Links
 - https://serversforhackers.com/managing-logs-with-logrotate
