@@ -116,7 +116,7 @@
     - { regexp: '^#?PasswordAuthentication', line: 'PasswordAuthentication no' }
     - { regexp: '^#?PermitEmptyPasswords', line: 'PermitEmptyPasswords no' }
   notify: Restart SSH Daemon
-  when: inventory_hostname in groups['development'] === false
+  when: inventory_hostname in groups['development']
 
 - name: Add Base DNS Name Servers
   lineinfile:
