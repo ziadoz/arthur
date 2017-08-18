@@ -21,7 +21,6 @@
 
     - role: certbot
       tags: certbot-role
-      when: inventory_hostname in groups['development']
 
     - role: mysql
       tags: mysql-role
