@@ -40,4 +40,4 @@
 
 - name: Install Backup
   shell: gem{{ ruby_version }} install backup --no-ri --no-rdoc
-  when: not is_vm
+  when: inventory_hostname not in groups['development']
