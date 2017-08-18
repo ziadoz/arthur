@@ -1,1 +1,2 @@
 ---
+user_account: "{{ ansible_ssh_user }}"
