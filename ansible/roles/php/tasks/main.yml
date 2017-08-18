@@ -118,7 +118,7 @@
     owner: root
     group: root
     mode: 0777
-  notify: Restart PHP-FPM
+  notify: Restart PHP FPM
   when: inventory_hostname in groups['development']
 
 - name: Configure UFW
