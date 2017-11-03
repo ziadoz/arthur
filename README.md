@@ -73,6 +73,7 @@ alias arthur-ssh="(cd $ARTHUR_DIR && vagrant up && vagrant ssh)"
 alias arthur-halt="(cd $ARTHUR_DIR && vagrant halt)"
 alias arthur-destroy="(cd $ARTHUR_DIR && vagrant destroy)"
 alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
+alias arthur-flush="ssh-keygen -R 192.168.33.42"
 ```
 
 ## Todos
