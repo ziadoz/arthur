@@ -77,7 +77,9 @@ alias arthur-flush="ssh-keygen -R 192.168.33.42"
 ```
 
 ## Todos
-- Use `:ansible local` in `Vagrantfile` and setup Ansible directly on the VM.
+- Do some general cleanup of each role.
+- Use `:ansible local` in `Vagrantfile` and setup Ansible directly on the VM (need inline shell provisioner).
+- Move `update_cache` steps to the correct tasks (runs before apt, not after).
 - Namespace role variables (e.g. `server_locale` to `server.locale`).
 - Extract packages into variables (e.g. `ruby.dependencies` and `ruby.packages`).
 - Setup an Ansible vault with various passwords and settings in.
