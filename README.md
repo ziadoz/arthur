@@ -82,9 +82,11 @@ alias arthur-flush="ssh-keygen -R 192.168.33.42"
 - Install the VirtualBox guest additions.
 - Use `:ansible local` in `Vagrantfile` and setup Ansible directly on the VM (need inline shell provisioner).
 - Move `update_cache` steps to the correct tasks (runs before apt, not after).
+- Use Packer to produce box builds and add an `arthur-build` alias. Store on Dropbox?
 - Namespace role variables (e.g. `server_locale` to `server.locale`).
 - Extract packages into variables (e.g. `ruby.dependencies` and `ruby.packages`).
 - Setup an Ansible vault with various passwords and settings in.
+- Configure PHP CLI, not just PHP-FPM.
 - Install Redis, [Passenger](https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/), and Docker.
 - Setup logrotate.
 - Add tags to playbook tasks.
