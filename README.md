@@ -80,7 +80,6 @@ alias arthur-flush="ssh-keygen -R 192.168.33.42"
 - Do some general cleanup of each role.
 - Remove NFS if it's not needed for High Sierra.
 - Install the VirtualBox guest additions.
-- Use `:ansible local` in `Vagrantfile` and setup Ansible directly on the VM (need inline shell provisioner).
 - Use Packer to produce box builds and add an `arthur-build` alias. Store on Dropbox?
 - Namespace role variables (e.g. `server_locale` to `server.locale`).
 - Extract packages into variables (e.g. `ruby.dependencies` and `ruby.packages`).
@@ -94,6 +93,9 @@ alias arthur-flush="ssh-keygen -R 192.168.33.42"
 - Don't [open MySQL port](https://github.com/ziadoz/arthur/blob/master/ansible/roles/mysql/tasks/main.yml#L96) (should SSH in).
 - Use `become` in just the necessary tasks.
 - Setup proper Chrome headless [remove Selenium, ChromeDriver 2.31](install Chrome from repo) and [update alias]([https://github.com/SeleniumHQ/docker-selenium/blob/master/NodeChrome/Dockerfile).
+
+## Future Improvements
+- Use `:ansible local` provisioner in `Vagrantfile` (issues with copying files).
 
 ## Links
 - https://serversforhackers.com/managing-logs-with-logrotate
