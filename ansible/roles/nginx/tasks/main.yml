@@ -2,12 +2,12 @@
 - name: Add Nginx PPA
   apt_repository:
     repo: "{{ nginx_ppa }}"
-    update_cache: yes
 
 - name: Install Nginx
   apt:
     name: nginx
     state: latest
+    update_cache: yes
 
 - name: Disable Default Site
   file:

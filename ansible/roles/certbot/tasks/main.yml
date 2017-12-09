@@ -3,7 +3,6 @@
   apt:
     name: software-properties-common
     state: latest
-    update_cache: yes
 
 - name: Add Certbot PPA
   apt_repository:

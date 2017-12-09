@@ -2,7 +2,6 @@
 - name: Add PHP PPA
   apt_repository:
     repo: "{{ php_ppa }}"
-    update_cache: yes
 
 - name: Install PHP FPM
   apt:
