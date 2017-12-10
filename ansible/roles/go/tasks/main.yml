@@ -30,11 +30,3 @@
     owner: root
     group: root
     mode: 0644
-
-- name: Make Go Project Directory
-  file:
-   path: "{{ go_path }}"
-   state: directory
-   owner: "{{ user_account }}"
-   group: "{{ user_account }}"
-   mode: 0744
