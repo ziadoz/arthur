@@ -53,13 +53,13 @@ ansible-playbook ansible/playbook.yml --skip-tags "foo,bar"
 Run playbook on production:
 ```
 ansible-playbook ansible/playbook.yml --ask-become-pass --limit production
-ansible-playbook ansible/playbook.yml --ask-become-pass --limit production --tags user-role
+ansible-playbook ansible/playbook.yml --ask-become-pass --limit production --tags user
 ```
 
 Start up headless Chrome and Selenium:
 ```
 chrome-headless
-xvfb-run java -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver -jar /usr/local/bin/selenium-server-standalone-x.x.x.jar -debug
+chromedriver --url-base=/wd/hub --port=4444
 ```
 
 ## Bash Aliases
@@ -77,25 +77,17 @@ alias arthur-flush="ssh-keygen -R 192.168.33.42"
 ```
 
 ## Todos
-- Do some general cleanup of each role.
-- Remove NFS if it's not needed for High Sierra.
-- Install the VirtualBox guest additions.
-- Use Packer to produce box builds and add an `arthur-build` alias. Store on Dropbox?
-- Namespace role variables (e.g. `server_locale` to `server.locale`).
+- Upgrade to PHP 7.2 once XDebug is updated.
+- Copy over PHP INI files for FPM and CLI.
+- Use maps for role variables (e.g. `server.locale` to `server.locale`).
 - Extract packages into variables (e.g. `ruby.dependencies` and `ruby.packages`).
-- Setup an Ansible vault with various passwords and settings in.
-- Configure PHP CLI, not just PHP-FPM.
-- Install Redis, [Passenger](https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/), and Docker.
-- Setup logrotate.
-- Add tags to playbook tasks.
-- Move PHP and MySQL config into `-custom.ini/cnf` files and copy them into the appropriate directories instead.
-- Look at writing a script to [package up](https://www.vagrantup.com/docs/cli/package.html) a built box.
-- Don't [open MySQL port](https://github.com/ziadoz/arthur/blob/master/ansible/roles/mysql/tasks/main.yml#L96) (should SSH in).
-- Use `become` in just the necessary tasks.
-- Setup proper Chrome headless [remove Selenium, ChromeDriver 2.31](install Chrome from repo) and [update alias]([https://github.com/SeleniumHQ/docker-selenium/blob/master/NodeChrome/Dockerfile).
+- Install Redis, [Passenger](https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/), Docker and Log Rotate.
 
 ## Future Improvements
+- Use an Ansible vault to store passwords and settings.
 - Use `:ansible local` provisioner in `Vagrantfile` (issues with copying files).
+- Install the VirtualBox guest additions [using Vagrant plugin](https://github.com/dotless-de/vagrant-vbguest).
+- Use Packer to produce builds, add an `arthur-build` alias, and store on Dropbox.
 
 ## Links
 - https://serversforhackers.com/managing-logs-with-logrotate
