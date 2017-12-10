@@ -1,45 +1,32 @@
 ---
-- name: Install Google Chrome
-  apt:
-    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+- name: Add Google Chrome Repository Key
+  apt_key:
+    url: https://dl-ssl.google.com/linux/linux_signing_key.pub
     state: present
 
-- name: Install Chrome Driver
+- name: Add Google Chrome Repository
+  apt_repository:
+    repo: deb http://dl.google.com/linux/chrome/deb/ stable main
+    state: present
+
+- name: Install Google Chrome
+  apt:
+    name: google-chrome-stable
+    state: present
+    update_cache: yes
+
+- name: Install ChromeDriver
   unarchive:
-    src: http://chromedriver.storage.googleapis.com/{{ chrome_driver_version }}/chromedriver_linux64.zip
+    src: http://chromedriver.storage.googleapis.com/{{ chromedriver_version }}/chromedriver_linux64.zip
     dest: /usr/local/bin
     remote_src: yes
     owner: root
     group: root
     mode: 0755
 
-- name: Install OpenJDK
-  apt:
-    name: openjdk-8-jre-headless
-    state: present
-
-- name: Install XVFB
-  apt:
-    name: xvfb
-    state: present
-
-- name: Install Selenium Standalone
-  get_url:
-    url: "http://selenium-release.storage.googleapis.com/{{ selenium_version | regex_replace('^([0-9]+)\\.([0-9]+)\\.([0-9]+)$', '\\1.\\2') }}/selenium-server-standalone-{{ selenium_version }}.jar"
-    dest: /usr/local/bin
-    owner: root
-    group: root
-    mode: 0755
-
-- name: Remove Old Google Chrome Headless Shell Alias
-  lineinfile:
-    dest: /home/{{ user_account }}/.bash_profile
-    regexp: '^alias chrome-headless=.*$'
-    state: absent
-
 - name: Add Google Chrome Headless Shell Alias
   lineinfile:
     dest: /home/{{ user_account }}/.bash_profile
     insertafter: '^alias.*'
-    line: "alias chrome-headless='xvfb-run java -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver -jar /usr/local/bin/selenium-server-standalone-{{ selenium_version }}.jar -debug'"
+    line: "alias chrome-headless='chromedriver --url-base=/wd/hub --port=4444'"
     state: present

@@ -1,3 +1,2 @@
 ---
-chrome_driver_version: 2.30
-selenium_version: 3.4.0
+chromedriver_version: 2.33
