@@ -1,8 +1,13 @@
 ---
+- name: Add MySQL Repository
+  apt:
+    deb: https://dev.mysql.com/get/mysql-apt-config_0.8.8-1_all.deb
+
 - name: Install MySQL
   apt:
     name: "{{ item }}"
     state: latest
+    update_cache: yes
   with_items:
     - mysql-server
     - mysql-client
@@ -12,17 +17,11 @@
   apt:
     name: "{{ item }}"
     state: latest
-    update_cache: yes
   with_items:
     - python3-dev
     - python3-pip
     - libmysqlclient-dev
-  when: ansible_python_interpreter is defined
-
-- name: Install Python3 MySQL Packages
-  pip:
-    name: mysqlclient
-    state: present
+    - mysqlclient
   when: ansible_python_interpreter is defined
 
 - name: Update MySQL Configuration
