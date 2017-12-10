@@ -4,39 +4,43 @@
   become: yes
   roles:
     - role: swap
-      tags: swap-role
+      tags: swap
+      when: inventory_hostname in groups['development']
+
+    - role: vm
+      tags: vm
       when: inventory_hostname in groups['development']
 
     - role: server
-      tags: server-role
+      tags: server
 
     - role: users
-      tags: user-role
+      tags: user
 
     - role: php
-      tags: php-role
+      tags: php
 
     - role: nginx
-      tags: nginx-role
+      tags: nginx
 
     - role: certbot
-      tags: certbot-role
+      tags: certbot
 
     - role: mysql
-      tags: mysql-role
+      tags: mysql
       when: inventory_hostname in groups['development']
 
     - role: ruby
-      tags: ruby-role
+      tags: ruby
       when: inventory_hostname in groups['development']
 
     - role: nodejs
-      tags: nodejs-role
+      tags: nodejs
 
     - role: go
-      tags: go-role
+      tags: go
       when: inventory_hostname in groups['development']
 
     - role: chrome
-      tags: chrome-role
+      tags: chrome
       when: inventory_hostname in groups['development']
