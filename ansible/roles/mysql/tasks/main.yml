@@ -27,7 +27,6 @@
   pip:
     name: mysqlclient
     state: present
-    - mysqlclient
   when: ansible_python_interpreter is defined
 
 - name: Update MySQL Configuration
