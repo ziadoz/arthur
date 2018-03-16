@@ -22,14 +22,13 @@ alias sudo='sudo '
 alias editbash="nano $HOME/.bash_profile"
 alias reloadbash="exec $SHELL -l"
 
-reloadvhosts() {
-  local vhost_dir=${1:-/var/www/vhosts}
-  local conf_name=${2:-*dev.conf}
-  local web_server=${3:-nginx}
+rmsites() {
+  sudo find /etc/nginx/sites-enabled/ -type l -printf ' - %p\n' -exec rm {} \;
+}
 
-  sudo find /etc/$web_server/sites-enabled/ -type l -exec rm {} \;
-  sudo find $vhost_dir -name $conf_name -exec ln -sf {} /etc/$web_server/sites-enabled/ \;
-  sudo service $web_server restart
+lnsite() {
+  local pattern="${1:-*development.conf}"
+  sudo find . -name $pattern -printf ' - %P\n' -exec ln -sf {} /etc/nginx/sites-enabled/ \;
 }
 
 export CLICOLOR=1
