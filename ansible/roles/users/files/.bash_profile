@@ -23,10 +23,12 @@ alias editbash="nano $HOME/.bash_profile"
 alias reloadbash="exec $SHELL -l"
 
 rmsites() {
+  echo "Disabled sites: "
   sudo find /etc/nginx/sites-enabled/ -type l -printf ' - %p\n' -exec rm {} \;
 }
 
 lnsite() {
+  echo "Enabled sites: "
   local pattern="${1:-*development.conf}"
   sudo find . -name $pattern -printf ' - %P\n' -exec ln -sf {} /etc/nginx/sites-enabled/ \;
 }
