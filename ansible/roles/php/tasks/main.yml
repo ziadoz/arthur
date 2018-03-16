@@ -111,7 +111,7 @@
 - name: Symlink XDebug Configuration
   file:
     src: /etc/php/{{ php_version }}/mods-available/xdebug.ini
-    dest: /etc/php/7.1/fpm/conf.d/20-xdebug.ini
+    dest: /etc/php/{{ php_version }}/fpm/conf.d/20-xdebug.ini
     state: link
     owner: root
     group: root
