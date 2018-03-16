@@ -67,13 +67,12 @@ Useful Bash aliases for working with Arthur:
 ```
 export ARTHUR_DIR="~/Projects/arthur"
 
-alias arthur-go="(cd $ARTHUR_DIR && vagrant up && vagrant ssh)"
 alias arthur-up="(cd $ARTHUR_DIR && vagrant up)"
 alias arthur-ssh="(cd $ARTHUR_DIR && vagrant up && vagrant ssh)"
+alias arthur-ssh-rm="ssh-keygen -R 192.168.33.42"
 alias arthur-halt="(cd $ARTHUR_DIR && vagrant halt)"
 alias arthur-destroy="(cd $ARTHUR_DIR && vagrant destroy)"
 alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
-alias arthur-flush="ssh-keygen -R 192.168.33.42"
 ```
 
 ## Todos
