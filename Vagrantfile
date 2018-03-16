@@ -4,7 +4,7 @@
 Vagrant.configure(2) do |config|
   # Box
   config.vm.hostname = "arthur"
-  config.vm.box      = "ubuntu/zesty64"
+  config.vm.box      = "ubuntu/xenial64"
   config.vm.network "private_network", ip: "192.168.33.42"
 
   # Shared Folders
