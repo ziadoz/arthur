@@ -95,7 +95,7 @@ alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
 
 ## Future Improvements
 - Use an Ansible vault to store passwords and settings.
-- Use `:ansible local` provisioner in `Vagrantfile` (issues with copying files).
+- Use `:ansible_local` provisioner in `Vagrantfile` (issues with copying files).
 - Install the VirtualBox guest additions [using Vagrant plugin](https://github.com/dotless-de/vagrant-vbguest).
 - Use Packer to produce builds, add an `arthur-build` alias, and store on Dropbox.
 
