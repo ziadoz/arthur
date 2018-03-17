@@ -88,7 +88,6 @@ alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
 ```
 
 ## Todos
-- Upgrade to PHP 7.2 once XDebug is updated.
 - Copy over PHP INI files for FPM and CLI.
 - Use maps for role variables (e.g. `server.locale` to `server.locale`).
 - Extract packages into variables (e.g. `ruby.dependencies` and `ruby.packages`).
