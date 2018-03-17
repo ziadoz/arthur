@@ -28,9 +28,9 @@ rmsites() {
 }
 
 lnsite() {
-  echo "Enabled sites: "
   local pattern="${1:-*development.conf}"
-  sudo find . -name $pattern -printf ' - %P\n' -exec ln -sf {} /etc/nginx/sites-enabled/ \;
+  echo "Enabled sites: "
+  sudo find "$PWD" -name $pattern -printf ' - %p\n' -exec ln -sf {} /etc/nginx/sites-enabled/ \;
 }
 
 export CLICOLOR=1
