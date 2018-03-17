@@ -62,6 +62,18 @@ chrome-headless
 chromedriver --url-base=/wd/hub --port=4444
 ```
 
+Removing all virtualhost configurations:
+```
+rmsites
+```
+
+Symlinking a virtualhost configuration in the current directory:
+```
+lnsite
+lnsite foo.conf
+lnsite *-foo.conf
+```
+
 ## Bash Aliases
 Useful Bash aliases for working with Arthur:
 ```
