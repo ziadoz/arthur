@@ -4,5 +4,7 @@ server_timezone: UTC
 server_ntp: 1
 server_locale: en_US.UTF-8
 server_dns:
+  - 1.1.1.1
+  - 1.0.0.1
   - 8.8.8.8
   - 8.8.4.4
