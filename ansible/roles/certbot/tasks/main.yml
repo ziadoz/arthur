@@ -7,9 +7,9 @@
 - name: Add Certbot PPA
   apt_repository:
     repo: "{{ certbot_ppa }}"
-    update_cache: yes
 
 - name: Install Certbot
   apt:
     name: python-certbot-nginx
     state: latest
+    update_cache: yes
