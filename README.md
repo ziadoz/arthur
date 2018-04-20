@@ -107,7 +107,6 @@ arthur halt destroy
 arthur rmssh
 ```
 
-
 ## Todos
 - Copy over PHP INI files for FPM and CLI.
 - Use maps for role variables (e.g. `server.locale` to `server.locale`).
@@ -128,3 +127,4 @@ arthur rmssh
 - http://stackoverflow.com/questions/32429259/ansible-fails-with-bin-sh-1-usr-bin-python-not-found
 - http://phptest.club/t/how-to-run-headless-chrome-in-codeception/1544
 - http://docs.ansible.com/ansible/playbooks_best_practices.html#best-practices-for-variables-and-vaults
+- https://www.jeffgeerling.com/blog/2018/use-ansibles-yaml-callback-plugin-better-cli-experience
