@@ -74,17 +74,37 @@ lnsite foo.conf
 lnsite *-foo.conf
 ```
 
-## Bash Aliases
-Useful Bash aliases for working with Arthur:
+## Bash
+Here's a useful Bash function for that makes working with Vagrant commands easier:
 ```
-export ARTHUR_DIR="~/Projects/arthur"
+export ARTHUR_DIR="$HOME/Projects/arthur"
 
-alias arthur-up="(cd $ARTHUR_DIR && vagrant up)"
-alias arthur-ssh="(cd $ARTHUR_DIR && vagrant up && vagrant ssh)"
-alias arthur-ssh-rm="ssh-keygen -R 192.168.33.42"
-alias arthur-halt="(cd $ARTHUR_DIR && vagrant halt)"
-alias arthur-destroy="(cd $ARTHUR_DIR && vagrant destroy)"
-alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
+arthur () {
+    for arg in "$@"; do
+        if [ "$arg" == "rmssh" ]; then
+            ssh-keygen -R 192.168.33.42
+        else
+            (cd "$ARTHUR_DIR" && vagrant "$arg")
+        fi
+
+        if [ "$?" != "0" ]; then
+            return $?
+        fi
+    done
+}
+```
+
+You can use it like this:
+```
+# Run one command:
+arthur up
+
+# Run multiple commands:
+arthur up ssh
+arthur halt destroy
+
+# Remove SSH key from known hosts:
+arthur rmssh
 ```
 
 ## Todos
@@ -107,3 +127,4 @@ alias arthur-provision="(cd $ARTHUR_DIR && vagrant provision)"
 - http://stackoverflow.com/questions/32429259/ansible-fails-with-bin-sh-1-usr-bin-python-not-found
 - http://phptest.club/t/how-to-run-headless-chrome-in-codeception/1544
 - http://docs.ansible.com/ansible/playbooks_best_practices.html#best-practices-for-variables-and-vaults
+- https://www.jeffgeerling.com/blog/2018/use-ansibles-yaml-callback-plugin-better-cli-experience

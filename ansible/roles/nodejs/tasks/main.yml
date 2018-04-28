@@ -40,3 +40,11 @@
     name: yarn
     state: present
     update_cache: yes
+
+- name: Setup Yarn Environment
+  copy:
+    src: yarn.sh
+    dest: /etc/profile.d
+    owner: root
+    group: root
+    mode: 0644
