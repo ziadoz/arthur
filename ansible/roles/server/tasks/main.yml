@@ -118,15 +118,21 @@
   notify: Restart SSH Daemon
   when: inventory_hostname in groups['development']
 
+- name: Install ResolvConf
+  apt:
+    name: resolvconf
+    state: present
+
+# https://askubuntu.com/questions/1012641/dns-set-to-systemds-127-0-0-53-how-to-change-permanently/1012648#1012648
 - name: Add Base DNS Name Servers
   lineinfile:
-    dest: /etc/resolvconf/resolv.conf.d/base
+    dest: /etc/resolvconf/resolv.conf.d/head
     line: 'nameserver {{ item }}'
   with_items: "{{ server_dns }}"
 
 - name: Update ResolvConf
   shell: resolvconf -u
-  notify: Restart Networking
+  become: yes
 
 - name: Fix VM Networking Issues
   cron:
