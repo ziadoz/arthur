@@ -1,7 +1,7 @@
 ---
 - name: Add MySQL Repository
   apt:
-    deb: https://dev.mysql.com/get/mysql-apt-config_0.8.8-1_all.deb
+    deb: https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
 
 - name: Install MySQL
   apt:
@@ -23,9 +23,10 @@
     - libmysqlclient-dev
   when: ansible_python_interpreter is defined
 
+# https://github.com/PyMySQL/mysqlclient-python/issues/218
 - name: Install Python3 MySQL Pip Packages
   pip:
-    name: mysqlclient
+    name: git+https://github.com/PyMySQL/mysqlclient-python.git
     state: present
   when: ansible_python_interpreter is defined
 

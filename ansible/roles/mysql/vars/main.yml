@@ -2,10 +2,9 @@
 mysql_version: 5.7
 mysql_config:
   mysqld:
-    sql_mode: 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
-    character-set-server: 'utf8'
-    skip-character-set-client-handshake: '1'
-    collation-server: 'utf8_general_ci'
+    # character-set-server: 'utf8'
+    # skip-character-set-client-handshake: '1'
+    # collation-server: 'utf8_general_ci'
     long_query_time: '1'
     slow-query-log-file: '/var/log/mysql/mysql-slow.log'
 # mysql_root_username:
