@@ -119,6 +119,7 @@ arthur rmssh
 - Install the VirtualBox guest additions [using Vagrant plugin](https://github.com/dotless-de/vagrant-vbguest).
 - Use Packer to produce builds, add an `arthur-build` alias, and store on Dropbox.
 - Install MySQL using `.deb` file and using debconf to configure version and default root password.
+- Revert to an LTS version of Ubuntu for less hassle and more stability.
 
 ## Links
 - https://serversforhackers.com/managing-logs-with-logrotate
