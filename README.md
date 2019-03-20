@@ -118,6 +118,7 @@ arthur rmssh
 - Use `:ansible_local` provisioner in `Vagrantfile` (issues with copying files).
 - Install the VirtualBox guest additions [using Vagrant plugin](https://github.com/dotless-de/vagrant-vbguest).
 - Use Packer to produce builds, add an `arthur-build` alias, and store on Dropbox.
+- Install MySQL using `.deb` file and using debconf to configure version and default root password.
 
 ## Links
 - https://serversforhackers.com/managing-logs-with-logrotate
