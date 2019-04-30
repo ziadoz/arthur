@@ -120,6 +120,7 @@ arthur rmssh
 - Use Packer to produce builds, add an `arthur-build` alias, and store on Dropbox.
 - Install MySQL using `.deb` file and using debconf to configure version and default root password.
 - Revert to an LTS version of Ubuntu for less hassle and more stability.
+- Look at [Laravel box provision script](https://github.com/laravel/settler/blob/master/scripts/provision.sh) for ideas.
 
 ## Links
 - https://serversforhackers.com/managing-logs-with-logrotate
