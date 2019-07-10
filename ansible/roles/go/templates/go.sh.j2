@@ -1,2 +1,3 @@
+export GOROOT="{{ go_install_path }}/go"
 export GOPATH="{{ go_path }}"
-export PATH="$GOPATH/bin:$PATH:{{ go_install_path }}/go/bin"
+export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"

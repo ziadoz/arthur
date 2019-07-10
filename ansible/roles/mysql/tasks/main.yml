@@ -1,7 +1,7 @@
 ---
 - name: Add MySQL Repository
   apt:
-    deb: https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
+    deb: https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb
 
 - name: Install MySQL
   apt:

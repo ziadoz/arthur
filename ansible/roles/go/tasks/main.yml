@@ -21,6 +21,9 @@
     src: "https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz"
     remote_src: yes
     dest: "{{ go_install_path }}"
+    owner: root
+    group: root
+    mode: 755
   when: go_installed.stat.exists == false or go_already_installed.rc == 1
 
 - name: Setup Go Environment

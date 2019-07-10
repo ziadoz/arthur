@@ -8,13 +8,13 @@ Vagrant.configure(2) do |config|
   config.vm.network "private_network", ip: "192.168.33.42"
 
   # Shared Folders
-  config.vm.synced_folder "~/Projects", "/var/www/vhosts", id: "sites"
-  config.vm.synced_folder "~/Go", "/opt/go", id: "go"
+  config.vm.synced_folder "~/Projects", "/var/www/vhosts", id: "sites", type: "nfs"
+  config.vm.synced_folder "~/Go", "/opt/go", id: "go", type: "nfs"
 
   # Configuration
   config.vm.provider "virtualbox" do |vb|
     vb.name   = "arthur"
-    vb.memory = "2048"
+    vb.memory = 2048
   end
 
   # Provisioning

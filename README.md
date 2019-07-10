@@ -18,6 +18,11 @@ brew cask install vagrant virtualbox virtualbox-extension-pack
 Now run the following command: `vagrant up`.
 
 ## Commands
+To fix macOS Mojave Python issus:
+```
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+```
+
 Provision or re-provision the machine:
 ```
 vagrant provision
@@ -58,8 +63,7 @@ ansible-playbook ansible/playbook.yml --ask-become-pass --limit production --tag
 
 Start up headless Chrome and Selenium:
 ```
-chrome-headless
-chromedriver --url-base=/wd/hub --port=4444
+chromedriver --url-base=/wd/hub --whitelisted-ips=''
 ```
 
 Removing all virtualhost configurations:
@@ -74,52 +78,24 @@ lnsite foo.conf
 lnsite *-foo.conf
 ```
 
-## Bash
-Here's a useful Bash function for that makes working with Vagrant commands easier:
+Remove SSH key:
 ```
-export ARTHUR_DIR="$HOME/Projects/arthur"
-
-arthur () {
-    for arg in "$@"; do
-        if [ "$arg" == "rmssh" ]; then
-            ssh-keygen -R 192.168.33.42
-        else
-            (cd "$ARTHUR_DIR" && vagrant "$arg")
-        fi
-
-        if [ "$?" != "0" ]; then
-            return $?
-        fi
-    done
-}
-```
-
-You can use it like this:
-```
-# Run one command:
-arthur up
-
-# Run multiple commands:
-arthur up ssh
-arthur halt destroy
-
-# Remove SSH key from known hosts:
-arthur rmssh
+ssh-keygen -R 192.168.33.42
 ```
 
 ## Todos
-- Copy over PHP INI files for FPM and CLI.
-- Use maps for role variables (e.g. `server.locale` to `server.locale`).
-- Extract packages into variables (e.g. `ruby.dependencies` and `ruby.packages`).
-- Install Redis, [Passenger](https://www.phusionpassenger.com/library/install/nginx/install/oss/xenial/), Docker and Log Rotate.
+- Copy over stripped down PHP INI files for FPM and CLI.
+- Clean up variables (`server.rtc`, `server.timezone`, `php.extensions`, `node.packages` etc.)
+- Remove Ruby.
+- Install Redis, Beanstalkd and Mailhog.
+- Swap task names to lowercase where applicable (e.g. `Install Chromedriver repository`).
 
 ## Future Improvements
 - Use an Ansible vault to store passwords and settings.
 - Use `:ansible_local` provisioner in `Vagrantfile` (issues with copying files).
 - Install the VirtualBox guest additions [using Vagrant plugin](https://github.com/dotless-de/vagrant-vbguest).
-- Use Packer to produce builds, add an `arthur-build` alias, and store on Dropbox.
-- Install MySQL using `.deb` file and using debconf to configure version and default root password.
-- Revert to an LTS version of Ubuntu for less hassle and more stability.
+- Use Packer to produce packaged boxes and store on Dropbox.
+- Install MySQL using `.deb` file and using `debconf` to configure version and default root password.
 - Look at [Laravel box provision script](https://github.com/laravel/settler/blob/master/scripts/provision.sh) for ideas.
 
 ## Links
@@ -131,3 +107,5 @@ arthur rmssh
 - http://phptest.club/t/how-to-run-headless-chrome-in-codeception/1544
 - http://docs.ansible.com/ansible/playbooks_best_practices.html#best-practices-for-variables-and-vaults
 - https://www.jeffgeerling.com/blog/2018/use-ansibles-yaml-callback-plugin-better-cli-experience
+- https://github.com/ansible/ansible/issues/34056
+- https://linuxconfig.org/install-go-on-ubuntu-18-04-bionic-beaver-linux

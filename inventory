@@ -7,7 +7,7 @@ ansible_ssh_private_key_file = .vagrant/machines/default/virtualbox/private_key
 ansible_ssh_extra_args="-o StrictHostKeyChecking=no"
 
 [production]
-cyberspace ansible_ssh_host=178.62.14.153
+prod ansible_ssh_host=xxx.xx.xx.xxxx
 
 [production:vars]
 ansible_ssh_user = ziadoz

@@ -15,6 +15,10 @@
     state: present
     update_cache: yes
 
+- name: Determine Latest ChromeDriver Version
+  set_fact:
+    chromedriver_version: "{{ lookup('url', 'https://chromedriver.storage.googleapis.com/LATEST_RELEASE') }}"
+
 - name: Install ChromeDriver
   unarchive:
     src: http://chromedriver.storage.googleapis.com/{{ chromedriver_version }}/chromedriver_linux64.zip
@@ -24,9 +28,8 @@
     group: root
     mode: 0755
 
-- name: Add Google Chrome Headless Shell Alias
-  lineinfile:
-    dest: /home/{{ user_account }}/.bash_profile
-    insertafter: '^alias.*'
-    line: "alias chrome-headless='chromedriver --url-base=/wd/hub --port=4444'"
-    state: present
+- name: Configure UFW
+  ufw:
+    rule: allow
+    port: 9515
+  when: inventory_hostname in groups['development']

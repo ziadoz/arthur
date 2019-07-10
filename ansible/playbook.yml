@@ -7,10 +7,6 @@
       tags: swap
       when: inventory_hostname in groups['development']
 
-    - role: vm
-      tags: vm
-      when: inventory_hostname in groups['development']
-
     - role: server
       tags: server
 

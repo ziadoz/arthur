@@ -6,7 +6,7 @@
 
 - name: Add Certbot PPA
   apt_repository:
-    repo: "{{ certbot_ppa }}"
+    repo: ppa:certbot/certbot
 
 - name: Install Certbot
   apt:
