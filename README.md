@@ -85,10 +85,11 @@ ssh-keygen -R 192.168.33.42
 
 ## Todos
 - Copy over stripped down PHP INI files for FPM and CLI.
-- Clean up variables (`server.rtc`, `server.timezone`, `php.extensions`, `node.packages` etc.)
+- Clean up variables (`server.rtc`, `server.timezone`, `server.packages`, `php.extensions`, `node.packages` etc.)
 - Remove Ruby.
 - Install Redis, Beanstalkd and Mailhog.
 - Swap task names to lowercase where applicable (e.g. `Install Chromedriver repository`).
+- Move Vagrant bits (`inventory`, `ansible.cfg`, `Vagrantfile`) into `vagrant` sub directory.
 
 ## Future Improvements
 - Use an Ansible vault to store passwords and settings.
