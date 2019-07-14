@@ -43,52 +43,48 @@
 
 - name: Install System Packages
   apt:
-    name: "{{ item }}"
+    name:
+      - build-essential
+      - software-properties-common
+      - bash-completion
+      - curl
+      - wget
+      - ncdu
+      - tree
+      - whois
+      - siege
+      - nmap
+      - cloc
+      - htop
+      - fail2ban
+      - mosh
     state: latest
-  with_items:
-    - build-essential
-    - software-properties-common
-    - bash-completion
-    - curl
-    - wget
-    - ncdu
-    - tree
-    - whois
-    - siege
-    - nmap
-    - cloc
-    - htop
-    - fail2ban
-    - mosh
 
 - name: Install Archive Packages
   apt:
-    name: "{{ item }}"
+    name:
+      - zip
+      - unzip
+      - p7zip
+      - p7zip-full
     state: latest
-  with_items:
-    - zip
-    - unzip
-    - p7zip
-    - p7zip-full
 
 - name: Install NFS Packages
   apt:
-    name: "{{ item }}"
+    name:
+      - nfs-common
+      - portmap
     state: latest
-  with_items:
-    - nfs-common
-    - portmap
   when: inventory_hostname in groups['development']
 
 - name: Install VCS Packages
   apt:
-    name: "{{ item }}"
+    name:
+      - git
+      - git-core
+      - subversion
+      - mercurial
     state: latest
-  with_items:
-    - git
-    - git-core
-    - subversion
-    - mercurial
 
 - name: Enable UFW
   ufw:

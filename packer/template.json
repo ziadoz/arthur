@@ -1,0 +1,49 @@
+{
+    "builders": [
+        {
+            "communicator": "ssh",
+            "type": "vagrant",
+            "provider": "virtualbox",
+            "source_path": "ubuntu/bionic64",
+            "add_force": true,
+            "teardown_method": "destroy",
+            "output_dir": "./output"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "execute_command": "echo 'vagrant' | sudo -S sh '{{ .Path }}'",
+            "inline": [
+                "export DEBIAN_FRONTEND=noninteractive",
+                "apt-get update -y",
+                "apt-get install -y linux-headers-$(uname -r) build-essential gcc make perl dkms software-properties-common nfs-kernel-server nfs-common portmap",
+                "apt-get update -y",
+                "add-apt-repository ppa:ansible/ansible",
+                "apt-get update -y",
+                "apt-get upgrade -y",
+                "apt-get install -y ansible",
+                "apt-get clean",
+                "mkdir -p /var/www/vhosts",
+                "mount -o loop VBoxGuestAdditions.iso /media/cdrom",
+                "sh /media/cdrom/VBoxLinuxAdditions.run",
+                "umount /media/cdrom",
+                "mkdir ~/.ssh",
+                "wget -qO- https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub >> ~/.ssh/authorized_keys",
+                "chown -R vagrant:vagrant ~/.ssh",
+                "echo 'vagrant ALL=NOPASSWD:ALL' > /tmp/vagrant",
+                "chmod 0440 /tmp/vagrant",
+                "mv /tmp/vagrant /etc/sudoers.d/",
+                "unset DEBIAN_FRONTEND"
+            ]
+        },
+        {
+            "type": "ansible-local",
+            "playbook_dir": "./../ansible",
+            "playbook_file": "./../ansible/playbook.yml",
+            "inventory_file": "./../inventory",
+            "group_vars": "./../ansible/group_vars/",
+            "extra_arguments": ["--limit 'development'"]
+        }
+    ]
+}

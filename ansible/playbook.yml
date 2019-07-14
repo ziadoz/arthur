@@ -26,6 +26,10 @@
       tags: mysql
       when: inventory_hostname in groups['development']
 
+    - role: redis
+      tags: redis
+      when: inventory_hostname in groups['development']
+
     - role: ruby
       tags: ruby
       when: inventory_hostname in groups['development']

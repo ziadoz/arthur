@@ -11,54 +11,21 @@ Install the latest versions of the following:
 
 After installing Homebrew you can quickly install the other dependencies:
 ```
-brew install ansible
+brew install ansible ansible-lint
 brew cask install vagrant virtualbox virtualbox-extension-pack
 ```
 
 Now run the following command: `vagrant up`.
 
 ## Commands
-To fix macOS Mojave Python issus:
+Build the box using Packer:
 ```
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-```
-
-Provision or re-provision the machine:
-```
-vagrant provision
+cd packer && packer build template.json
 ```
 
-Ping the inventory:
+Bring up the virtual machine:
 ```
-ansible all -m ping
-```
-
-Get facts about the inventory:
-```
-ansible all -m setup
-ansible all -m setup > facts.json
-```
-
-Install the required roles:
-```
-ansible-galaxy install -r ansible/requirements.yml
-```
-
-Validate the playbook:
-```
-ansible-playbook ansible/playbook.yml --syntax-check
-```
-
-Run tasks by tag:
-```
-ansible-playbook ansible/playbook.yml --tags "foo,bar"
-ansible-playbook ansible/playbook.yml --skip-tags "foo,bar"
-```
-
-Run playbook on production:
-```
-ansible-playbook ansible/playbook.yml --ask-become-pass --limit production
-ansible-playbook ansible/playbook.yml --ask-become-pass --limit production --tags user
+vagrant up
 ```
 
 Start up headless Chrome and Selenium:
@@ -83,6 +50,72 @@ Remove SSH key:
 ssh-keygen -R 192.168.33.42
 ```
 
+### Extra Commands
+Lint the playbook:
+```
+ansible-lint ansible/playbook.yml
+```
+
+Validate the playbook:
+```
+ansible-playbook ansible/playbook.yml --syntax-check
+```
+
+Install the required roles:
+```
+ansible-galaxy install -r ansible/requirements.yml
+```
+
+Ping the inventory:
+```
+ansible all -m ping
+```
+
+Get facts about the inventory:
+```
+ansible all -m setup
+ansible all -m setup > facts.json
+```
+
+Run tasks by tag:
+```
+ansible-playbook ansible/playbook.yml --tags "foo,bar"
+ansible-playbook ansible/playbook.yml --skip-tags "foo,bar"
+```
+
+Run playbook on production:
+```
+ansible-playbook ansible/playbook.yml --ask-become-pass --limit production
+ansible-playbook ansible/playbook.yml --ask-become-pass --limit production --tags user
+```
+
+Debug a playbook:
+```
+ansible-playbook -i 192.168.33.42, --user=vagrant --private-key=~/Projects/arthur/vagrant/.vagrant/machines/default/virtualbox/private_key --ssh-common-args="-o StrictHostKeyChecking=no" ansible/playbook.yml
+```
+
+To fix macOS Mojave Python issus:
+```
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+```
+
+To provision the virtual machine for further development, add these lines to `Vagrantfile`:
+```
+# Provision Debugging
+config.vm.box = "ubuntu/bionic64"
+config.vm.provision :ansible do |ansible|
+    ansible.inventory_path = "inventory"
+    ansible.playbook       = "ansible/playbook.yml"
+    ansible.limit          = "development"
+    ansible.verbose        = true
+end
+```
+
+And then provision the VM:
+```
+vagrant provision
+```
+
 ## Todos
 - Copy over stripped down PHP INI files for FPM and CLI.
 - Clean up variables (`server.rtc`, `server.timezone`, `server.packages`, `php.extensions`, `node.packages` etc.)
@@ -99,6 +132,7 @@ ssh-keygen -R 192.168.33.42
 - Use Packer to produce packaged boxes and store on Dropbox.
 - Install MySQL using `.deb` file and using `debconf` to configure version and default root password.
 - Look at [Laravel box provision script](https://github.com/laravel/settler/blob/master/scripts/provision.sh) for ideas.
+- Look at using [existing Ansible Galaxy roles](https://galaxy.ansible.com/geerlingguy).
 
 ## Links
 - https://serversforhackers.com/managing-logs-with-logrotate
