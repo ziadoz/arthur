@@ -3,3 +3,5 @@
 *.log
 *.retry
 ansible/logs/*
+packer/*.log
+packer/output/*

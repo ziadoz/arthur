@@ -5,13 +5,12 @@
 
 - name: Install Ruby
   apt:
-    name: "{{ item }}"
+    name:
+      - ruby{{ ruby_version }}
+      - ruby{{ ruby_version }}-dev
+      # - ruby-switch
     state: latest
     update_cache: yes
-  with_items:
-    - ruby{{ ruby_version }}
-    - ruby{{ ruby_version }}-dev
-    # - ruby-switch
 
 # - name: Set Global Ruby Version
 #   shell: ruby-switch --set ruby{{ ruby_version }}
@@ -28,12 +27,11 @@
 # JSON Gem not building: https://github.com/backup/backup/issues/820
 - name: Install Backup Dependencies
   apt:
-    name: "{{ item }}"
+    name:
+      - libxslt-dev
+      - libxml2-dev
+      - zlib1g-dev
     state: latest
-  with_items:
-    - libxslt-dev
-    - libxml2-dev
-    - zlib1g-dev
   ignore_errors: yes
 
 - name: Install Backup

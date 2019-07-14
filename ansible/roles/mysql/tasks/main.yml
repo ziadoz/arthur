@@ -5,22 +5,20 @@
 
 - name: Install MySQL
   apt:
-    name: "{{ item }}"
+    name:
+      - mysql-server
+      - mysql-client
+      - python-mysqldb
     state: latest
     update_cache: yes
-  with_items:
-    - mysql-server
-    - mysql-client
-    - python-mysqldb
 
 - name: Install Python3 MySQL Packages
   apt:
-    name: "{{ item }}"
+    name:
+      - python3-dev
+      - python3-pip
+      - libmysqlclient-dev
     state: latest
-  with_items:
-    - python3-dev
-    - python3-pip
-    - libmysqlclient-dev
   when: ansible_python_interpreter is defined
 
 # https://github.com/PyMySQL/mysqlclient-python/issues/218
