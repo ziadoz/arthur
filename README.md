@@ -20,7 +20,7 @@ Now run the following command: `vagrant up`.
 ## Commands
 Build the box using Packer:
 ```
-cd packer && packer build template.json
+cd packer && packer build --force template.json
 ```
 
 Bring up the virtual machine:

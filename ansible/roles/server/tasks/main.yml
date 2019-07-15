@@ -1,11 +1,10 @@
 ---
 - name: Install Aptitude Packages
   apt:
-    name: "{{ item }}"
+    name:
+      - python-apt
+      - aptitude
     state: latest
-  with_items:
-    - python-apt
-    - aptitude
 
 # https://github.com/ansible/ansible-modules-core/issues/3523
 - name: Upgrade System

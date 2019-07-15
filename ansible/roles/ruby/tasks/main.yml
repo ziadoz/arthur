@@ -1,39 +1,43 @@
 ---
 - name: Add Ruby PPA
   apt_repository:
-    repo: "{{ ruby_ppa }}"
+    repo: ppa:brightbox/ruby-ng
 
 - name: Install Ruby
   apt:
     name:
       - ruby{{ ruby_version }}
       - ruby{{ ruby_version }}-dev
-      # - ruby-switch
+      - ruby-switch
     state: latest
     update_cache: yes
 
-# - name: Set Global Ruby Version
-#   shell: ruby-switch --set ruby{{ ruby_version }}
+- name: Set Ruby Global Version
+  shell: "ruby-switch --set ruby{{ ruby_version }}"
 
-- name: Install Bundler
-  shell: gem{{ ruby_version }} install {{ item }} --no-document
-  with_items:
-    - bundler
-    - rake
-
-- name: Install SASS
-  shell: gem{{ ruby_version }} install sass --no-document
-
-# JSON Gem not building: https://github.com/backup/backup/issues/820
 - name: Install Backup Dependencies
   apt:
     name:
+      - libsqlite3-dev
       - libxslt-dev
       - libxml2-dev
       - zlib1g-dev
     state: latest
   ignore_errors: yes
 
-- name: Install Backup
-  shell: gem{{ ruby_version }} install backup --no-document
-  when: inventory_hostname not in groups['development']
+- name: Install Mailcatcher
+  shell: gem{{ ruby_version }} install mailcatcher --no-document
+
+- name: Configure Mailcatcher Service
+  copy:
+    src: mailcatcher.service
+    dest: /lib/systemd/system
+    owner: root
+    group: root
+    mode: 0644
+  notify: Start Mailcatcher
+
+- name: Start Mailcatcher Upon Boot
+  service:
+    name: mailcatcher
+    enabled: yes

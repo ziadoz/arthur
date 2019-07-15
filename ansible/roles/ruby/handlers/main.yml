@@ -1,0 +1,5 @@
+---
+- name: Start Mailcatcher
+  service:
+    name: mailcatcher
+    state: started

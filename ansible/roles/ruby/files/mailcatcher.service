@@ -1,0 +1,10 @@
+[Unit]
+Description=MailCatcher Service
+After=network.service vagrant.mount
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/mailcatcher --foreground --ip 0.0.0.0
+
+[Install]
+WantedBy=multi-user.target
