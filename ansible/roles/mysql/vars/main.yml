@@ -4,6 +4,12 @@ mysql_config:
   mysqld:
     long_query_time: '1'
     slow-query-log-file: '/var/log/mysql/mysql-slow.log'
+    default-time-zone: '+00:00'
+    character-set-server: 'utf8mb4'
+    collation-server: 'utf8mb4_bin'
+    skip-character-set-client-handshake: ''
+    local-infile: '1'
+    max_allowed_packet: '200M'
 # mysql_root_username:
 # mysql_root_password:
 mysql_change_root_password: yes
