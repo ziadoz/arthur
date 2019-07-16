@@ -30,8 +30,8 @@
       tags: redis
       when: inventory_hostname in groups['development']
 
-    - role: ruby
-      tags: ruby
+    - role: mailcatcher
+      tags: mailcatcher
       when: inventory_hostname in groups['development']
 
     - role: nodejs
