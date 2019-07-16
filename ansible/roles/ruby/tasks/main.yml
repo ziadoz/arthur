@@ -3,6 +3,16 @@
   apt_repository:
     repo: ppa:brightbox/ruby-ng
 
+- name: Install Ruby Dependencies
+  apt:
+    name:
+      - libsqlite3-dev
+      - libxslt-dev
+      - libxml2-dev
+      - zlib1g-dev
+    state: latest
+  ignore_errors: yes
+
 - name: Install Ruby
   apt:
     name:
@@ -14,16 +24,6 @@
 
 - name: Set Ruby Global Version
   shell: "ruby-switch --set ruby{{ ruby_version }}"
-
-- name: Install Backup Dependencies
-  apt:
-    name:
-      - libsqlite3-dev
-      - libxslt-dev
-      - libxml2-dev
-      - zlib1g-dev
-    state: latest
-  ignore_errors: yes
 
 - name: Install Mailcatcher
   shell: gem{{ ruby_version }} install mailcatcher --no-document
