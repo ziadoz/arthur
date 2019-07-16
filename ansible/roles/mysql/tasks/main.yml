@@ -3,6 +3,23 @@
   apt:
     deb: https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb
 
+# https://geert.vanderkelen.org/2018/mysql8-unattended-dpkg/
+- name: Set Debian MySQL Configuration
+  debconf:
+    name: "{{ item.name }}"
+    question: "{{ item.question }}"
+    value: "{{ item.value }}"
+    vtype: "{{ item.vtype }}"
+  with_items:
+    - name: mysql-community-server
+      question: mysql-community-server/root-pass
+      value: "{{ mysql_root_password }}"
+      vtype: password
+    - name: mysql-community-server
+      question: mysql-community-server/re-root-pass
+      value: "{{ mysql_root_password }}"
+      vtype: password
+
 - name: Install MySQL
   apt:
     name:
@@ -11,6 +28,8 @@
       - python-mysqldb
     state: latest
     update_cache: yes
+  environment:
+    DEBIAN_FRONTEND: noninteractive
 
 - name: Install Python3 MySQL Packages
   apt:
@@ -39,36 +58,6 @@
   with_dict: "{{ mysql_config.mysqld }}"
   notify: Restart MySQL
 
-- name: Restart MySQL
-  service:
-    name: mysql
-    state: restarted
-  when: mysql_change_root_password
-
-# http://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html
-- name: Kill MySQL Process
-  shell: sudo kill `cat /var/run/mysqld/mysqld.pid`
-  when: mysql_change_root_password
-
-- name: Create MySQL Root Password File
-  copy:
-    content: "ALTER USER '{{ mysql_root_username }}'@'localhost' IDENTIFIED BY '{{ mysql_root_password }}';"
-    dest: /home/{{ user_account }}/mysql-init
-    owner: mysql
-    group: mysql
-    mode: 0600
-  when: mysql_change_root_password
-
-- name: Change MySQL Root Password
-  shell: mysqld_safe --init-file=/home/me/mysql-init &
-  when: mysql_change_root_password
-
-- name: Delete MySQL Root Password File
-  file:
-    dest: /home/{{ user_account }}/mysql-init
-    state: absent
-  when: mysql_change_root_password
-
 - name: Copy MySQL Root User Configuration
   template:
     src: my.cnf.j2
@@ -76,12 +65,6 @@
     owner: "{{ user_account }}"
     group: "{{ user_account }}"
     mode: 0600
-  when: mysql_change_root_password
-
-- name: Restart MySQL
-  service:
-    name: mysql
-    state: restarted
 
 - name: Update MySQL Users
   mysql_user:

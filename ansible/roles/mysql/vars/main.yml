@@ -10,13 +10,13 @@ mysql_config:
     skip-character-set-client-handshake: ''
     local-infile: '1'
     max_allowed_packet: '200M'
-# mysql_root_username:
-# mysql_root_password:
-mysql_change_root_password: yes
 mysql_users:
   - username: 'admin'
     password: ''
     privileges: '*.*:ALL,GRANT'
+  - username: 'rw'
+    password: ''
+    privileges: '*.*:SELECT,INSERT,UPDATE,DELETE,CREATE TEMPORARY TABLES'
   - username: 'ro'
     password: ''
     privileges: '*.*:SELECT'
