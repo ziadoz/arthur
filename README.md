@@ -119,17 +119,15 @@ vagrant provision
 ## Todos
 - Copy over stripped down PHP INI files for FPM and CLI.
 - Clean up variables (`server.rtc`, `server.timezone`, `server.packages`, `php.extensions`, `node.packages` etc.)
-- Remove Ruby.
-- Install Redis, Beanstalkd and Mailhog.
+- Install Beanstalkd.
 - Swap task names to lowercase where applicable (e.g. `Install Chromedriver repository`).
 - Move Vagrant bits (`inventory`, `ansible.cfg`, `Vagrantfile`) into `vagrant` sub directory.
 - Add a `my.cnf` file to `$HOME` with credentials in for development.
 
 ## Future Improvements
 - Use an Ansible vault to store passwords and settings.
-- Use `:ansible_local` provisioner in `Vagrantfile` (issues with copying files).
 - Install the VirtualBox guest additions [using Vagrant plugin](https://github.com/dotless-de/vagrant-vbguest).
-- Use Packer to produce packaged boxes and store on Dropbox.
+- Store packaged boxes on cloud storage (Dropbox, Google Drive).
 - Install MySQL using `.deb` file and using `debconf` to configure version and default root password.
 - Look at [Laravel box provision script](https://github.com/laravel/settler/blob/master/scripts/provision.sh) for ideas.
 - Look at using [existing Ansible Galaxy roles](https://galaxy.ansible.com/geerlingguy).
