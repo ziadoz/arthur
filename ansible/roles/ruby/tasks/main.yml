@@ -41,3 +41,8 @@
   service:
     name: mailcatcher
     enabled: yes
+
+- name: Configure UFW
+  ufw:
+    rule: allow
+    port: "{{ mailcatcher_port }}"
