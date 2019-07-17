@@ -127,6 +127,7 @@ vagrant provision
 - Swap task names to lowercase where applicable (e.g. `Install Chromedriver repository`).
 - Move Vagrant bits (`inventory`, `ansible.cfg`, `Vagrantfile`) into `vagrant` sub directory.
 - Fix Packer build red errors during user account creation and guest addition installation.
+- Move configuration of PHP, MySQL etc. to an `init` provisioner in Vagrant,so it can easily be reloaded.
 
 ## Future Improvements
 - Use an Ansible vault to store passwords and settings.
