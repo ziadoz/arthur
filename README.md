@@ -18,10 +18,10 @@ brew cask install vagrant virtualbox virtualbox-extension-pack
 
 Now run the following command: `vagrant up`.
 
-## Commands
+## Host Commands
 Build the box using Packer:
 ```
-cd packer && packer build --force template.json
+(cd packer && packer build --force template.json)
 ```
 
 Bring up the virtual machine:
@@ -29,6 +29,14 @@ Bring up the virtual machine:
 vagrant up
 ```
 
+Remove SSH key:
+```
+ssh-keygen -R 192.168.33.42
+```
+
+Access Mailcatcher at [https://192.168.33.42:1080](https://192.168.33.42:1080)
+
+## Guest Commands
 Start up headless Chrome and Selenium:
 ```
 chromedriver --url-base=/wd/hub --whitelisted-ips=''
@@ -46,12 +54,7 @@ lnsite foo.conf
 lnsite *-foo.conf
 ```
 
-Remove SSH key:
-```
-ssh-keygen -R 192.168.33.42
-```
-
-### Extra Commands
+## Debug Commands
 Lint the playbook:
 ```
 ansible-lint ansible/playbook.yml
