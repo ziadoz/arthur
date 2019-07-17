@@ -1,7 +1,7 @@
 ---
 - name: Add PHP PPA
   apt_repository:
-    repo: "{{ php_ppa }}"
+    repo: ppa:ondrej/php
 
 - name: Install PHP Packages
   apt:

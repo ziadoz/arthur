@@ -1,5 +1,4 @@
 ---
-php_ppa: ppa:ondrej/php
 php_version: 7.3
 xdebug_ide_key: XDEBUG
 xdebug_port: 9001
@@ -8,9 +7,6 @@ php_fpm_config:
   error_reporting: 'E_ALL'
   expose_php: 'Off'
   date.timezone: 'UTC'
-  memory_limit: '1G'
-  post_max_size: '750M'
-  upload_max_filesize: '500M'
   error_log: /var/log/fpm-php.www.log
   max_execution_time: 60
   cgi.fix_pathinfo: 0
@@ -18,7 +14,4 @@ php_cli_config:
   error_reporting: 'E_ALL'
   expose_php: 'Off'
   date.timezone: 'UTC'
-  memory_limit: '1G'
-  post_max_size: '750M'
-  upload_max_filesize: '500M'
   error_log: /var/log/cli-php.log
