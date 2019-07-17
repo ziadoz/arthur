@@ -45,5 +45,15 @@
             "group_vars": "./../ansible/group_vars/",
             "extra_arguments": ["--limit 'development'"]
         }
+    ],
+    "post-processors": [
+        {
+            "type": "shell-local",
+            "inline": [
+                "rm output/Vagrantfile",
+                "mv output/package.box output/arthur.box",
+                "vagrant box add --force --name arthur --provider virtualbox output/arthur.box"
+            ]
+        }
     ]
 }
