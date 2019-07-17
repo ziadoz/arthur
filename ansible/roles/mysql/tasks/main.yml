@@ -19,6 +19,10 @@
       question: mysql-community-server/re-root-pass
       value: "{{ mysql_root_password }}"
       vtype: password
+    - name: mysql-community-server
+      question: mysql-server/default-auth-override
+      value: Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)
+      vtype: select
 
 - name: Install MySQL
   apt:
