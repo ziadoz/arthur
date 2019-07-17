@@ -51,6 +51,7 @@
             "type": "shell-local",
             "inline": [
                 "rm output/Vagrantfile",
+                "rm -rf output/.vagrant",
                 "mv output/package.box output/arthur.box",
                 "vagrant box add --force --name arthur --provider virtualbox output/arthur.box"
             ]
