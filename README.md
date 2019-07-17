@@ -34,12 +34,17 @@ Remove SSH key:
 ssh-keygen -R 192.168.33.42
 ```
 
+Start up headless Chrome and Selenium (IP address whitelist is import to connect host to guest):
+```
+chromedriver --url-base=/wd/hub --whitelisted-ips=''
+```
+
 Access Mailcatcher at [https://192.168.33.42:1080](https://192.168.33.42:1080)
 
 ## Guest Commands
 Start up headless Chrome and Selenium:
 ```
-chromedriver --url-base=/wd/hub --whitelisted-ips=''
+chromedriver --url-base=/wd/hub
 ```
 
 Removing all virtualhost configurations:
