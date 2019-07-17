@@ -133,6 +133,7 @@ vagrant provision
 - Fix Packer build red errors during user account creation and guest addition installation.
 - Move configuration of PHP, MySQL etc. to an `init` provisioner in Vagrant,so it can easily be reloaded.
 - Copy over stripped down PHP INI files for FPM and CLI during `init` role.
+- Look at HTML5 Boilerplate issues when using `include h5bp/basic.conf`.
 
 ## Future Improvements
 - Use an Ansible vault to store passwords and settings.
