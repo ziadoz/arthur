@@ -78,6 +78,7 @@
     state: present
   with_items: "{{ mysql_users }}"
 
+# https://dev.mysql.com/doc/refman/5.5/en/mysql-tzinfo-to-sql.html
 - name: Load MySQL Timezone Data
   shell: "mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql --user={{ mysql_root_username }} --password={{ mysql_root_password }} mysql"
   notify: Restart MySQL
