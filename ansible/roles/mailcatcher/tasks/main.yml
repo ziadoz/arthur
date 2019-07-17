@@ -45,4 +45,4 @@
 - name: Configure UFW
   ufw:
     rule: allow
-    port: "{{ mailcatcher_port }}"
+    port: "{{ mailcatcher_http_port }}"
