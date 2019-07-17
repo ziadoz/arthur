@@ -126,13 +126,13 @@ vagrant provision
 ```
 
 ## Todos
-- Copy over stripped down PHP INI files for FPM and CLI.
+- Swap Mailcatcher for Mailhog (no Ruby or dependencies needed).
 - Clean up variables (`server.rtc`, `server.timezone`, `server.packages`, `php.extensions`, `node.packages` etc.)
 - Install Beanstalkd.
 - Swap task names to lowercase where applicable (e.g. `Install Chromedriver repository`).
-- Move Vagrant bits (`inventory`, `ansible.cfg`, `Vagrantfile`) into `vagrant` sub directory.
 - Fix Packer build red errors during user account creation and guest addition installation.
 - Move configuration of PHP, MySQL etc. to an `init` provisioner in Vagrant,so it can easily be reloaded.
+- Copy over stripped down PHP INI files for FPM and CLI during `init` role.
 
 ## Future Improvements
 - Use an Ansible vault to store passwords and settings.
@@ -140,6 +140,7 @@ vagrant provision
 - Store packaged boxes on cloud storage (Dropbox, Google Drive).
 - Look at [Laravel box provision script](https://github.com/laravel/settler/blob/master/scripts/provision.sh) for ideas.
 - Look at using [existing Ansible Galaxy roles](https://galaxy.ansible.com/geerlingguy).
+- Move Vagrant bits (`inventory`, `ansible.cfg`, `Vagrantfile`) into `vagrant` sub directory.
 
 ## Links
 - https://serversforhackers.com/managing-logs-with-logrotate
