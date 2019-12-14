@@ -1,5 +1,6 @@
 export PATH="$PATH"
 export EDITOR='nano'
+export CDPATH=".:$HOME:/var/www/vhosts"
 
 BOLD="$(tput bold)"
 RED="$(tput setaf 1)"
