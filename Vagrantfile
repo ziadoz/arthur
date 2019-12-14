@@ -7,6 +7,7 @@ Vagrant.configure(2) do |config|
   config.vm.box      = "arthur"
   config.vm.box_url  = "arthur"
   config.vm.network "private_network", ip: "192.168.33.42"
+  config.vm.network "forwarded_port", guest: 3000, host: 3000
 
   # Shared Folders
   config.vm.synced_folder "~/Projects", "/var/www/vhosts", id: "sites", type: "nfs"
