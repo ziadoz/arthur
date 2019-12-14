@@ -125,6 +125,13 @@ And then provision the VM:
 vagrant provision
 ```
 
+You can make daily usage easier with this handy alias: 
+```
+function arthur() {
+    (cd ~/Projects/arthur && vagrant $*)
+}
+```
+
 ## Todos
 - Swap Mailcatcher for Mailhog (no Ruby or dependencies needed).
 - Clean up variables (`server.rtc`, `server.timezone`, `server.packages`, `php.extensions`, `node.packages` etc.)
