@@ -3,7 +3,7 @@ php_version: 7.4
 xdebug_ide_key: XDEBUG
 xdebug_port: 9001
 # http://php.net/manual/en/ini.list.php
-php_fpm_config:
+php_config:
   error_reporting: 'E_ALL'
   expose_php: 'Off'
   date.timezone: 'UTC'

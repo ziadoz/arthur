@@ -24,14 +24,14 @@
     state: latest
     update_cache: yes
 
-- name: Update PHP FPM Configuration
+- name: Update PHP Configuration
   lineinfile:
     dest: /etc/php/{{ php_version }}/fpm/php.ini
     regexp: '^;?{{ item.key }}\s+=\s+'
     line: '{{ item.key }} = {{ item.value }}'
     state: present
     backup: yes
-  with_dict: "{{ php_fpm_config }}"
+  with_dict: "{{ php_config }}"
   notify: Restart PHP FPM
 
 - name: Update PHP CLI Configuration
@@ -93,6 +93,18 @@
 - name: Update PECL Channels
   shell: pecl channel-update pecl.php.net
   when: inventory_hostname in groups['development'] and xdebug_installed.stat.exists == false
+
+# https://stackoverflow.com/questions/8141407/install-pecl-modules-without-the-prompts
+- name: Install Redis
+  shell: printf "\n" | pecl install redis
+
+- name: Symlink Redis Configuration
+  lineinfile:
+    path: /etc/php/{{ php_version }}/fpm/php.ini
+    regexp: '^extension=redis.so'
+    insertafter: '^;extension=xsl'
+    line: extension=redis.so
+  notify: Restart PHP FPM
 
 - name: Install XDebug
   shell: pecl install xdebug
