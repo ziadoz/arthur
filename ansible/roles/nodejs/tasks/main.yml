@@ -48,9 +48,3 @@
     owner: root
     group: root
     mode: 0644
-
-- name: Configure UFW
-  ufw:
-    rule: allow
-    port: 3000
-  when: inventory_hostname in groups['development']
