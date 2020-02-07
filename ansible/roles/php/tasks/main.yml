@@ -98,12 +98,16 @@
 - name: Install Redis
   shell: printf "\n" | pecl install redis
 
-- name: Symlink Redis Configuration
+- name: Configure Redis PHP
   lineinfile:
-    path: /etc/php/{{ php_version }}/fpm/php.ini
-    regexp: '^extension=redis.so'
-    insertafter: '^;extension=xsl'
-    line: extension=redis.so
+    create: yes
+    path: /etc/php/{{ php_version }}/{{ item }}/conf.d/20-redis.ini
+    regexp: '^extension='
+    insertbefore: BOF
+    line: extension=/usr/lib/php/20190902/redis.so
+  with_items:
+    - fpm
+    - cli
   notify: Restart PHP FPM
 
 - name: Install XDebug
