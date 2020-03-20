@@ -149,6 +149,7 @@ function arthur() {
 - Look at [Laravel box provision script](https://github.com/laravel/settler/blob/master/scripts/provision.sh) for ideas.
 - Look at using [existing Ansible Galaxy roles](https://galaxy.ansible.com/geerlingguy).
 - Move Vagrant bits (`inventory`, `ansible.cfg`, `Vagrantfile`) into `vagrant` sub directory.
+- Add `/etc/hosts` file to VM with domains in for projects so internal requests resolve.
 
 ## Links
 - https://serversforhackers.com/managing-logs-with-logrotate
