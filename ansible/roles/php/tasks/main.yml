@@ -3,6 +3,7 @@
   apt_repository:
     repo: ppa:ondrej/php
 
+
 - name: Install PHP Packages
   apt:
     name:
@@ -13,7 +14,6 @@
       - php{{ php_version }}-dev
       - php{{ php_version }}-fpm
       - php{{ php_version }}-gd
-      - php{{ php_version }}-imagick
       - php{{ php_version }}-intl
       - php{{ php_version }}-json
       - php{{ php_version }}-mbstring
@@ -21,6 +21,16 @@
       - php{{ php_version }}-readline
       - php{{ php_version }}-xml
       - php{{ php_version }}-zip
+    state: latest
+    update_cache: yes
+
+  # https://github.com/oerdnj/deb.sury.org/wiki/Frequently-Asked-Questions#why-are-some-packages-named-phpxy--and-some-php-
+- name: Install PECL Packages
+  apt:
+    name:
+      - php-imagick
+      - php-redis
+      - php-xdebug
     state: latest
     update_cache: yes
 
@@ -89,30 +99,6 @@
     path: /etc/php/{{ php_version }}/mods-available/xdebug.ini
   register: xdebug_installed
   when: inventory_hostname in groups['development']
-
-- name: Update PECL Channels
-  shell: pecl channel-update pecl.php.net
-  when: inventory_hostname in groups['development'] and xdebug_installed.stat.exists == false
-
-# https://stackoverflow.com/questions/8141407/install-pecl-modules-without-the-prompts
-- name: Install Redis
-  shell: printf "\n" | pecl install redis
-
-- name: Configure Redis PHP
-  lineinfile:
-    create: yes
-    path: /etc/php/{{ php_version }}/{{ item }}/conf.d/20-redis.ini
-    regexp: '^extension='
-    insertbefore: BOF
-    line: extension=/usr/lib/php/20190902/redis.so
-  with_items:
-    - fpm
-    - cli
-  notify: Restart PHP FPM
-
-- name: Install XDebug
-  shell: pecl install xdebug
-  when: inventory_hostname in groups['development'] and xdebug_installed.stat.exists == false
 
 - name: Copy XDebug Configuration
   template:
