@@ -134,6 +134,7 @@ function arthur() {
 
 ## Todos
 - Swap Mailcatcher for Mailhog (no Ruby or dependencies needed).
+- Add Caddy webserver and Postgres database.
 - Clean up variables (`server.rtc`, `server.timezone`, `server.packages`, `php.extensions`, `node.packages` etc.)
 - Install Beanstalkd.
 - Swap task names to lowercase where applicable (e.g. `Install Chromedriver repository`).
