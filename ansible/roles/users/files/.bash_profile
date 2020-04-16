@@ -33,6 +33,10 @@ lnsite() {
   sudo find "$PWD" -name "${1:-*dev.conf}" -printf ' - %p\n' -exec ln -sf {} /etc/nginx/sites-enabled/ \;
 }
 
+laravel() {
+    composer create-project --prefer-dist laravel/laravel $1
+}
+
 export CLICOLOR=1
 export PS1="${YELLOW}\u@\h${RESET} : ${BLUE}\w${RESET}\$(__git_ps1 ' : (%s)') \n\$ "
 export PS2="${YELLOW}→${RESET} "
