@@ -15,27 +15,6 @@
     state: absent
   notify: Restart Nginx
 
-- name: Clone H5BP Nginx Configuration
-  git:
-    repo: https://github.com/h5bp/server-configs-nginx.git
-    dest: /tmp/server-configs-nginx
-    force: yes
-  when: nginx_h5bp_config
-
-- name: Copy H5BP Nginx Configuration
-  shell: cp -R /tmp/server-configs-nginx/{{ item }} /etc/nginx/{{ item }}
-  with_items:
-    - mime.types
-    - h5bp/
-  when: nginx_h5bp_config
-
-- name: Remove H5BP Nginx Configuration
-  file:
-    path: /tmp/server-configs-nginx/
-    state: absent
-  when: nginx_h5bp_config
-  notify: Restart Nginx
-
 - name: Configure UFW
   ufw:
     rule: "{{ item.rule }}"
