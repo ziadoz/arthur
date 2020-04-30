@@ -174,3 +174,4 @@ Links that have been useful for development and debugging.
 - https://github.com/ansible/ansible/issues/34056
 - https://linuxconfig.org/install-go-on-ubuntu-18-04-bionic-beaver-linux
 - https://github.com/laravel/settler/blob/master/scripts/provision.sh
+- https://bizwind.github.io/2019-06-26/improving-synced-folder-performance-in-vagrant
