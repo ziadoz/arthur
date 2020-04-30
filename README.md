@@ -175,3 +175,5 @@ Links that have been useful for development and debugging.
 - https://linuxconfig.org/install-go-on-ubuntu-18-04-bionic-beaver-linux
 - https://github.com/laravel/settler/blob/master/scripts/provision.sh
 - https://bizwind.github.io/2019-06-26/improving-synced-folder-performance-in-vagrant
+- https://bugs.launchpad.net/ubuntu/+source/apt/+bug/1785778
+- https://askubuntu.com/questions/41605/trouble-downloading-packages-list-due-to-a-hash-sum-mismatch-error
