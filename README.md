@@ -132,27 +132,37 @@ function arthur() {
 }
 ```
 
-## Todos
-- Swap Mailcatcher for Mailhog (no Ruby or dependencies needed).
-- Add Caddy webserver and Postgres database.
-- Clean up variables (`server.rtc`, `server.timezone`, `server.packages`, `php.extensions`, `node.packages` etc.)
-- Install Beanstalkd.
-- Swap task names to lowercase where applicable (e.g. `Install Chromedriver repository`).
-- Fix Packer build red errors during user account creation and guest addition installation.
-- Move configuration of PHP, MySQL etc. to an `init` provisioner in Vagrant,so it can easily be reloaded.
-- Copy over stripped down PHP INI files for FPM and CLI during `init` role.
-- Look at HTML5 Boilerplate issues when using `include h5bp/basic.conf`.
-
 ## Future Improvements
+Potential improves and ideas to improve Arthur.
+- Fix Packer build red errors during user account creation and guest addition installation.
+- Clean up variables (`server.rtc`, `server.timezone`, `server.packages`, `php.extensions`, `node.packages` etc.)
+- Swap task names to lowercase where applicable (e.g. `Install Chromedriver repository`).
+- Move configuration of PHP, MySQL etc. to an `init` provisioner in Vagrant,so it can easily be reloaded.
+- Copy over stripped down PHP INI files for FPM and CLI during an `init` role.
 - Use an Ansible vault to store passwords and settings.
-- Install the VirtualBox guest additions [using Vagrant plugin](https://github.com/dotless-de/vagrant-vbguest).
 - Store packaged boxes on cloud storage (Dropbox, Google Drive).
-- Look at [Laravel box provision script](https://github.com/laravel/settler/blob/master/scripts/provision.sh) for ideas.
 - Look at using [existing Ansible Galaxy roles](https://galaxy.ansible.com/geerlingguy).
 - Move Vagrant bits (`inventory`, `ansible.cfg`, `Vagrantfile`) into `vagrant` sub directory.
-- Add `/etc/hosts` file to VM with domains in for projects so internal requests resolve.
+- Add `/etc/hosts` file with domains in for projects so internal requests resolve.
+
+### Software
+Software to consider adding in the future. 
+- Swap Mailcatcher for Mailhog (no Ruby and dependencies needed).
+- Add Caddy webserver.
+- Add Apache webserver.
+- Add Postgres database.
+- Install Beanstalkd.
+- Use [Vagrant Guest Additions Plugin](https://github.com/dotless-de/vagrant-vbguest)
+- Use [Vagrant Hostsupdater Plugin](https://github.com/cogitatio/vagrant-hostsupdater).
+
+### Alternatives
+Alternatives to this VM, mostly for reference.
+- [Laravel Homestead](https://laravel.com/docs/master/homestead)
+- [Laravel Valet](https://laravel.com/docs/master/valet)
+- [DBngin](https://dbngin.com/)
 
 ## Links
+Links that have been useful for development and debugging. 
 - https://serversforhackers.com/managing-logs-with-logrotate
 - http://docs.ansible.com/ansible/playbooks_vault.html
 - https://github.com/ansible/ansible/pull/22497
@@ -163,3 +173,7 @@ function arthur() {
 - https://www.jeffgeerling.com/blog/2018/use-ansibles-yaml-callback-plugin-better-cli-experience
 - https://github.com/ansible/ansible/issues/34056
 - https://linuxconfig.org/install-go-on-ubuntu-18-04-bionic-beaver-linux
+- https://github.com/laravel/settler/blob/master/scripts/provision.sh
+- https://bizwind.github.io/2019-06-26/improving-synced-folder-performance-in-vagrant
+- https://bugs.launchpad.net/ubuntu/+source/apt/+bug/1785778
+- https://askubuntu.com/questions/41605/trouble-downloading-packages-list-due-to-a-hash-sum-mismatch-error

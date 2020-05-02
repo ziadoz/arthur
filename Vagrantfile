@@ -9,8 +9,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "private_network", ip: "192.168.33.42"
 
   # Shared Folders
-  config.vm.synced_folder "~/Projects", "/var/www/vhosts", id: "sites", type: "nfs"
-  config.vm.synced_folder "~/Go", "/opt/go", id: "go", type: "nfs"
+  config.vm.synced_folder "~/Projects", "/var/www/vhosts", id: "sites", type: "nfs", mount_options: ["nolock", "vers=3", "udp", "noatime", "actimeo=1"]
 
   # Configuration
   config.vm.provider "virtualbox" do |vb|
