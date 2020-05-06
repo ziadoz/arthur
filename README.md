@@ -154,6 +154,7 @@ Software to consider adding in the future.
 - Install Beanstalkd.
 - Use [Vagrant Guest Additions Plugin](https://github.com/dotless-de/vagrant-vbguest)
 - Use [Vagrant Hostsupdater Plugin](https://github.com/cogitatio/vagrant-hostsupdater).
+- Use [Vagrant Disk Size Plugin](https://github.com/sprotheroe/vagrant-disksize).
 
 ### Alternatives
 Alternatives to this VM, mostly for reference.
@@ -178,3 +179,4 @@ Links that have been useful for development and debugging.
 - https://bizwind.github.io/2019-06-26/improving-synced-folder-performance-in-vagrant
 - https://bugs.launchpad.net/ubuntu/+source/apt/+bug/1785778
 - https://askubuntu.com/questions/41605/trouble-downloading-packages-list-due-to-a-hash-sum-mismatch-error
+- https://stackoverflow.com/questions/49822594/vagrant-how-to-specify-the-disk-size
