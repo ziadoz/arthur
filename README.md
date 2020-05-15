@@ -144,6 +144,7 @@ Potential improves and ideas to improve Arthur.
 - Look at using [existing Ansible Galaxy roles](https://galaxy.ansible.com/geerlingguy).
 - Move Vagrant bits (`inventory`, `ansible.cfg`, `Vagrantfile`) into `vagrant` sub directory.
 - Add `/etc/hosts` file with domains in for projects so internal requests resolve.
+- Load YAML file in `Vagrantfile` that contains project folders to sync, host names, CPU cores, RAM, and other settings.
 
 ### Software
 Software to consider adding in the future. 
