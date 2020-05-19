@@ -111,7 +111,7 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 To provision the virtual machine for further development, add these lines to `Vagrantfile`:
 ```
 # Provision Debugging
-config.vm.box = "ubuntu/bionic64"
+config.vm.box = "bento/ubuntu-18.04"
 config.vm.provision :ansible do |ansible|
     ansible.inventory_path = "inventory"
     ansible.playbook       = "ansible/playbook.yml"
