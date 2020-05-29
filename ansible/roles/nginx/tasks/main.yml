@@ -23,6 +23,11 @@
     - { rule: allow, port: http }
     - { rule: allow, port: https }
 
+- name: Check Website Directory Exists
+  stat:
+    path: "{{ nginx_path }}"
+  register: nginx_path_exists
+
 - name: Create Website Directory
   file:
     path: "{{ nginx_path }}"
@@ -30,4 +35,4 @@
     owner: deploy
     group: deploy
     mode: 0774
-  when: inventory_hostname in groups['production']
+  when: nginx_path_exists.stat.exists == false
