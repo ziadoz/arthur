@@ -154,6 +154,7 @@ Potential improves and ideas to improve Arthur.
 ### Software
 Software to consider adding in the future. 
 - Upgrade to Ubuntu 20.04 LTS.
+- Install Git from official PPA.
 - Swap Mailcatcher for Mailhog (no Ruby and dependencies needed).
 - Add Caddy webserver.
 - Add Apache webserver.
