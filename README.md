@@ -92,6 +92,11 @@ ansible-playbook ansible/playbook.yml --tags "foo,bar"
 ansible-playbook ansible/playbook.yml --skip-tags "foo,bar"
 ```
 
+Run tasks with extra variables:
+```
+ansible-playbook ansible/playbook.yml --extra-vars="user_account=foobar"
+```
+
 Run playbook on production:
 ```
 ansible-playbook ansible/playbook.yml --ask-become-pass --limit production
