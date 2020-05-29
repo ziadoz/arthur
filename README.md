@@ -187,3 +187,6 @@ Links that have been useful for development and debugging.
 - https://bugs.launchpad.net/ubuntu/+source/apt/+bug/1785778
 - https://askubuntu.com/questions/41605/trouble-downloading-packages-list-due-to-a-hash-sum-mismatch-error
 - https://stackoverflow.com/questions/49822594/vagrant-how-to-specify-the-disk-size
+- https://virtualzero.net/blog/how-to-install-virtualbox-guest-additions-in-ubuntu-server-18.04-lts
+- https://kifarunix.com/install-virtualbox-guest-additions-on-ubuntu-18-04/
+- https://www.linuxquestions.org/questions/linux-virtualization-and-cloud-90/how-to-check-version-of-virtualbox-guest-additions-currently-installed-in-guest-syste-946053/
