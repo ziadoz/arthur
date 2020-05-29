@@ -74,7 +74,7 @@
       - nfs-common
       - portmap
     state: latest
-  when: inventory_hostname in groups['development']
+  when: server_nfs
 
 - name: Install VCS Packages
   apt:
@@ -111,7 +111,7 @@
     - { regexp: '^#?PasswordAuthentication', line: 'PasswordAuthentication no' }
     - { regexp: '^#?PermitEmptyPasswords', line: 'PermitEmptyPasswords no' }
   notify: Restart SSH Daemon
-  when: inventory_hostname in groups['development']
+  when: server_disable_ssh_password_login
 
 - name: Install ResolvConf
   apt:
@@ -137,4 +137,4 @@
     job: 'rm /etc/udev/rules.d/70-persistent-net-rules && /etc/init.d/networking restart'
     special_time: reboot
     state: present
-  when: inventory_hostname in groups['development']
+  when: server_fix_vm_networking

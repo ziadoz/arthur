@@ -8,3 +8,6 @@ server_dns:
   - 1.0.0.1
   - 8.8.8.8
   - 8.8.4.4
+server_nfs: true
+server_disable_ssh_password_login: true
+server_fix_vm_networking: true
