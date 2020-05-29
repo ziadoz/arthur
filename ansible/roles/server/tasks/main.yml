@@ -72,6 +72,7 @@
   apt:
     name:
       - nfs-common
+      - nfs-kernel-server
       - portmap
     state: latest
   when: server_nfs
