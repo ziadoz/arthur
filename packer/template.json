@@ -27,7 +27,6 @@
                 "apt-get upgrade -y",
                 "apt-get install -y ansible",
                 "apt-get clean",
-                "mkdir -p /var/www/vhosts",
                 "mkdir ~/.ssh",
                 "wget -qO- https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub >> ~/.ssh/authorized_keys",
                 "chown -R vagrant:vagrant ~/.ssh",
