@@ -3,5 +3,6 @@ server_user_add_authorized_key: false
 server_nfs_enabled: false
 server_disable_ssh_password_login: false
 server_fix_vm_networking: false
+users_add_authorized_key: false
 user_account: "{{ ansible_ssh_user }}"
 xdebug: false

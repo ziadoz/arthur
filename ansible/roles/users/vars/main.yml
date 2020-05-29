@@ -1,4 +1,5 @@
 ---
+users_add_authorized_key: true
 users:
   - user: "{{ ansible_ssh_user }}"
     groups: sudo

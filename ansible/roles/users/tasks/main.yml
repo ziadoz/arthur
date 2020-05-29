@@ -14,7 +14,7 @@
     key: "{{ lookup('file', item.authorized_key) }}"
     state: present
   with_items: "{{ users }}"
-  when: server_user_add_authorized_key
+  when: users_add_authorized_key
 
 - name: Copy User Account Environment
   copy:
