@@ -12,3 +12,5 @@ server_disable_ssh_password_login: false
 server_fix_vm_networking: false
 user_account: "{{ ansible_ssh_user }}"
 xdebug: false
+nginx_path_owner: deploy
+nginx_path_group: deploy

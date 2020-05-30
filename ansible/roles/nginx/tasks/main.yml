@@ -32,7 +32,7 @@
   file:
     path: "{{ nginx_path }}"
     state: directory
-    owner: deploy
-    group: deploy
+    owner: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_ssh_user }}"
     mode: 0774
   when: nginx_path_exists.stat.exists == false

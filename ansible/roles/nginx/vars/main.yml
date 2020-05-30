@@ -2,3 +2,5 @@
 nginx_ppa: ppa:nginx/stable
 nginx_h5bp_config: yes
 nginx_path: /var/www/vhosts
+nginx_path_owner: "{{ ansible_ssh_user }}"
+nginx_path_group: "{{ ansible_ssh_user }}"
