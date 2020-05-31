@@ -12,7 +12,7 @@
 
 - name: Remove Existing Go Installation
   file:
-    path: "{{ go_install_path}}/go"
+    path: "{{ go_install_path }}/go"
     state: absent
   when: go_installed.stat.exists == false or go_already_installed.rc == 1
 
