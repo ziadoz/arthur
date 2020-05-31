@@ -1,4 +1,4 @@
-export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH"
 export EDITOR='nano'
 export CDPATH=".:$HOME:/var/www/vhosts"
 
