@@ -6,3 +6,5 @@ user_account: ziadoz
 mysql_root_username: 'root'
 mysql_root_password: 'flipflop'
 xdebug_ide_key: PHPSTORM
+nginx_path_owner: ziadoz
+nginx_path_group: ziadoz
