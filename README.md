@@ -189,6 +189,7 @@ Links that have been useful for development and debugging.
 - https://virtualzero.net/blog/how-to-install-virtualbox-guest-additions-in-ubuntu-server-18.04-lts
 - https://kifarunix.com/install-virtualbox-guest-additions-on-ubuntu-18-04/
 - https://www.linuxquestions.org/questions/linux-virtualization-and-cloud-90/how-to-check-version-of-virtualbox-guest-additions-currently-installed-in-guest-syste-946053/
+- https://mysqlserverteam.com/mysql-8-0-collations-migrating-from-older-collations/
 
 ## Debug
 Raw Bento Box URL: https://vagrantcloud.com/bento/boxes/ubuntu-18.04/versions/202005.21.0/providers/virtualbox.box
