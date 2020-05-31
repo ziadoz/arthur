@@ -1,7 +1,7 @@
 ---
 - name: Add MySQL Repository
   apt:
-    deb: https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb
+    deb: https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
 
 # https://geert.vanderkelen.org/2018/mysql8-unattended-dpkg/
 - name: Set Debian MySQL Configuration
