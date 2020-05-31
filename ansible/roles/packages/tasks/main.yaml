@@ -48,3 +48,12 @@
       - mercuial
     state: latest
     update_cache: yes
+
+- name: Install Packer
+  unarchive:
+    src: "https://releases.hashicorp.com/packer/{{ packages.packer_version }}/packer_{{ packages.packer_version }}_linux_amd64.zip"
+    remote_src: yes
+    dest: /usr/local/bin
+    owner: root
+    group: root
+    mode: 0755
