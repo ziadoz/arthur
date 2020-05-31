@@ -7,6 +7,7 @@ users:
     groups: www-data,sudo
     authorized_key: ~/.ssh/id_rsa.pub
 
+server_disable_ssh_root_login: true
 server_disable_ssh_password_login: false
 server_fix_vm_networking: false
 packages:

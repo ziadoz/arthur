@@ -9,5 +9,6 @@ server_dns:
   - 8.8.8.8
   - 8.8.4.4
 server_user_add_authorized_key: true
+server_disable_ssh_root_login: false
 server_disable_ssh_password_login: true
 server_fix_vm_networking: true

@@ -5,17 +5,26 @@
       - python-apt
       - aptitude
     state: latest
+  tags:
+    - server
+    - apt
 
 # https://github.com/ansible/ansible-modules-core/issues/3523
 - name: Upgrade System
   apt:
     upgrade: yes
     update_cache: yes
+  tags:
+    - server
+    - upgrade
 
 - name: Install NTP
   apt:
     name: ntp
     state: present
+  tags:
+    - server
+    - ntp
 
 - name: Setup System Clock and Timezone
   shell: "{{ item }}"
@@ -23,14 +32,23 @@
     - timedatectl set-local-rtc "{{ server_rtc }}"
     - timedatectl set-ntp "{{ server_ntp }}"
     - timedatectl set-timezone "{{ server_timezone }}"
+  tags:
+    - server
+    - ntp
 
 - name: Generate Locale
   shell: locale-gen "{{ server_locale }}"
+  tags:
+    - server
+    - locale
 
 - name: Install Unattended Upgrade Package
   apt:
     name: unattended-upgrades
     state: latest
+  tags:
+    - server
+    - unattended-upgrades
 
 - name: Copy Unattended Upgrade Configuration
   copy:
@@ -39,6 +57,9 @@
     owner: root
     group: root
     mode: 0644
+  tags:
+    - server
+    - unattended-upgrades
 
 - name: Enable UFW
   ufw:
@@ -56,6 +77,7 @@
     regexp: '^#?PermitRootLogin'
     line: 'PermitRootLogin no'
   notify: Restart SSH Daemon
+  when: server_disable_ssh_root_login
 
 - name: Disable SSH Password Login
   lineinfile:
@@ -72,6 +94,9 @@
   apt:
     name: resolvconf
     state: present
+  tags:
+    - server
+    - dns
 
 # https://askubuntu.com/questions/1012641/dns-set-to-systemds-127-0-0-53-how-to-change-permanently/1012648#1012648
 - name: Add Base DNS Name Servers
@@ -79,10 +104,16 @@
     dest: /etc/resolvconf/resolv.conf.d/head
     line: 'nameserver {{ item }}'
   with_items: "{{ server_dns }}"
+  tags:
+    - server
+    - dns
 
 - name: Update ResolvConf
   shell: resolvconf -u
   become: yes
+  tags:
+    - server
+    - dns
 
 - name: Fix VM Networking Issues
   cron:
