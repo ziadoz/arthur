@@ -8,26 +8,11 @@
       when: inventory_hostname in groups['development']
 
     - role: server
-      tags:
-        - server
-        - apt
-        - upgrade
-        - ntp
-        - locale
-        - unattended-upgrades
-        - dns
-        - ssh
 
     - role: users
       tags: user
 
     - role: packages
-      tags:
-        - packages
-        - archive
-        - nfs
-        - vcs
-        - packer
 
     - role: php
       tags: php

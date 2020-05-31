@@ -65,11 +65,15 @@
   ufw:
     state: enabled
     logging: on
+  tags:
+    - server
 
 - name: Configure UFW
   ufw:
     rule: allow
     port: ssh
+  tags:
+    - server
 
 - name: Disable SSH Root Login
   lineinfile:
@@ -78,6 +82,8 @@
     line: 'PermitRootLogin no'
   notify: Restart SSH Daemon
   when: server_disable_ssh_root_login
+  tags:
+    - server
 
 - name: Disable SSH Password Login
   lineinfile:
@@ -89,6 +95,8 @@
     - { regexp: '^#?PermitEmptyPasswords', line: 'PermitEmptyPasswords no' }
   notify: Restart SSH Daemon
   when: server_disable_ssh_password_login
+  tags:
+    - server
 
 - name: Install ResolvConf
   apt:
@@ -124,3 +132,5 @@
     special_time: reboot
     state: present
   when: server_fix_vm_networking
+  tags:
+    - server
