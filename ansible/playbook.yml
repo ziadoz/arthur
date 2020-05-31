@@ -37,5 +37,8 @@
     - role: go
       tags: go
 
+    - role: packer
+      tags: packer
+
     - role: chrome
       tags: chrome
