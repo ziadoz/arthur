@@ -40,55 +40,6 @@
     group: root
     mode: 0644
 
-- name: Install System Packages
-  apt:
-    name:
-      - build-essential
-      - software-properties-common
-      - bash-completion
-      - curl
-      - wget
-      - ncdu
-      - tree
-      - whois
-      - siege
-      - nmap
-      - cloc
-      - htop
-      - fail2ban
-      - mosh
-    state: latest
-
-- name: Install Archive Packages
-  apt:
-    name:
-      - zip
-      - unzip
-      - p7zip
-      - p7zip-full
-    state: latest
-
-- name: Install NFS Packages
-  apt:
-    name:
-      - nfs-common
-      - nfs-kernel-server
-      - portmap
-    state: latest
-  when: server_nfs
-
-- name: Add Git PPA
-  apt_repository:
-    repo: "{{ server_git_ppa }}"
-    state: present
-
-- name: Install Git
-  apt:
-    name:
-      - git
-    state: latest
-    update_cache: yes
-
 - name: Enable UFW
   ufw:
     state: enabled

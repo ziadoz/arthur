@@ -139,7 +139,6 @@ function arthur() {
 
 ## Future Improvements
 Potential improves and ideas to improve Arthur.
-- Refactor `server` playbook into smaller parts for better usage between local, development and production.
 - Clean up variables (`server.rtc`, `server.timezone`, `server.packages`, `php.extensions`, `node.packages` etc.)
 - Swap task names to lowercase where applicable (e.g. `Install Chromedriver repository`).
 - Move configuration of PHP, MySQL etc. to an `init` provisioner in Vagrant,so it can easily be reloaded.

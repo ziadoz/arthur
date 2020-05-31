@@ -13,6 +13,9 @@
     - role: users
       tags: user
 
+    - role: packages
+      tags: packages
+
     - role: php
       tags: php
 
