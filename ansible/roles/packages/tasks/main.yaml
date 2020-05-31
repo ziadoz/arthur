@@ -34,7 +34,7 @@
       - nfs-kernel-server
       - portmap
     state: latest
-  when: server_nfs
+  when: packages.nfs
 
 - name: Add Git PPA
   apt_repository:

@@ -1,3 +1,4 @@
 packages:
   git_ppa: ppa:git-core/ppa
   packer_version: 1.5.6
+  nfs: true
