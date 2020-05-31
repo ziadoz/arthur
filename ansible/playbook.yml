@@ -24,23 +24,18 @@
 
     - role: mysql
       tags: mysql
-      when: inventory_hostname in groups['development']
 
     - role: redis
       tags: redis
-      when: inventory_hostname in groups['development']
 
     - role: mailcatcher
       tags: mailcatcher
-      when: inventory_hostname in groups['development']
 
     - role: nodejs
       tags: nodejs
 
     - role: go
       tags: go
-      when: inventory_hostname in groups['development']
 
     - role: chrome
       tags: chrome
-      when: inventory_hostname in groups['development']

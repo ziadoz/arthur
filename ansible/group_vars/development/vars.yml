@@ -1,5 +1,9 @@
 ---
+users:
+  - user: "{{ ansible_ssh_user }}"
+    groups: "{{ ansible_ssh_user }}"
+
 user_account: "{{ ansible_ssh_user }}"
 mysql_root_username: 'root'
 mysql_root_password: 'flipflop'
-xdebug_ide_key: VSCODE
+xdebug_ide_key: PHPSTORM

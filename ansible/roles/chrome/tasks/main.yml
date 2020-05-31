@@ -32,4 +32,3 @@
   ufw:
     rule: allow
     port: 9515
-  when: inventory_hostname in groups['development']

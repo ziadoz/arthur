@@ -98,7 +98,7 @@
   stat:
     path: /etc/php/{{ php_version }}/mods-available/xdebug.ini
   register: xdebug_installed
-  when: inventory_hostname in groups['development']
+  when: xdebug
 
 - name: Copy XDebug Configuration
   template:
@@ -107,7 +107,7 @@
     owner: root
     group: root
     mode: 0644
-  when: inventory_hostname in groups['development'] and xdebug_installed.stat.exists == false
+  when: xdebug and xdebug_installed.stat.exists == false
 
 - name: Symlink XDebug Configuration
   file:
@@ -118,10 +118,10 @@
     group: root
     mode: 0777
   notify: Restart PHP FPM
-  when: inventory_hostname in groups['development']
+  when: xdebug
 
 - name: Configure UFW
   ufw:
     rule: allow
     port: "{{ xdebug_port }}"
-  when: inventory_hostname in groups['development'] and xdebug_installed.stat.exists == false
+  when: xdebug

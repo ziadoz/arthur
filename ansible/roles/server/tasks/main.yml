@@ -72,18 +72,22 @@
   apt:
     name:
       - nfs-common
+      - nfs-kernel-server
       - portmap
     state: latest
-  when: inventory_hostname in groups['development']
+  when: server_nfs
 
-- name: Install VCS Packages
+- name: Add Git PPA
+  apt_repository:
+    repo: "{{ server_git_ppa }}"
+    state: present
+
+- name: Install Git
   apt:
     name:
       - git
-      - git-core
-      - subversion
-      - mercurial
     state: latest
+    update_cache: yes
 
 - name: Enable UFW
   ufw:
@@ -111,7 +115,7 @@
     - { regexp: '^#?PasswordAuthentication', line: 'PasswordAuthentication no' }
     - { regexp: '^#?PermitEmptyPasswords', line: 'PermitEmptyPasswords no' }
   notify: Restart SSH Daemon
-  when: inventory_hostname in groups['development']
+  when: server_disable_ssh_password_login
 
 - name: Install ResolvConf
   apt:
@@ -137,4 +141,4 @@
     job: 'rm /etc/udev/rules.d/70-persistent-net-rules && /etc/init.d/networking restart'
     special_time: reboot
     state: present
-  when: inventory_hostname in groups['development']
+  when: server_fix_vm_networking
