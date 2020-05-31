@@ -17,6 +17,8 @@
       - fail2ban
       - mosh
     state: latest
+  tags:
+    - packages
 
 - name: Install Archive Packages
   apt:
@@ -26,6 +28,9 @@
       - p7zip
       - p7zip-full
     state: latest
+  tags:
+    - packages
+    - archive
 
 - name: Install NFS Packages
   apt:
@@ -35,11 +40,17 @@
       - portmap
     state: latest
   when: packages.nfs
+  tags:
+    - packages
+    - nfs
 
 - name: Add Git PPA
   apt_repository:
     repo: "{{ packages.git_ppa }}"
     state: present
+  tags:
+    - packages
+    - vcs
 
 - name: Install VCS Packages
   apt:
@@ -48,6 +59,9 @@
       - mercuial
     state: latest
     update_cache: yes
+  tags:
+    - packages
+    - vcs
 
 - name: Install Packer
   unarchive:
@@ -57,3 +71,6 @@
     owner: root
     group: root
     mode: 0755
+  tags:
+    - packages
+    - packer

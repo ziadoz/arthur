@@ -14,7 +14,12 @@
       tags: user
 
     - role: packages
-      tags: packages
+      tags:
+        - packages
+        - archive
+        - nfs
+        - vcs
+        - packer
 
     - role: php
       tags: php
