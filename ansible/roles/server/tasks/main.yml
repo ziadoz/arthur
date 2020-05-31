@@ -77,14 +77,17 @@
     state: latest
   when: server_nfs
 
-- name: Install VCS Packages
+- name: Add Git PPA
+  apt_repository:
+    repo: "{{ server_git_ppa }}"
+    state: present
+
+- name: Install Git
   apt:
     name:
       - git
-      - git-core
-      - subversion
-      - mercurial
     state: latest
+    update_cache: yes
 
 - name: Enable UFW
   ufw:
