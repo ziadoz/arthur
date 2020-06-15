@@ -148,7 +148,7 @@ Potential improves and ideas to improve Arthur.
 - Look at using [existing Ansible Galaxy roles](https://galaxy.ansible.com/geerlingguy).
 - Move Vagrant bits (`inventory`, `ansible.cfg`, `Vagrantfile`) into `vagrant` sub directory.
 - Add `/etc/hosts` file with domains in for projects so internal requests resolve.
-- Load YAML file in `Vagrantfile` that contains project folders to sync, host names, CPU cores, RAM, and other settings.
+- Load YAML file in `Vagrantfile` that contains project folders to sync, host names, CPU cores, RAM, and other settings (Homestead does this).
 
 ### Software
 Software to consider adding in the future. 
@@ -158,6 +158,7 @@ Software to consider adding in the future.
 - Add Apache webserver.
 - Add Postgres database.
 - Install Beanstalkd.
+- Install ZSH shell to match macOS default.
 - Use [Vagrant Guest Additions Plugin](https://github.com/dotless-de/vagrant-vbguest)
 - Use [Vagrant Hostsupdater Plugin](https://github.com/cogitatio/vagrant-hostsupdater).
 - Use [Vagrant Disk Size Plugin](https://github.com/sprotheroe/vagrant-disksize).
