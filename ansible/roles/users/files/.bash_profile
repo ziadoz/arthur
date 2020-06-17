@@ -20,19 +20,44 @@ BG_CYAN="$(tput setab 6)"
 BG_WHITE="$(tput setab 7)"
 
 alias sudo='sudo '
-alias editbash="nano $HOME/.bash_profile"
-alias reloadbash="exec $SHELL -l"
+alias editshell="nano $HOME/.bash_profile"
+alias reloadshell="exec $SHELL -l"
+alias reload="reloadshell"
 
+# Disable all Nginx website.
 rmsites() {
   echo "Disabled sites: "
   sudo find /etc/nginx/sites-enabled/ -type l -printf ' - %p\n' -exec rm {} \;
 }
 
-lnsite() {
+# Enable Nginx websites
+lnsites() {
   echo "Enabled sites: "
   sudo find "$PWD" -name "${1:-*dev.conf}" -printf ' - %p\n' -exec ln -sf {} /etc/nginx/sites-enabled/ \;
 }
 
+# Enable specified webserver and disable the others.
+weben() {
+    webservers=( nginx caddy )
+    if [[ ! "${webservers[@]}" =~ "$1" ]]; then
+        echo "Invalid webserver: '$1'"
+        return 1
+    fi
+
+    for webserver in "${webservers[@]}"; do
+        if [ "$webserver" = "$1" ]; then
+            echo "Started $webserver"
+            sudo service $webserver start
+        else
+            echo "Stopped $webserver"
+            sudo service $webserver stop
+        fi
+    done
+
+    return 0
+}
+
+# Create a new Laravel project.
 laravel() {
     composer create-project --prefer-dist laravel/laravel $1
 }
