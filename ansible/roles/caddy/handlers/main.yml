@@ -1,0 +1,5 @@
+---
+- name: Stop Caddy
+  service:
+    name: caddy
+    state: stopped

@@ -1,0 +1,21 @@
+---
+- name: Add Caddy PPA
+  apt_repository:
+    repo: "deb [trusted=yes] https://apt.fury.io/caddy/ /"
+    state: present
+
+- name: Install Caddy
+  apt:
+    name:
+      - libnss3-tools
+      - caddy
+    state: latest
+    update_cache: yes
+
+# https://caddy.community/t/caddy-v2-php-7-2/8657
+- name: Update Caddy Group
+  user:
+    name: caddy
+    groups: www-data
+    append: yes
+  notify: Stop Caddy

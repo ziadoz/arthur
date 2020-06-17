@@ -20,6 +20,9 @@
     - role: nginx
       tags: nginx
 
+    - role: caddy
+      tags: caddy
+
     - role: certbot
       tags: certbot
 
