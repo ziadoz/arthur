@@ -34,6 +34,16 @@
     state: latest
     update_cache: yes
 
+# https://stackoverflow.com/questions/29822686/curl-error-60-ssl-certificate-unable-to-get-local-issuer-certificate
+# https://curl.haxx.se/docs/caextract.html
+- name: Download Mozilla CA Certificate Store
+  get_url:
+    url: https://curl.haxx.se/ca/cacert.pem
+    dest: /etc/ssl/certs
+    owner: root
+    group: root
+    mode: 0777
+
 - name: Update PHP Configuration
   lineinfile:
     dest: /etc/php/{{ php_version }}/fpm/php.ini

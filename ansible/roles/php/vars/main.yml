@@ -11,8 +11,10 @@ php_config:
   error_log: /var/log/fpm-php.www.log
   max_execution_time: 60
   cgi.fix_pathinfo: 0
+  curl.cainfo: /etc/ssl/certs/cacert.pem
 php_cli_config:
   error_reporting: 'E_ALL'
   expose_php: 'Off'
   date.timezone: 'UTC'
   error_log: /var/log/cli-php.log
+  curl.cainfo: /etc/ssl/certs/cacert.pem
