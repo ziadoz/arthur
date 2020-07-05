@@ -62,6 +62,54 @@ laravel() {
     composer create-project --prefer-dist laravel/laravel $1
 }
 
+# Generate a self signed SSL certificate.
+# https://stackoverflow.com/questions/43665243/invalid-self-signed-ssl-cert-subject-alternative-name-missing/43665244#43665244
+# https://stackoverflow.com/questions/7580508/getting-chrome-to-accept-self-signed-localhost-certificate/43666288#43666288
+# https://dev.to/techschoolguru/a-complete-overview-of-ssl-tls-and-its-cryptographic-system-36pd
+# https://dev.to/techschoolguru/how-to-create-sign-ssl-tls-certificates-2aai
+function genssl() {
+    local domain="$1"
+    local common="${2:-*.$domain}"
+    local subject="/C=GB/ST=None/L=NB/O=None/CN=$common"
+    local days=3560
+
+    if [[ -z "$domain" ]]; then
+        echo "Please supply a domain name";
+        return 1
+    fi
+
+    if [[ -z "$common" ]]; then
+        echo "Please supply a common name";
+        return 1
+    fi
+
+    # Write out temporary configuration extfile.
+    echo "authorityKeyIdentifier=keyid,issuer" >> v3.ext
+    echo "basicConstraints=CA:FALSE" >> v3.ext
+    echo "keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment" >> v3.ext
+    echo "subjectAltName = @alt_names" >> v3.ext
+    echo "" >> v3.ext
+    echo "[alt_names]" >> v3.ext
+    echo "DNS.1 = $common" >> v3.ext
+
+    openssl genrsa -out "$domain.key" 2048
+    sudo openssl req -new -newkey rsa:2048 -sha256 -nodes -key "$domain.key" -subj "/C=GB/ST=None/L=NB/O=None/CN=$common" -out "$domain.csr"
+    sudo openssl x509 -req -days 3650 -sha256 -in "$domain.csr" -signkey "$domain.key" -extfile v3.ext -out "$domain.crt"
+    rm "$domain.csr" v3.ext
+
+    echo ""
+    echo "Apache2 Usage:"
+    echo "SSLEngine On"
+    echo "SSLCertificateFile    /etc/apache2/ssl/$domain.crt"
+    echo "SSLCertificateKeyFile /etc/apache2/ssl/$domain.key"
+
+    echo ""
+    echo "Nginx Usage:"
+    echo "ssl on;"
+    echo "ssl_certificate     /etc/nginx/ssl/$domain.crt;"
+    echo "ssl_certificate_key /etc/nginx/ssl/$domain.key;"
+}
+
 export CLICOLOR=1
 export PS1="${YELLOW}\u@\h${RESET} : ${BLUE}\w${RESET}\$(__git_ps1 ' : (%s)') \n\$ "
 export PS2="${YELLOW}→${RESET} "
