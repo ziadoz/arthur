@@ -19,3 +19,6 @@
     groups: www-data
     append: yes
   notify: Stop Caddy
+
+- name: Enable Port 443
+  shell: setcap CAP_NET_BIND_SERVICE=+eip $(which caddy)
