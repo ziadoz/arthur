@@ -20,5 +20,6 @@
     append: yes
   notify: Stop Caddy
 
+# sudo setcap CAP_NET_BIND_SERVICE=+eip $(which caddy)
 - name: Enable Port 443
   shell: setcap CAP_NET_BIND_SERVICE=+eip $(which caddy)
