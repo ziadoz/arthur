@@ -10,7 +10,7 @@
     - role: server
 
     - role: users
-      tags: user
+      tags: users
 
     - role: packages
 
