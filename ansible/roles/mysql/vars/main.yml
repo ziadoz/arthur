@@ -10,6 +10,8 @@ mysql_config:
     skip-character-set-client-handshake: ''
     local-infile: '1'
     max_allowed_packet: '200M'
+    # Uncomment for direct access (e.g. WSL2)
+    # bind-address: 0.0.0.0
 mysql_users:
   - username: 'admin'
     password: ''
