@@ -1,5 +1,5 @@
-export PATH="$PATH"
-export EDITOR='nano'
+export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+export EDITOR="nano"
 export CDPATH=".:$HOME:/var/www/vhosts"
 
 BOLD="$(tput bold)"
