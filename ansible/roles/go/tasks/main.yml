@@ -29,7 +29,7 @@
 - name: Setup Go Environment
   template:
     src: go.sh.j2
-    dest: /etc/profile.d
+    dest: /etc/profile.d/go.sh
     owner: root
     group: root
     mode: 0644
