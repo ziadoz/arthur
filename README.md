@@ -130,6 +130,11 @@ And then provision the VM:
 vagrant provision
 ```
 
+In order to access Go web applications the ports will need to be opened in UFW:
+```
+sudo ufw allow 8080
+```
+
 You can make daily usage easier with this handy alias: 
 ```
 function arthur() {
