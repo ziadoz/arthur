@@ -24,6 +24,7 @@
     owner: root
     group: root
     mode: 755
+    recurse: yes
   when: go_installed.stat.exists == false or go_already_installed.rc == 1
 
 - name: Setup Go Environment
