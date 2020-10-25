@@ -34,3 +34,11 @@
     owner: root
     group: root
     mode: 0644
+
+- name: Make Go Path Directory
+  file:
+    path: "{{ go_path }}"
+    state: directory
+    owner: vagrant
+    group: vagrant
+    mode: 744
