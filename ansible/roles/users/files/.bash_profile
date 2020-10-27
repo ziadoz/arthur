@@ -94,7 +94,7 @@ function genssl() {
 
     openssl genrsa -out "$domain.key" 2048
     sudo openssl req -new -newkey rsa:2048 -sha256 -nodes -key "$domain.key" -subj "/C=GB/ST=None/L=NB/O=None/CN=$common" -out "$domain.csr"
-    sudo openssl x509 -req -days 3650 -sha256 -in "$domain.csr" -signkey "$domain.key" -extfile v3.ext -out "$domain.crt"
+    sudo openssl x509 -req -days $days -sha256 -in "$domain.csr" -signkey "$domain.key" -extfile v3.ext -out "$domain.crt"
     rm "$domain.csr" v3.ext
 
     echo ""
