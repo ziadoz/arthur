@@ -84,6 +84,7 @@ function genssl() {
     fi
 
     # Write out temporary configuration extfile.
+    # https://www.cyberciti.biz/faq/using-heredoc-rediection-in-bash-shell-script-to-write-to-file/
     cat <<-EXT > v3.ext
     authorityKeyIdentifier=keyid,issuer
     basicConstraints=CA:FALSE
