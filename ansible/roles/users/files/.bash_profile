@@ -84,13 +84,15 @@ function genssl() {
     fi
 
     # Write out temporary configuration extfile.
-    echo "authorityKeyIdentifier=keyid,issuer" >> v3.ext
-    echo "basicConstraints=CA:FALSE" >> v3.ext
-    echo "keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment" >> v3.ext
-    echo "subjectAltName = @alt_names" >> v3.ext
-    echo "" >> v3.ext
-    echo "[alt_names]" >> v3.ext
-    echo "DNS.1 = $common" >> v3.ext
+    cat <<-EXT > v3.ext
+    authorityKeyIdentifier=keyid,issuer
+    basicConstraints=CA:FALSE
+    keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+    subjectAltName = @alt_names
+    
+    [alt_names]
+    DNS.1 = $common
+    EXT
 
     openssl genrsa -out "$domain.key" 2048
     sudo openssl req -new -newkey rsa:2048 -sha256 -nodes -key "$domain.key" -subj "/C=GB/ST=None/L=NB/O=None/CN=$common" -out "$domain.csr"
