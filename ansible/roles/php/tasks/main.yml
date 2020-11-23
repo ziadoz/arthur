@@ -3,7 +3,6 @@
   apt_repository:
     repo: ppa:ondrej/php
 
-
 - name: Install PHP Packages
   apt:
     name:
