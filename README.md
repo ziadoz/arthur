@@ -159,10 +159,7 @@ Potential improves and ideas to improve Arthur.
 Software to consider adding in the future. 
 - Upgrade to Ubuntu 20.04 LTS.
 - Swap Mailcatcher for Mailhog (no Ruby and dependencies needed).
-- ~~Add Caddy webserver~~.
-- ~~Add Apache webserver with [HTTP2](https://helgeklein.com/blog/2018/11/enabling-http-2-in-apache-on-ubuntu-18-04/).~~
-- Add Postgres database.
-- Install Beanstalkd.
+- Replace Certbot with [Acme](https://github.com/acmesh-official/acme.sh).
 - Install ZSH shell to match macOS default.
 - Use [Vagrant Guest Additions Plugin](https://github.com/dotless-de/vagrant-vbguest)
 - Use [Vagrant Hostsupdater Plugin](https://github.com/cogitatio/vagrant-hostsupdater).
