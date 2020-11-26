@@ -129,7 +129,7 @@
   notify: Restart PHP FPM
   when: xdebug
 
-- name: Configure UFW
+- name: Configure Firewall
   ufw:
     rule: allow
     port: "{{ xdebug_port }}"

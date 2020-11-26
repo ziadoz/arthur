@@ -29,7 +29,7 @@
     group: root
     mode: 0755
 
-- name: Configure UFW
+- name: Configure Firewall
   ufw:
     rule: allow
     port: 9515

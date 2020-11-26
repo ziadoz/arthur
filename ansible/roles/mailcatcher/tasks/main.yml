@@ -42,7 +42,7 @@
     name: mailcatcher
     enabled: yes
 
-- name: Configure UFW
+- name: Configure Firewall
   ufw:
     rule: allow
     port: "{{ mailcatcher_http_port }}"

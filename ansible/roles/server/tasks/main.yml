@@ -61,17 +61,20 @@
     - server
     - unattended-upgrades
 
-- name: Enable UFW
+- name: Enable Firewall
   ufw:
     state: enabled
     logging: on
   tags:
     - server
 
-- name: Configure UFW
+- name: Configure Firewall
   ufw:
     rule: allow
-    port: ssh
+    port: "{{ item }}"
+  with_items:
+    - ssh
+    - ntp
   tags:
     - server
 
