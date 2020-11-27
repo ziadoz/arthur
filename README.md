@@ -143,30 +143,25 @@ function arthur() {
 ```
 
 ## Future Improvements
-Potential improves and ideas to improve Arthur.
+Potential improves and ideas to improve Arthur:
 - Clean up variables (`server.rtc`, `server.timezone`, `server.packages`, `php.extensions`, `node.packages` etc.)
-- Swap task names to lowercase where applicable (e.g. `Install Chromedriver repository`).
-- Move configuration of PHP, MySQL etc. to an `init` provisioner in Vagrant,so it can easily be reloaded.
-- Copy over stripped down PHP INI files for FPM and CLI during an `init` role.
+- Move configuration of PHP, MySQL, Bash, etc. to an `init` provisioner in Vagrant,so it can easily be reloaded.
 - Use an Ansible vault to store passwords and settings.
 - Store packaged boxes on cloud storage (Dropbox, Google Drive).
-- Look at using [existing Ansible Galaxy roles](https://galaxy.ansible.com/geerlingguy).
-- Move Vagrant bits (`inventory`, `ansible.cfg`, `Vagrantfile`) into `vagrant` sub directory.
 - Add `/etc/hosts` file with domains in for projects so internal requests resolve.
-- Load YAML file in `Vagrantfile` that contains project folders to sync, host names, CPU cores, RAM, and other settings (Homestead does this).
 
 ### Software
-Software to consider adding in the future. 
+Software to consider adding in the future.:
 - Upgrade to Ubuntu 20.04 LTS.
+- Install PHP 7.4 and PHP 8.0 side-by-side.
 - Swap Mailcatcher for Mailhog (no Ruby and dependencies needed).
-- Replace Certbot with [Acme](https://github.com/acmesh-official/acme.sh).
-- Install ZSH shell to match macOS default.
 - Use [Vagrant Guest Additions Plugin](https://github.com/dotless-de/vagrant-vbguest)
 - Use [Vagrant Hostsupdater Plugin](https://github.com/cogitatio/vagrant-hostsupdater).
 - Use [Vagrant Disk Size Plugin](https://github.com/sprotheroe/vagrant-disksize).
+- Look at using [existing Ansible Galaxy roles](https://galaxy.ansible.com/geerlingguy).
 
 ### Alternatives
-Alternatives to this VM, mostly for reference.
+Alternatives to this VM, mostly for reference:
 - [Laravel Homestead](https://laravel.com/docs/master/homestead)
 - [Laravel Valet](https://laravel.com/docs/master/valet)
 - [DBngin](https://dbngin.com/)
