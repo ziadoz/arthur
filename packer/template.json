@@ -4,7 +4,7 @@
             "communicator": "ssh",
             "type": "vagrant",
             "provider": "virtualbox",
-            "source_path": "bento/ubuntu-18.04",
+            "source_path": "bento/ubuntu-20.04",
             "add_force": true,
             "teardown_method": "destroy",
             "output_dir": "./output"
