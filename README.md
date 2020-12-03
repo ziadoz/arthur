@@ -151,9 +151,8 @@ Potential improves and ideas to improve Arthur:
 - Add `/etc/hosts` file with domains in for projects so internal requests resolve.
 
 ### Software
-Software to consider adding in the future.:
+Software to consider adding in the future:
 - Upgrade to Ubuntu 20.04 LTS.
-- Swap Mailcatcher for Mailhog (no Ruby and dependencies needed).
 - Uninstall NTP as it only causes problems in development.
 - Use [Vagrant Guest Additions Plugin](https://github.com/dotless-de/vagrant-vbguest)
 - Use [Vagrant Hostsupdater Plugin](https://github.com/cogitatio/vagrant-hostsupdater).

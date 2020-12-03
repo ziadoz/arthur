@@ -32,8 +32,11 @@
     - role: redis
       tags: redis
 
-    - role: mailcatcher
-      tags: mailcatcher
+    # - role: mailcatcher
+    #  tags: mailcatcher
+
+    - role: mailhog
+      tags: mailhog
 
     - role: nodejs
       tags: nodejs

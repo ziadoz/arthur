@@ -1,0 +1,27 @@
+---
+# https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/linking-to-releases
+- name: Download MailHog
+  get_url:
+    url: https://github.com/mailhog/MailHog/releases/latest/download/MailHog_linux_amd64
+    dest: /usr/local/bin/mailhog
+    remote_src: yes
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Copy Service Configuration
+  copy:
+    src: mailhog.service
+    dest: /etc/systemd/system/mailhog.service
+    owner: root
+    group: root
+    mode: 0755
+  notify: Start MailHog
+
+- name: Configure Firewall
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+  with_items:
+    - 1025
+    - 8025
