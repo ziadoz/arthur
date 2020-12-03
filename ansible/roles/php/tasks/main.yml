@@ -14,7 +14,6 @@
       - php{{ php_version }}-fpm
       - php{{ php_version }}-gd
       - php{{ php_version }}-intl
-      - php{{ php_version }}-json
       - php{{ php_version }}-mbstring
       - php{{ php_version }}-mysql
       - php{{ php_version }}-readline
@@ -50,7 +49,7 @@
     line: '{{ item.key }} = {{ item.value }}'
     state: present
     backup: yes
-  with_dict: "{{ php_config }}"
+  with_dict: "{{ php_fpm_config }}"
   notify: Restart PHP FPM
 
 - name: Update PHP CLI Configuration
