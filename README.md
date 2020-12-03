@@ -155,6 +155,7 @@ Software to consider adding in the future.:
 - Upgrade to Ubuntu 20.04 LTS.
 - Install PHP 7.4 and PHP 8.0 side-by-side.
 - Swap Mailcatcher for Mailhog (no Ruby and dependencies needed).
+- Uninstall NTP as it only causes problems in development.
 - Use [Vagrant Guest Additions Plugin](https://github.com/dotless-de/vagrant-vbguest)
 - Use [Vagrant Hostsupdater Plugin](https://github.com/cogitatio/vagrant-hostsupdater).
 - Use [Vagrant Disk Size Plugin](https://github.com/sprotheroe/vagrant-disksize).
