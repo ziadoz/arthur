@@ -153,7 +153,7 @@ Potential improves and ideas to improve Arthur:
 ### Software
 Software to consider adding in the future.:
 - Upgrade to Ubuntu 20.04 LTS.
-- Install PHP 7.4 and PHP 8.0 side-by-side.
+- Upgrade to PHP 8.0.
 - Swap Mailcatcher for Mailhog (no Ruby and dependencies needed).
 - Uninstall NTP as it only causes problems in development.
 - Use [Vagrant Guest Additions Plugin](https://github.com/dotless-de/vagrant-vbguest)
