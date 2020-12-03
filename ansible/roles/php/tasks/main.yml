@@ -62,20 +62,13 @@
   with_dict: "{{ php_cli_config }}"
   notify: Restart PHP FPM
 
-- name: Check Composer Installed
-  shell: which composer
-  register: composer_installed
-  ignore_errors: yes
-
 - name: Download Composer Installer
   get_url:
     url: https://getcomposer.org/installer
     dest: /home/{{ user_account }}/composer-setup.php
-  when: composer_installed.rc == 1
 
 - name: Run Composer Installer
   shell: php /home/{{ user_account }}/composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer
-  when: composer_installed.rc == 1
 
 - name: Make Composer Executable
   file:
@@ -83,11 +76,6 @@
     owner: root
     group: root
     mode: 0777
-  when: composer_installed.rc == 1
-
-- name: Update Composer
-  shell: composer self-update
-  when: composer_installed.rc == 0
 
 - name: Setup Composer Environment
   copy:
