@@ -15,7 +15,7 @@
     path: "{{ go_install_path }}/go"
     owner: root
     group: root
-    mode: 755
+    mode: 0755
     recurse: yes
 
 - name: Setup Go Environment
@@ -32,4 +32,4 @@
     state: directory
     owner: vagrant
     group: vagrant
-    mode: 744
+    mode: 0744
