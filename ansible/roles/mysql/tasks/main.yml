@@ -1,7 +1,7 @@
 ---
 - name: Add MySQL Repository
   apt:
-    deb: https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
+    deb: https://dev.mysql.com/get/mysql-apt-config_0.8.16-1_all.deb
 
 # https://geert.vanderkelen.org/2018/mysql8-unattended-dpkg/
 - name: Set Debian MySQL Configuration
@@ -11,6 +11,10 @@
     value: "{{ item.value }}"
     vtype: "{{ item.vtype }}"
   with_items:
+    - name: mysql-apt-config
+      question: mysql-apt-config/select-server
+      value: "mysql-{{ mysql_version }}"
+      vtype: string
     - name: mysql-community-server
       question: mysql-community-server/root-pass
       value: "{{ mysql_root_password }}"
