@@ -14,7 +14,6 @@
       - php{{ php_version }}-fpm
       - php{{ php_version }}-gd
       - php{{ php_version }}-intl
-      - php{{ php_version }}-json
       - php{{ php_version }}-mbstring
       - php{{ php_version }}-mysql
       - php{{ php_version }}-readline
@@ -50,7 +49,7 @@
     line: '{{ item.key }} = {{ item.value }}'
     state: present
     backup: yes
-  with_dict: "{{ php_config }}"
+  with_dict: "{{ php_fpm_config }}"
   notify: Restart PHP FPM
 
 - name: Update PHP CLI Configuration
@@ -63,20 +62,13 @@
   with_dict: "{{ php_cli_config }}"
   notify: Restart PHP FPM
 
-- name: Check Composer Installed
-  shell: which composer
-  register: composer_installed
-  ignore_errors: yes
-
 - name: Download Composer Installer
   get_url:
     url: https://getcomposer.org/installer
     dest: /home/{{ user_account }}/composer-setup.php
-  when: composer_installed.rc == 1
 
 - name: Run Composer Installer
   shell: php /home/{{ user_account }}/composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer
-  when: composer_installed.rc == 1
 
 - name: Make Composer Executable
   file:
@@ -84,11 +76,6 @@
     owner: root
     group: root
     mode: 0777
-  when: composer_installed.rc == 1
-
-- name: Update Composer
-  shell: composer self-update
-  when: composer_installed.rc == 0
 
 - name: Setup Composer Environment
   copy:
@@ -132,5 +119,5 @@
 - name: Configure Firewall
   ufw:
     rule: allow
-    port: "{{ xdebug_port }}"
+    port: 9003
   when: xdebug

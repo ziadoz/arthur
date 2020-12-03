@@ -23,8 +23,8 @@
     # - role: caddy
     #  tags: caddy
 
-    - role: certbot
-      tags: certbot
+    # - role: certbot
+    #  tags: certbot
 
     - role: mysql
       tags: mysql
@@ -32,8 +32,11 @@
     - role: redis
       tags: redis
 
-    - role: mailcatcher
-      tags: mailcatcher
+    # - role: mailcatcher
+    #  tags: mailcatcher
+
+    - role: mailhog
+      tags: mailhog
 
     - role: nodejs
       tags: nodejs

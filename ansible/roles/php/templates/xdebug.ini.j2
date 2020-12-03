@@ -1,12 +1,6 @@
-zend_extension=/usr/lib/php/20180731/xdebug.so
+zend_extension=/usr/lib/php/20200930/xdebug.so
 
-xdebug.remote_port={{ xdebug_port }}
-xdebug.remote_enable = 1
-xdebug.remote_connect_back = 1
+xdebug.mode = develop,debug,profile,trace
 xdebug.idekey = {{ xdebug_ide_key }}
-
-xdebug.profiler_enable_trigger = 1
-xdebug.profiler_output_dir = /var/www/vhosts/_xdebug/profiler
-
-xdebug.trace_enable_trigger = 1
-xdebug.trace_output_dir = /var/www/vhosts/_xdebug/trace
+xdebug.discover_client_host = 1
+xdebug.output_dir = /var/www/vhosts/_xdebug

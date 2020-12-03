@@ -1,31 +1,22 @@
 ---
-- name: Check Go Installed
-  stat:
-    path:  "{{ go_install_path }}/go"
-  register: go_installed
-
-- name: Check Installed Go Version
-  shell: "{{ go_install_path }}/go/bin/go version | grep go{{ go_version }}"
-  register: go_already_installed
-  ignore_errors: yes
-  when: go_installed.stat.exists == true
-
-- name: Remove Existing Go Installation
+- name: Uninstall Go
   file:
     path: "{{ go_install_path }}/go"
     state: absent
-  when: go_installed.stat.exists == false or go_already_installed.rc == 1
 
 - name: Install Go
   unarchive:
     src: "https://storage.googleapis.com/golang/go{{ go_version }}.linux-amd64.tar.gz"
     remote_src: yes
     dest: "{{ go_install_path }}"
+
+- name: Set File Permissions
+  file:
+    path: "{{ go_install_path }}/go"
     owner: root
     group: root
     mode: 755
     recurse: yes
-  when: go_installed.stat.exists == false or go_already_installed.rc == 1
 
 - name: Setup Go Environment
   template:

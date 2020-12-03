@@ -85,7 +85,7 @@ function genssl() {
 
     # Write out temporary configuration extfile.
     # https://www.cyberciti.biz/faq/using-heredoc-rediection-in-bash-shell-script-to-write-to-file/
-    cat <<-EXT > v3.ext
+    cat <<- EOF > v3.ext
     authorityKeyIdentifier=keyid,issuer
     basicConstraints=CA:FALSE
     keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
@@ -93,7 +93,7 @@ function genssl() {
     
     [alt_names]
     DNS.1 = $common
-    EXT
+EOF
 
     openssl genrsa -out "$domain.key" 2048
     sudo openssl req -new -newkey rsa:2048 -sha256 -nodes -key "$domain.key" -subj "/C=GB/ST=None/L=NB/O=None/CN=$common" -out "$domain.csr"

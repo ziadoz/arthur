@@ -39,14 +39,14 @@
       - nfs-kernel-server
       - portmap
     state: latest
-  when: packages.nfs
+  when: inventory_hostname not in groups['development']
   tags:
     - packages
     - nfs
 
 - name: Add Git PPA
   apt_repository:
-    repo: "{{ packages.git_ppa }}"
+    repo: ppa:git-core/ppa
     state: present
   tags:
     - packages
@@ -65,7 +65,7 @@
 
 - name: Install Packer
   unarchive:
-    src: "https://releases.hashicorp.com/packer/{{ packages.packer_version }}/packer_{{ packages.packer_version }}_linux_amd64.zip"
+    src: "https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip"
     remote_src: yes
     dest: /usr/local/bin
     owner: root
