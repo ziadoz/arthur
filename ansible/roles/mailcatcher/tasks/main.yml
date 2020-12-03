@@ -34,7 +34,7 @@
     dest: /lib/systemd/system
     owner: root
     group: root
-    mode: 0644
+    mode: 0755
   notify: Start Mailcatcher
 
 - name: Start Mailcatcher Upon Boot
@@ -45,4 +45,4 @@
 - name: Configure Firewall
   ufw:
     rule: allow
-    port: "{{ mailcatcher_http_port }}"
+    port: 1080
