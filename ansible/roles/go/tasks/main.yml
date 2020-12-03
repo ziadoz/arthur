@@ -12,7 +12,7 @@
 
 - name: Set File Permissions
   file:
-    src: "{{ go_install_path }}/go"
+    path: "{{ go_install_path }}/go"
     owner: root
     group: root
     mode: 755
