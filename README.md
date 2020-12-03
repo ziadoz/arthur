@@ -153,6 +153,7 @@ Potential improves and ideas to improve Arthur:
 ### Software
 Software to consider adding in the future:
 - Upgrade to Ubuntu 20.04 LTS.
+- Remove non-development bits (firewall, disabling SSH bits, inventory groups).
 - Uninstall NTP as it only causes problems in development.
 - Use [Vagrant Guest Additions Plugin](https://github.com/dotless-de/vagrant-vbguest)
 - Use [Vagrant Hostsupdater Plugin](https://github.com/cogitatio/vagrant-hostsupdater).
