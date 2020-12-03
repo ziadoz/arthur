@@ -13,6 +13,7 @@
 - name: Set File Permissions
   file:
     path: "{{ go_install_path }}/go"
+    state: directory
     owner: root
     group: root
     mode: 0755
