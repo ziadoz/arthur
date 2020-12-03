@@ -144,15 +144,15 @@ function arthur() {
 
 ## Future Improvements
 Potential improves and ideas to improve Arthur:
-- Remove non-development bits (firewall, SSH configuration, inventory groups).
-- Move configuration of PHP, MySQL, Bash, etc. to an `init` provisioner in Vagrant,so it can easily be reloaded.
+- Remove non-development bits (firewall, SSH configuration, inventory groups, idempotent bits like Composer and Go). ***
+- Move configuration of PHP, MySQL, Bash, etc. to an `init` provisioner in Vagrant,so it can easily be reloaded. ***
 - Use an Ansible vault to store passwords and settings.
 - Store packaged boxes on cloud storage (Dropbox, Google Drive).
 - Add `/etc/hosts` file with domains in for projects so internal requests resolve.
 
 ### Software
 Software to consider adding in the future:
-- Upgrade to Ubuntu 20.04 LTS.
+- Upgrade to Ubuntu 20.04 LTS. ***
 - Uninstall NTP as it only causes problems in development.
 - Use [Vagrant Guest Additions Plugin](https://github.com/dotless-de/vagrant-vbguest)
 - Use [Vagrant Hostsupdater Plugin](https://github.com/cogitatio/vagrant-hostsupdater).
