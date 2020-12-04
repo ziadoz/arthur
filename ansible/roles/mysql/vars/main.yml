@@ -10,6 +10,7 @@ mysql_config:
     local-infile: '1'
     max_allowed_packet: '200M'
     bind-address: 0.0.0.0
+    tls_version: TLSv1.2
 mysql_users:
   - username: 'admin'
     password: ''
