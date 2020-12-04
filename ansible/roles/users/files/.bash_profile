@@ -113,6 +113,42 @@ EOF
     echo "ssl_certificate_key /etc/nginx/ssl/$domain.key;"
 }
 
+# Show installed software versions.
+function versions() {
+    echo "${YELLOW}PHP:${RESET}"
+    php -v
+    composer --version
+    echo
+
+    echo "${YELLOW}JavaScript:${RESET}"
+    echo -n "Node: "
+    node --version
+    echo -n "Yarn: "
+    yarn --version
+    echo
+
+    echo "${YELLOW}Go:${RESET}"
+    go version
+    echo
+
+    if command -v ruby > /dev/null; then
+        echo "${YELLOW}Ruby:${RESET}"
+        ruby --version
+        bundle version
+        echo
+    fi
+
+    echo "${YELLOW}Databases:${RESET}"
+    mysql --version
+    redis-server --version
+    echo
+
+    echo "${YELLOW}Other:${RESET}"
+    git --version
+    echo -n "Packer: "
+    packer --version
+}
+
 export CLICOLOR=1
 export PS1="${YELLOW}\u@\h${RESET} : ${BLUE}\w${RESET}\$(__git_ps1 ' : (%s)') \n\$ "
 export PS2="${YELLOW}→${RESET} "
