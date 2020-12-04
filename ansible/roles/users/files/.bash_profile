@@ -115,38 +115,67 @@ EOF
 
 # Show installed software versions.
 function versions() {
-    echo "${YELLOW}PHP:${RESET}"
+    echo "${YELLOW}==== PHP ====${RESET}"
     php -v
     composer --version
     echo
 
-    echo "${YELLOW}JavaScript:${RESET}"
+    echo "${YELLOW}==== JavaScript ====${RESET}"
     echo -n "Node: "
     node --version
+
+    echo -n "NPM: "
+    npm --version
+
     echo -n "Yarn: "
     yarn --version
     echo
 
-    echo "${YELLOW}Go:${RESET}"
+    echo "${YELLOW}==== Go ====${RESET}"
     go version
     echo
 
     if command -v ruby > /dev/null; then
-        echo "${YELLOW}Ruby:${RESET}"
+        echo "${YELLOW}==== Ruby ====${RESET}"
         ruby --version
         bundle version
         echo
     fi
 
-    echo "${YELLOW}Databases:${RESET}"
+    echo "${YELLOW}==== Databases ====${RESET}"
     mysql --version
     redis-server --version
     echo
 
-    echo "${YELLOW}Other:${RESET}"
+    echo "${YELLOW}==== Web Servers ====${RESET}"
+    nginx -v
+    if command -v caddy > /dev/null; then
+        caddy version
+    fi
+    echo
+
+    echo "${YELLOW}==== Mail Servers ====${RESET}"
+    mailhog --version
+    if command -v mailcatcher > /dev/null; then
+        mailcatcher --version
+    fi
+    echo
+
+    echo "${YELLOW}==== Web Browsers ====${RESET}"
+    google-chrome --version
+    chromedriver --version
+    echo
+
+    echo "${YELLOW}==== Utilities ====${RESET}"
     git --version
+
     echo -n "Packer: "
     packer --version
+
+    if command -v certbot > /dev/null; then
+        certbot --version
+    fi
+    echo
 }
 
 export CLICOLOR=1
