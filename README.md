@@ -39,7 +39,7 @@ Start up headless Chrome and Selenium (IP address whitelist is import to connect
 chromedriver --url-base=/wd/hub --whitelisted-ips=''
 ```
 
-Access Mailcatcher at [https://192.168.33.42:1080](https://192.168.33.42:1080)
+Access MailHog at [http://192.168.33.42:1025](http://192.168.33.42:1025)
 
 ## Guest Commands
 Start up headless Chrome and Selenium:
