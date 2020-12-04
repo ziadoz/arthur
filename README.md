@@ -150,6 +150,7 @@ Potential improves and ideas to improve Arthur:
 - Use an Ansible vault to store passwords and settings.
 - Store packaged boxes on cloud storage (Dropbox, Google Drive).
 - Add `/etc/hosts` file with domains in for projects so internal requests resolve.
+- Overhaul the README.md and make improvements.
 
 ### Software
 Software to consider adding in the future:
