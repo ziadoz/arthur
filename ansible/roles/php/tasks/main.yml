@@ -2,6 +2,8 @@
 - name: Add PHP PPA
   apt_repository:
     repo: ppa:ondrej/php
+  environment:
+    LC_ALL: C.UTF-8
 
 - name: Install PHP Packages
   apt:
