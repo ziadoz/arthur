@@ -59,6 +59,8 @@ lnsite foo.conf
 lnsite *-foo.conf
 ```
 
+Run `versions` to list the installed software.
+
 ## Debug Commands
 Lint the playbook:
 ```
