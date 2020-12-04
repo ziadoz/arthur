@@ -33,7 +33,7 @@
     name:
       - mysql-server
       - mysql-client
-      - python-mysqldb
+      - python3-mysqldb
     state: latest
     update_cache: yes
   environment:
@@ -90,3 +90,14 @@
 - name: Load MySQL Timezone Data
   shell: "mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql --user={{ mysql_root_username }} --password={{ mysql_root_password }} mysql"
   notify: Restart MySQL
+
+# https://www.percona.com/doc/percona-xtrabackup/8.0/index.html
+- name: Add Percona Repository
+  apt:
+    deb: https://repo.percona.com/apt/percona-release_latest.focal_all.deb
+
+- name: Install Percona XtraBackup
+  apt:
+    name: "percona-xtrabackup-{{ percona_version }}"
+    state: latest
+    update_cache: yes

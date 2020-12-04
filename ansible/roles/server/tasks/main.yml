@@ -9,32 +9,13 @@
     - server
     - apt
 
-# https://github.com/ansible/ansible-modules-core/issues/3523
-- name: Upgrade System
-  apt:
-    upgrade: yes
-    update_cache: yes
-  tags:
-    - server
-    - upgrade
-
-- name: Install NTP
-  apt:
-    name: ntp
-    state: present
-  tags:
-    - server
-    - ntp
-
 - name: Setup System Clock and Timezone
   shell: "{{ item }}"
   with_items:
     - timedatectl set-local-rtc "{{ server_rtc }}"
-    - timedatectl set-ntp "{{ server_ntp }}"
     - timedatectl set-timezone "{{ server_timezone }}"
   tags:
     - server
-    - ntp
 
 - name: Generate Locale
   shell: locale-gen "{{ server_locale }}"
@@ -71,10 +52,7 @@
 - name: Configure Firewall
   ufw:
     rule: allow
-    port: "{{ item }}"
-  with_items:
-    - ssh
-    - ntp
+    port: ssh
   tags:
     - server
 

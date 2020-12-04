@@ -1,5 +1,6 @@
 ---
 mysql_version: 8.0
+percona_version: 80
 mysql_config:
   mysqld:
     long_query_time: '1'
