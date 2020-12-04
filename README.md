@@ -39,7 +39,7 @@ Start up headless Chrome and Selenium (IP address whitelist is import to connect
 chromedriver --url-base=/wd/hub --whitelisted-ips=''
 ```
 
-Access Mailcatcher at [https://192.168.33.42:1080](https://192.168.33.42:1080)
+Access MailHog at [http://192.168.33.42:1025](http://192.168.33.42:1025)
 
 ## Guest Commands
 Start up headless Chrome and Selenium:
@@ -150,11 +150,10 @@ Potential improves and ideas to improve Arthur:
 - Use an Ansible vault to store passwords and settings.
 - Store packaged boxes on cloud storage (Dropbox, Google Drive).
 - Add `/etc/hosts` file with domains in for projects so internal requests resolve.
+- Overhaul the README.md and make improvements.
 
 ### Software
 Software to consider adding in the future:
-- Upgrade to Ubuntu 20.04 LTS. ***
-- Uninstall NTP as it only causes problems in development.
 - Use [Vagrant Guest Additions Plugin](https://github.com/dotless-de/vagrant-vbguest)
 - Use [Vagrant Hostsupdater Plugin](https://github.com/cogitatio/vagrant-hostsupdater).
 - Use [Vagrant Disk Size Plugin](https://github.com/sprotheroe/vagrant-disksize).
