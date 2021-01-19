@@ -1,7 +1,9 @@
 ---
 - name: Install Transport HTTPS
   apt:
-    name: apt-transport-https
+    name:
+    - apt-transport-https
+    - gnupg2
     state: present
 
 - name: Add NodeSource Repository Key
