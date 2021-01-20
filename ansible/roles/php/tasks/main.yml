@@ -112,12 +112,6 @@
     path: /home/{{ user_account }}/composer-setup.php
     state: absent
 
-- name: Check XDebug Installed
-  stat:
-    path: /etc/php/{{ php_version }}/mods-available/xdebug.ini
-  register: xdebug_installed
-  when: xdebug
-
 - name: Copy XDebug Configuration
   template:
     src: xdebug.ini.j2
@@ -125,17 +119,6 @@
     owner: root
     group: root
     mode: 0644
-  when: xdebug and xdebug_installed.stat.exists == false
-
-- name: Symlink XDebug Configuration
-  file:
-    src: /etc/php/{{ php_version }}/mods-available/xdebug.ini
-    dest: /etc/php/{{ php_version }}/fpm/conf.d/20-xdebug.ini
-    state: link
-    owner: root
-    group: root
-    mode: 0777
-  notify: Restart PHP FPM
   when: xdebug
 
 - name: Configure Firewall

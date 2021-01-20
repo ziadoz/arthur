@@ -6,4 +6,3 @@ users:
 user_account: "{{ ansible_ssh_user }}"
 mysql_root_username: 'root'
 mysql_root_password: 'flipflop'
-xdebug_ide_key: PHPSTORM
