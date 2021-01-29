@@ -84,8 +84,8 @@ ansible all -m ping
 
 Get facts about the inventory:
 ```
-ansible all -m setup
-ansible all -m setup > facts.json
+ansible all -m setup -v
+ansible all -m setup -v > facts.json
 ```
 
 Run tasks by tag:
