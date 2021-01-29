@@ -94,7 +94,7 @@
 # https://www.percona.com/doc/percona-xtrabackup/8.0/index.html
 - name: Add Percona Repository
   apt:
-    deb: https://repo.percona.com/apt/percona-release_latest.focal_all.deb
+    deb: https://repo.percona.com/apt/percona-release_latest.{{ ansible_facts['ansible_lsb']['codename'] }}_all.deb
 
 - name: Install Percona XtraBackup
   apt:
